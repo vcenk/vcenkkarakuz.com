@@ -37,6 +37,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
+    // IMPORTANT: The id="services" here connects to the Navbar link
     <section id="services" className="py-24 md:py-32 bg-secondary/20">
       <div className="section-container">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">

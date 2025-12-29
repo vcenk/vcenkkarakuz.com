@@ -4,29 +4,28 @@ export type ProductType = 'all' | 'prompts' | 'documents' | 'ui-components' | 'l
 
 export interface Product {
   id: number;
-  slug: string; // Added for routing
+  slug: string;
   title: string;
   description: string;
-  longDescription?: string; // Added for detail page
-  features?: string[]; // Added for detail page
+  longDescription?: string;
+  features?: string[];
   category: ProductType;
   image: string;
   isPremium: boolean;
   price?: number;
   link?: string;
   demoUrl?: string;
-  isLibrary?: boolean;
+  isLibrary?: boolean; // This flag triggers the special navigation
   techStack?: string[];
 }
 
 export const products: Product[] = [
+  // ... previous products ...
   {
     id: 1,
     slug: 'ai-prompt-library',
     title: 'AI Prompt Library',
     description: 'A curated collection of high-converting prompts for specialized tasks.',
-    longDescription: 'Unlock the full potential of LLMs with this comprehensive library of tested prompts. Categories include copywriting, coding assistance, data analysis, and creative writing. Updated weekly with new techniques.',
-    features: ['500+ Tested Prompts', 'Categorized by Use Case', 'Copy-Paste Ready', 'Lifetime Updates'],
     category: 'prompts',
     image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop',
     isPremium: false,
@@ -37,8 +36,6 @@ export const products: Product[] = [
     slug: 'chatgpt-system-prompts',
     title: 'ChatGPT System Prompts',
     description: 'Advanced system prompts to program behavior into AI agents.',
-    longDescription: 'Define specific personas and behavioral constraints for your AI agents. These system prompts are designed to keep the AI on track, reduce hallucinations, and enforce specific output formats.',
-    features: ['JSON Output Enforcers', 'Role-Playing Personas', 'Safety Guardrails', 'API Integration Templates'],
     category: 'prompts',
     image: 'https://images.unsplash.com/photo-1676299081847-824916de030a?w=600&h=400&fit=crop',
     isPremium: true,
@@ -71,8 +68,6 @@ export const products: Product[] = [
     slug: 'dashboard-component-kit',
     title: 'Dashboard Component Kit',
     description: 'React/Tailwind components for building data-heavy dashboards.',
-    longDescription: 'A professional UI kit built specifically for data-intensive applications. Includes data grids, chart wrappers, metric cards, and filter panels. Built with Shadcn UI and Recharts compatibility.',
-    features: ['Dark Mode Ready', 'TypeScript Support', 'Responsive Layouts', '20+ Custom Components'],
     category: 'ui-components',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
     isPremium: true,
@@ -112,13 +107,13 @@ export const products: Product[] = [
   },
   {
     id: 9,
-    slug: 'framer-motion-presets',
-    title: 'Framer Motion Presets',
-    description: 'Copy-paste animation library for React applications.',
+    slug: 'animation-library',
+    title: 'Animation Library', // Renamed to be clear
+    description: 'A complete collection of copy-paste Framer Motion animations for your projects.',
     category: 'animations',
     image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop',
     isPremium: false,
-    isLibrary: true,
+    isLibrary: true, // IMPORTANT: This triggers the redirect to /animations
   },
   {
     id: 10,
@@ -135,8 +130,6 @@ export const products: Product[] = [
     slug: 'n8n-lead-gen-workflow',
     title: 'n8n Lead Gen Workflow',
     description: 'Automated scraping and enrichment workflow for sales teams.',
-    longDescription: 'Stop manual prospecting. This n8n workflow automates the process of finding leads from Google Maps/LinkedIn, enriching them with email data, and adding them to your CRM (HubSpot/Airtable).',
-    features: ['Google Maps Scraper', 'Email Enrichment', 'CRM Sync', 'Slack Notifications'],
     category: 'workflows',
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop',
     isPremium: true,

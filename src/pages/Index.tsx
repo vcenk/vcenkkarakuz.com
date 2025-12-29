@@ -1,7 +1,7 @@
 // src/pages/Index.tsx
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
-import ServicesSection from '@/components/ServicesSection';
+import ServicesSection from '@/components/ServicesSection'; // Ensure this import exists
 import FeaturedAssets from '@/components/FeaturedAssets';
 import ProductsSection from '@/components/ProductsSection';
 import AutomationSection from '@/components/AutomationSection';
@@ -16,26 +16,27 @@ const Index = () => {
       <Navigation />
       
       <main>
+        {/* 1. Hero */}
         <HeroSection />
         
-        {/* ID: "services" inside ServicesSection */}
+        {/* 2. Services (Linked to Navbar) */}
         <ServicesSection />
         
-        {/* Shop Teaser */}
+        {/* 3. Featured Assets (Shop) */}
         <FeaturedAssets />
         
-        {/* ID: "products" inside ProductsSection (Renamed visually to "Signature Ventures" or "Work") */}
+        {/* 4. Portfolio (Linked to Navbar "Work") */}
         <ProductsSection />
         
-        {/* ID: "automation" inside AutomationSection */}
+        {/* 5. Automation */}
         <AutomationSection />
         
         <CurrentFocusSection />
         
-        {/* ID: "about" inside AboutSection */}
+        {/* 6. About */}
         <AboutSection />
         
-        {/* ID: "contact" inside ContactSection */}
+        {/* 7. Contact */}
         <ContactSection />
       </main>
 
