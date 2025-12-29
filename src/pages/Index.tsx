@@ -1,7 +1,8 @@
 // src/pages/Index.tsx
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
-import ServicesSection from '@/components/ServicesSection'; // Ensure this import exists
+import TechStack from '@/components/TechStack'; 
+import ServicesSection from '@/components/ServicesSection';
 import FeaturedAssets from '@/components/FeaturedAssets';
 import ProductsSection from '@/components/ProductsSection';
 import AutomationSection from '@/components/AutomationSection';
@@ -9,6 +10,7 @@ import CurrentFocusSection from '@/components/CurrentFocusSection';
 import AboutSection from '@/components/AboutSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import { ScrollReveal } from '@/components/ScrollReveal'; // Import the new component
 
 const Index = () => {
   return (
@@ -16,28 +18,37 @@ const Index = () => {
       <Navigation />
       
       <main>
-        {/* 1. Hero */}
         <HeroSection />
         
-        {/* 2. Services (Linked to Navbar) */}
-        <ServicesSection />
+        {/* We generally don't animate the marquee, it spins forever */}
+        <TechStack />
         
-        {/* 3. Featured Assets (Shop) */}
-        <FeaturedAssets />
+        {/* Wrap sections you want to reveal on scroll */}
+        <ScrollReveal width="100%">
+          <ServicesSection />
+        </ScrollReveal>
         
-        {/* 4. Portfolio (Linked to Navbar "Work") */}
-        <ProductsSection />
+        <ScrollReveal width="100%">
+          <FeaturedAssets />
+        </ScrollReveal>
         
-        {/* 5. Automation */}
-        <AutomationSection />
+        <ScrollReveal width="100%">
+          <ProductsSection />
+        </ScrollReveal>
+        
+        <ScrollReveal width="100%">
+          <AutomationSection />
+        </ScrollReveal>
         
         <CurrentFocusSection />
         
-        {/* 6. About */}
-        <AboutSection />
+        <ScrollReveal width="100%">
+          <AboutSection />
+        </ScrollReveal>
         
-        {/* 7. Contact */}
-        <ContactSection />
+        <ScrollReveal width="100%">
+          <ContactSection />
+        </ScrollReveal>
       </main>
 
       <Footer />

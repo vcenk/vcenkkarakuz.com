@@ -1,11 +1,45 @@
-import { motion } from 'framer-motion';
-import { ArrowLeft } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, Filter, Sparkles, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import AnimationCard from '@/components/ui/AnimationCard';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
-// Sample animation previews
+// --- NEW PREVIEWS ---
+const SlideInRightPreview = () => (
+  <motion.div
+    animate={{ x: [50, 0, 50] }}
+    transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+    className="w-16 h-16 rounded-lg bg-gradient-to-l from-primary to-accent shadow-lg"
+  />
+);
+
+const WigglePreview = () => (
+  <motion.div
+    animate={{ rotate: [0, -10, 10, -10, 10, 0] }}
+    transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1 }}
+    className="w-16 h-16 rounded-xl bg-yellow-400/80 shadow-lg border-2 border-yellow-500/50"
+  />
+);
+
+const BlurInPreview = () => (
+  <motion.div
+    animate={{ opacity: [0, 1, 0], filter: ["blur(10px)", "blur(0px)", "blur(10px)"] }}
+    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+    className="w-20 h-20 rounded-full bg-indigo-500 shadow-lg"
+  />
+);
+
+const HeartbeatPreview = () => (
+  <motion.div
+    animate={{ scale: [1, 1.2, 1, 1.2, 1] }}
+    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", times: [0, 0.1, 0.2, 0.3, 1] }}
+    className="w-16 h-16 rounded-2xl bg-rose-500 shadow-lg rotate-45"
+  />
+);
+
+// --- EXISTING PREVIEWS ---
 const FadeInPreview = () => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
@@ -37,12 +71,7 @@ const StaggerPreview = () => (
       <motion.div
         key={i}
         animate={{ y: [0, -12, 0] }}
-        transition={{
-          duration: 0.6,
-          repeat: Infinity,
-          delay: i * 0.1,
-          ease: 'easeInOut',
-        }}
+        transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.1, ease: 'easeInOut' }}
         className="w-4 h-4 rounded-full bg-accent"
       />
     ))}
@@ -99,18 +128,18 @@ const FlipPreview = () => (
 
 const MorphPreview = () => (
   <motion.div
-    animate={{ 
-      borderRadius: ['20%', '50%', '20%'],
-      rotate: [0, 90, 0]
-    }}
+    animate={{ borderRadius: ['20%', '50%', '20%'], rotate: [0, 90, 0] }}
     transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
     className="w-20 h-20 bg-gradient-to-br from-accent to-primary shadow-lg"
   />
 );
 
-// Animation data with code samples
+// --- DATA & CONFIG ---
+type AnimationType = 'free' | 'premium';
+
 const animationExamples = [
   {
+    type: 'free' as AnimationType,
     title: 'Fade In Up',
     description: 'Smooth fade with upward motion',
     preview: <FadeInPreview />,
@@ -127,6 +156,41 @@ const FadeInUp = ({ children }) => (
 );`,
   },
   {
+    type: 'free' as AnimationType,
+    title: 'Slide In Right',
+    description: 'Enters from the right side',
+    preview: <SlideInRightPreview />,
+    code: `import { motion } from 'framer-motion';
+
+const SlideInRight = ({ children }) => (
+  <motion.div
+    initial={{ opacity: 0, x: 50 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.5, ease: "easeOut" }}
+  >
+    {children}
+  </motion.div>
+);`,
+  },
+  {
+    type: 'free' as AnimationType,
+    title: 'Blur In',
+    description: 'Unblurs while fading in',
+    preview: <BlurInPreview />,
+    code: `import { motion } from 'framer-motion';
+
+const BlurIn = ({ children }) => (
+  <motion.div
+    initial={{ opacity: 0, filter: "blur(10px)" }}
+    animate={{ opacity: 1, filter: "blur(0px)" }}
+    transition={{ duration: 0.8 }}
+  >
+    {children}
+  </motion.div>
+);`,
+  },
+  {
+    type: 'free' as AnimationType,
     title: 'Scale Pulse',
     description: 'Breathing scale animation',
     preview: <ScalePreview />,
@@ -135,10 +199,42 @@ const FadeInUp = ({ children }) => (
 const ScalePulse = ({ children }) => (
   <motion.div
     animate={{ scale: [1, 1.2, 1] }}
+    transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+  >
+    {children}
+  </motion.div>
+);`,
+  },
+  {
+    type: 'free' as AnimationType,
+    title: 'Wiggle',
+    description: 'Playful attention grabber',
+    preview: <WigglePreview />,
+    code: `import { motion } from 'framer-motion';
+
+const Wiggle = ({ children }) => (
+  <motion.div
+    whileHover={{ rotate: [0, -10, 10, -10, 10, 0] }}
+    transition={{ duration: 0.5 }}
+  >
+    {children}
+  </motion.div>
+);`,
+  },
+  {
+    type: 'free' as AnimationType,
+    title: 'Heartbeat',
+    description: 'Quick double pulse',
+    preview: <HeartbeatPreview />,
+    code: `import { motion } from 'framer-motion';
+
+const Heartbeat = ({ children }) => (
+  <motion.div
+    animate={{ scale: [1, 1.2, 1, 1.2, 1] }}
     transition={{ 
       duration: 1.5, 
       repeat: Infinity, 
-      ease: 'easeInOut' 
+      times: [0, 0.1, 0.2, 0.3, 1] 
     }}
   >
     {children}
@@ -146,6 +242,7 @@ const ScalePulse = ({ children }) => (
 );`,
   },
   {
+    type: 'free' as AnimationType,
     title: 'Infinite Rotate',
     description: 'Continuous rotation animation',
     preview: <RotatePreview />,
@@ -154,17 +251,14 @@ const ScalePulse = ({ children }) => (
 const InfiniteRotate = ({ children }) => (
   <motion.div
     animate={{ rotate: 360 }}
-    transition={{ 
-      duration: 2, 
-      repeat: Infinity, 
-      ease: 'linear' 
-    }}
+    transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
   >
     {children}
   </motion.div>
 );`,
   },
   {
+    type: 'free' as AnimationType,
     title: 'Stagger Dots',
     description: 'Loading indicator with stagger',
     preview: <StaggerPreview />,
@@ -176,12 +270,7 @@ const StaggerDots = () => (
       <motion.div
         key={i}
         animate={{ y: [0, -12, 0] }}
-        transition={{
-          duration: 0.6,
-          repeat: Infinity,
-          delay: i * 0.1,
-          ease: 'easeInOut',
-        }}
+        transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.1, ease: 'easeInOut' }}
         className="w-4 h-4 rounded-full bg-accent"
       />
     ))}
@@ -189,6 +278,7 @@ const StaggerDots = () => (
 );`,
   },
   {
+    type: 'free' as AnimationType,
     title: 'Slide Loop',
     description: 'Horizontal sliding motion',
     preview: <SlidePreview />,
@@ -197,17 +287,14 @@ const StaggerDots = () => (
 const SlideLoop = ({ children }) => (
   <motion.div
     animate={{ x: [-40, 40, -40] }}
-    transition={{ 
-      duration: 2, 
-      repeat: Infinity, 
-      ease: 'easeInOut' 
-    }}
+    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
   >
     {children}
   </motion.div>
 );`,
   },
   {
+    type: 'free' as AnimationType,
     title: 'Ripple Effect',
     description: 'Expanding ring pulse',
     preview: <PulsePreview />,
@@ -217,8 +304,8 @@ const RippleEffect = () => (
   <motion.div
     animate={{
       boxShadow: [
-        '0 0 0 0 rgba(99, 102, 241, 0.4)',
-        '0 0 0 20px rgba(99, 102, 241, 0)',
+        '0 0 0 0 rgba(var(--accent-rgb), 0.4)',
+        '0 0 0 20px rgba(var(--accent-rgb), 0)',
       ],
     }}
     transition={{ duration: 1.5, repeat: Infinity }}
@@ -227,6 +314,7 @@ const RippleEffect = () => (
 );`,
   },
   {
+    type: 'free' as AnimationType,
     title: 'Bounce',
     description: 'Elastic bounce effect',
     preview: <BouncePreview />,
@@ -235,17 +323,14 @@ const RippleEffect = () => (
 const Bounce = ({ children }) => (
   <motion.div
     animate={{ y: [0, -30, 0] }}
-    transition={{ 
-      duration: 0.8, 
-      repeat: Infinity, 
-      ease: 'easeOut' 
-    }}
+    transition={{ duration: 0.8, repeat: Infinity, ease: 'easeOut' }}
   >
     {children}
   </motion.div>
 );`,
   },
   {
+    type: 'free' as AnimationType,
     title: 'Shake',
     description: 'Attention-grabbing shake',
     preview: <ShakePreview />,
@@ -254,17 +339,14 @@ const Bounce = ({ children }) => (
 const Shake = ({ children }) => (
   <motion.div
     animate={{ x: [0, -5, 5, -5, 5, 0] }}
-    transition={{ 
-      duration: 0.5, 
-      repeat: Infinity, 
-      repeatDelay: 1 
-    }}
+    transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 1 }}
   >
     {children}
   </motion.div>
 );`,
   },
   {
+    type: 'free' as AnimationType,
     title: '3D Flip',
     description: 'Card flip animation',
     preview: <FlipPreview />,
@@ -273,11 +355,7 @@ const Shake = ({ children }) => (
 const Flip3D = ({ children }) => (
   <motion.div
     animate={{ rotateY: [0, 180, 360] }}
-    transition={{ 
-      duration: 2, 
-      repeat: Infinity, 
-      ease: 'easeInOut' 
-    }}
+    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
     style={{ transformStyle: 'preserve-3d' }}
   >
     {children}
@@ -285,6 +363,7 @@ const Flip3D = ({ children }) => (
 );`,
   },
   {
+    type: 'free' as AnimationType,
     title: 'Morph Shape',
     description: 'Shape-shifting animation',
     preview: <MorphPreview />,
@@ -292,15 +371,8 @@ const Flip3D = ({ children }) => (
 
 const MorphShape = () => (
   <motion.div
-    animate={{ 
-      borderRadius: ['20%', '50%', '20%'],
-      rotate: [0, 90, 0]
-    }}
-    transition={{ 
-      duration: 2, 
-      repeat: Infinity, 
-      ease: 'easeInOut' 
-    }}
+    animate={{ borderRadius: ['20%', '50%', '20%'], rotate: [0, 90, 0] }}
+    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
     className="w-20 h-20 bg-gradient-to-br from-accent to-primary"
   />
 );`,
@@ -308,13 +380,18 @@ const MorphShape = () => (
 ];
 
 const AnimationLibrary = () => {
+  const [filter, setFilter] = useState<'all' | 'free' | 'premium'>('all');
+
+  const filteredAnimations = animationExamples.filter(
+    (item) => filter === 'all' || item.type === filter
+  );
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
       <main className="pt-24 pb-16">
         <div className="section-container">
-          {/* Back link */}
           <Link 
             to="/" 
             className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
@@ -323,41 +400,82 @@ const AnimationLibrary = () => {
             Back to Home
           </Link>
 
-          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <span className="section-label">UI Components</span>
             <h1 className="section-heading mb-4">
               Animation Library
             </h1>
-            <p className="section-subheading mx-auto">
-              Production-ready animation components built with Framer Motion. 
-              Preview, copy the code, and customize for your projects.
+            <p className="section-subheading mx-auto mb-8">
+              Production-ready animation components. 
+              Copy-paste and ship.
             </p>
+
+            {/* Filter Controls */}
+            <div className="inline-flex items-center gap-1 p-1 rounded-full bg-secondary/50 border border-border">
+              {[
+                { id: 'all', label: 'All', icon: Filter },
+                { id: 'free', label: 'Free', icon: Zap },
+                { id: 'premium', label: 'Premium', icon: Sparkles },
+              ].map((f) => (
+                <button
+                  key={f.id}
+                  onClick={() => setFilter(f.id as any)}
+                  className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                    filter === f.id
+                      ? 'text-background'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-white/5'
+                  }`}
+                >
+                  {filter === f.id && (
+                    <motion.div
+                      layoutId="activeFilter"
+                      className="absolute inset-0 bg-foreground rounded-full shadow-lg"
+                      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10 flex items-center gap-2">
+                    <f.icon className="w-3.5 h-3.5" />
+                    {f.label}
+                  </span>
+                </button>
+              ))}
+            </div>
           </motion.div>
 
-          {/* Animation Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {animationExamples.map((example, index) => (
-              <motion.div
-                key={example.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-              >
-                <AnimationCard
-                  title={example.title}
-                  description={example.description}
-                  preview={example.preview}
-                  code={example.code}
-                  playgroundUrl="https://codesandbox.io"
-                />
-              </motion.div>
-            ))}
+          {/* Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <AnimatePresence mode="popLayout">
+              {filteredAnimations.map((example, index) => (
+                <motion.div
+                  key={example.title}
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                >
+                  <AnimationCard
+                    title={example.title}
+                    description={example.description}
+                    preview={example.preview}
+                    code={example.code}
+                    installation={example.installation}
+                    aiPrompt={example.aiPrompt}
+                  />
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
+          
+          {filteredAnimations.length === 0 && (
+            <div className="py-20 text-center text-muted-foreground">
+              No animations found for this category.
+            </div>
+          )}
         </div>
       </main>
 

@@ -4,10 +4,34 @@ import { ArrowRight, Sparkles, Bot, Zap, Terminal } from 'lucide-react';
 const HeroSection = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      {/* Spotlight Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] rounded-full bg-accent/5 blur-[120px]" />
-        <div className="absolute top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-primary/5 blur-[100px]" />
+      
+      {/* Spotlight Background - CORRECTED STRUCTURE */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Blob 1 */}
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3], 
+            x: [0, 100, 0],
+            y: [0, 50, 0]
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] rounded-full bg-accent/5 blur-[120px]" 
+        />
+        
+        {/* Blob 2 */}
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.1, 1],
+            opacity: [0.3, 0.6, 0.3], 
+            x: [0, -100, 0],
+            y: [0, 50, 0]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-primary/5 blur-[100px]" 
+        />
+
+        {/* Grid Overlay */}
         <div 
           className="absolute inset-0 opacity-[0.03]"
           style={{

@@ -1,20 +1,18 @@
-// src/pages/Shop.tsx
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ShoppingCart, Download, ArrowRight, ArrowUpRight, Palette } from 'lucide-react';
+import { Search, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { products, ProductType } from '@/data/products';
 
 const categories: { id: ProductType; label: string }[] = [
-  { id: 'all', label: 'All Assets' },
+  { id: 'all', label: 'All' },
   { id: 'ui-components', label: 'UI Kits' },
   { id: 'landing-pages', label: 'Templates' },
-  { id: 'animations', label: 'Animations' }, // Ensured Animations is here
-  { id: 'workflows', label: 'n8n Workflows' },
-  { id: 'prompts', label: 'AI Prompts' },
-  { id: 'documents', label: 'Documents' },
+  { id: 'animations', label: 'Animations' },
+  { id: 'workflows', label: 'Workflows' },
+  { id: 'prompts', label: 'Prompts' },
 ];
 
 const Shop = () => {
@@ -23,170 +21,124 @@ const Shop = () => {
 
   const filteredProducts = products.filter((product) => {
     const matchesCategory = activeCategory === 'all' || product.category === activeCategory;
-    const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          product.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col selection:bg-accent/20">
       <Navigation />
       
       <main className="flex-grow pt-32 pb-20">
         <div className="section-container">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="font-display text-4xl md:text-5xl font-bold mb-6"
-            >
-              Digital Assets for <span className="gradient-text">Builders</span>
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-lg text-muted-foreground"
-            >
-              Production-ready UI kits, automation workflows, and templates.
-            </motion.p>
-          </div>
+          {/* Header */}
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <div className="max-w-2xl">
+              <h1 className="font-display text-4xl md:text-5xl font-bold mb-4">
+                Shop <span className="text-muted-foreground">/ Assets</span>
+              </h1>
+              <p className="text-lg text-muted-foreground">
+                Premium resources to accelerate your development workflow.
+                <br className="hidden md:block" />
+                Stop rebuilding the wheel. Start shipping.
+              </p>
+            </div>
 
-          <div className="flex flex-col md:flex-row gap-6 justify-between items-center mb-12">
-            <div className="relative w-full md:w-80 group">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4 group-focus-within:text-accent transition-colors" />
+            {/* Search Bar */}
+            <div className="relative w-full md:w-72">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4" />
               <input 
                 type="text" 
                 placeholder="Search assets..." 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 bg-secondary/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all"
+                className="w-full pl-10 pr-4 py-2 bg-secondary/30 border border-transparent focus:border-accent/50 rounded-xl focus:outline-none transition-all placeholder:text-muted-foreground/50"
               />
-            </div>
-            
-            <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto scrollbar-hide">
-              {categories.map((cat) => (
-                <button 
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-300 ${
-                    activeCategory === cat.id 
-                      ? 'bg-foreground text-background shadow-lg scale-105' 
-                      : 'bg-secondary/50 hover:bg-secondary text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  {cat.label}
-                </button>
-              ))}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <AnimatePresence mode="popLayout">
-              {filteredProducts.map((product) => {
-                // Logic: If it's a library item, go to /animations, else go to product detail
-                const linkDestination = product.isLibrary 
-                  ? '/animations' 
-                  : `/products/${product.slug}`;
+          {/* Categories */}
+          <div className="flex flex-wrap gap-2 mb-12">
+            {categories.map((cat) => (
+              <button 
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeCategory === cat.id 
+                    ? 'bg-foreground text-background' 
+                    : 'bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary'
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
 
-                return (
-                  <motion.article
-                    key={product.id}
-                    layout
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.3 }}
-                    className="glass-card-hover group flex flex-col overflow-hidden h-full cursor-pointer"
+          {/* Product Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+            <AnimatePresence mode="popLayout">
+              {filteredProducts.map((product) => (
+                <motion.div
+                  key={product.id}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {/* Card Link: Navigates to Detail Page */}
+                  <Link 
+                    to={product.isLibrary ? '/animations' : `/products/${product.slug}`}
+                    className="group block"
                   >
-                    {/* Make the whole image clickable */}
-                    <Link to={linkDestination} className="relative aspect-[4/3] overflow-hidden bg-secondary/50 block">
+                    {/* Image Container */}
+                    <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-secondary/50 mb-5 border border-white/5">
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                      
                       <img
                         src={product.image}
                         alt={product.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-transparent to-transparent opacity-80" />
-                      
-                      <div className="absolute top-3 right-3">
-                        {product.isPremium ? (
-                          <span className="badge-premium shadow-sm backdrop-blur-md">
-                            ${product.price}
-                          </span>
-                        ) : (
-                          <span className="badge-free shadow-sm backdrop-blur-md">
-                            Free
-                          </span>
-                        )}
-                      </div>
-                    </Link>
 
-                    <div className="p-5 flex flex-col flex-grow">
-                      <div className="mb-4">
-                        <div className="flex justify-between items-start mb-2">
-                          <span className="text-[10px] uppercase tracking-wider font-semibold text-accent/80">
-                             {categories.find(c => c.id === product.category)?.label}
-                          </span>
+                      {/* Floating Badge (Category Only) */}
+                      <div className="absolute top-4 left-4 z-20 flex gap-2">
+                        <span className="px-3 py-1 text-xs font-semibold bg-background/90 backdrop-blur-md rounded-full border border-white/10 shadow-sm">
+                          {categories.find(c => c.id === product.category)?.label}
+                        </span>
+                      </div>
+
+                      {/* Hover Overlay Icon */}
+                      <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white">
+                          <ArrowUpRight className="w-5 h-5" />
                         </div>
-                        
-                        <Link to={linkDestination} className="block">
-                          <h3 className="text-lg font-display font-semibold group-hover:text-accent transition-colors leading-tight mb-2">
-                            {product.title}
-                          </h3>
-                        </Link>
-                        
-                        <p className="text-sm text-muted-foreground line-clamp-2">
-                          {product.description}
-                        </p>
-                      </div>
-
-                      <div className="mt-auto pt-4 border-t border-border/50 flex gap-3">
-                        {product.isLibrary ? (
-                          <Link 
-                            to="/animations" 
-                            className="btn-secondary w-full justify-center text-sm py-2 group-hover:bg-accent group-hover:text-accent-foreground group-hover:border-accent transition-all"
-                          >
-                            <Palette className="w-4 h-4 mr-2" />
-                            Browse Library
-                          </Link>
-                        ) : (
-                          <>
-                            <a 
-                              href={product.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className={`flex-1 btn-primary justify-center text-sm py-2 ${!product.isPremium && 'bg-secondary text-foreground hover:bg-secondary/80'}`}
-                            >
-                              {product.isPremium ? (
-                                <span className="flex items-center gap-2">
-                                  <ShoppingCart className="w-4 h-4" />
-                                  Buy Now
-                                </span>
-                              ) : (
-                                <span className="flex items-center gap-2">
-                                  <Download className="w-4 h-4" />
-                                  Get Free
-                                </span>
-                              )}
-                            </a>
-                            <Link 
-                              to={`/products/${product.slug}`}
-                              className="p-2 rounded-lg hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors" 
-                              title="View Details"
-                            >
-                              <ArrowUpRight className="w-5 h-5" />
-                            </Link>
-                          </>
-                        )}
                       </div>
                     </div>
-                  </motion.article>
-                );
-              })}
+
+                    {/* Content Info (Price Removed) */}
+                    <div>
+                      <h3 className="font-display text-lg font-bold group-hover:text-accent transition-colors leading-snug">
+                        {product.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mt-1 line-clamp-1">
+                        {product.description}
+                      </p>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
             </AnimatePresence>
           </div>
+          
+          {filteredProducts.length === 0 && (
+            <div className="py-20 text-center">
+              <p className="text-muted-foreground">No products found matching your search.</p>
+            </div>
+          )}
         </div>
       </main>
+      
       <Footer />
     </div>
   );

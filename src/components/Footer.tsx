@@ -1,73 +1,65 @@
-import { motion } from 'framer-motion';
-import { Github, Linkedin } from 'lucide-react';
-
-const quickLinks = [
-  { label: 'Projects', href: '#products' },
-  { label: 'Resources', href: '#resources' },
-  { label: 'Automation', href: '#automation' },
-  { label: 'Courses', href: '#courses' },
-  { label: 'Contact', href: '#contact' },
-];
-
-const socialLinks = [
-  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: Github, href: 'https://github.com', label: 'GitHub' },
-];
+import { Link } from 'react-router-dom';
+import { Github, Twitter, Linkedin, Heart } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="py-16 border-t border-border bg-card/30">
+    <footer className="border-t border-border/50 bg-background pt-16 pb-8">
       <div className="section-container">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="flex flex-col gap-10"
-        >
-          {/* Top Row */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            {/* Brand */}
-            <div className="flex items-center gap-3">
-              <span className="font-display text-xl font-bold">Cenk.</span>
-              <span className="text-muted-foreground">•</span>
-              <span className="text-sm text-muted-foreground">AI Product Studio</span>
-            </div>
-
-            {/* Quick Links */}
-            <nav className="flex flex-wrap items-center justify-center gap-6">
-              {quickLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-
-            {/* Social Links */}
-            <div className="flex items-center gap-2">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2.5 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-300"
-                  aria-label={link.label}
-                >
-                  <link.icon className="w-5 h-5" />
-                </a>
-              ))}
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          {/* Brand Column */}
+          <div className="col-span-1 md:col-span-2">
+            <Link to="/" className="flex items-center gap-2 mb-4 group w-fit">
+              <div className="w-8 h-8 rounded-lg bg-foreground text-background flex items-center justify-center font-bold font-display text-sm group-hover:bg-accent group-hover:text-foreground transition-colors">
+                CK
+              </div>
+              <span className="font-display font-bold text-lg tracking-tight">
+                Agency<span className="text-accent">.</span>
+              </span>
+            </Link>
+            <p className="text-muted-foreground text-sm max-w-xs leading-relaxed">
+              Helping founders and teams build scalable software and automate revenue operations.
+            </p>
           </div>
 
-          {/* Copyright */}
-          <div className="text-center text-sm text-muted-foreground pt-6 border-t border-border/50">
-            © {new Date().getFullYear()} Cenk. All rights reserved.
+          {/* Links Column 1 */}
+          <div>
+            <h4 className="font-semibold mb-4 text-sm">Services</h4>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li><a href="/#products" className="hover:text-foreground transition-colors">MVP Development</a></li>
+              <li><a href="/#automation" className="hover:text-foreground transition-colors">Automation</a></li>
+              <li><a href="/#services" className="hover:text-foreground transition-colors">Consulting</a></li>
+            </ul>
           </div>
-        </motion.div>
+
+          {/* Links Column 2 */}
+          <div>
+            <h4 className="font-semibold mb-4 text-sm">Resources</h4>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li><Link to="/shop" className="hover:text-foreground transition-colors">Shop</Link></li>
+              <li><Link to="/animations" className="hover:text-foreground transition-colors">Animation Library</Link></li>
+              <li><a href="/#contact" className="hover:text-foreground transition-colors">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-border/30 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} CK Agency. All rights reserved.
+          </p>
+          
+          <div className="flex items-center gap-6">
+            <a href="https://twitter.com/vcenkkarakuz" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Twitter className="w-4 h-4" />
+            </a>
+            <a href="https://github.com/vcenk" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Github className="w-4 h-4" />
+            </a>
+            <a href="https://linkedin.com/in/cenkkarakuz" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Linkedin className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );
