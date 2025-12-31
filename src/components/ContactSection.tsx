@@ -24,42 +24,118 @@ const ContactSection = () => {
             </div>
 
             <h2 className="section-heading mb-6">
-              Ready to automate your <br />
-              <span className="gradient-text">growth?</span>
+              Ready to ship faster?
+              <br />
+              <span className="gradient-text">Let's work together</span>
             </h2>
-            
-            <p className="text-lg text-muted-foreground mb-10">
-              Whether you need a custom SaaS MVP, a complex n8n workflow, or a high-performance landing page—I'm here to build it.
+
+            <p className="text-lg text-muted-foreground mb-12">
+              Choose the option that fits your needs—from ready-made templates to fully custom builds.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center flex-wrap">
-              <a
-                href="mailto:hello@cenk.dev"
-                className="btn-primary min-w-[160px]"
-              >
-                <Mail className="w-4 h-4 mr-2" />
-                Email Me
-              </a>
-              
-              <a
-                href="https://www.linkedin.com/in/cenkkarakuz/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary min-w-[160px]"
-              >
-                <Linkedin className="w-4 h-4 mr-2" />
-                LinkedIn
-              </a>
+            {/* Lead Qualification Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              {/* Option 1: Templates */}
+              <div className="text-left p-6 bg-secondary/20 rounded-xl hover:bg-secondary/30 transition-all group">
+                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <span className="text-2xl">🚀</span>
+                </div>
+                <h3 className="font-display text-lg font-bold mb-2">Need it Fast</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Pre-built templates & components ready to use today.
+                </p>
+                <div className="text-xs text-muted-foreground mb-4">
+                  <div>💰 From $39</div>
+                  <div>⏱️ Instant access</div>
+                </div>
+                <a
+                  href="/shop"
+                  className="text-accent hover:underline text-sm font-semibold inline-flex items-center gap-1"
+                >
+                  Browse Shop <ArrowUpRight className="w-3 h-3" />
+                </a>
+              </div>
 
-              <a
-                href="https://twitter.com/vcenkkarakuz"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary min-w-[160px]"
-              >
-                DM on X
-                <ArrowUpRight className="w-4 h-4 ml-2" />
-              </a>
+              {/* Option 2: Custom Project */}
+              <div className="text-left p-6 bg-accent/5 border-2 border-accent/20 rounded-xl hover:border-accent/40 transition-all group relative">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-accent text-background text-xs font-bold rounded-full">
+                  MOST POPULAR
+                </div>
+                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <span className="text-2xl">💼</span>
+                </div>
+                <h3 className="font-display text-lg font-bold mb-2">Custom Project</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Landing pages, apps, or workflows built for your brand.
+                </p>
+                <div className="text-xs text-muted-foreground mb-4">
+                  <div>💰 $1,500 - $10K</div>
+                  <div>⏱️ 2-4 weeks delivery</div>
+                </div>
+                <a
+                  href="mailto:hello@cenk.dev?subject=Custom Project Inquiry"
+                  className="text-accent hover:underline text-sm font-semibold inline-flex items-center gap-1"
+                >
+                  Get Quote <Mail className="w-3 h-3" />
+                </a>
+              </div>
+
+              {/* Option 3: Retainer */}
+              <div className="text-left p-6 bg-secondary/20 rounded-xl hover:bg-secondary/30 transition-all group">
+                <div className="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <span className="text-2xl">🤝</span>
+                </div>
+                <h3 className="font-display text-lg font-bold mb-2">Long-term Partner</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Ongoing development, support, and consulting.
+                </p>
+                <div className="text-xs text-muted-foreground mb-4">
+                  <div>💰 From $5K/month</div>
+                  <div>⏱️ Flexible scope</div>
+                </div>
+                <a
+                  href="https://calendly.com/yourlink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent hover:underline text-sm font-semibold inline-flex items-center gap-1"
+                >
+                  Book Call <ArrowUpRight className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+
+            {/* Social Links */}
+            <div className="pt-8 border-t border-border/50">
+              <p className="text-sm text-muted-foreground mb-4">Or reach out directly:</p>
+              <div className="flex flex-wrap gap-3 justify-center">
+                <a
+                  href="mailto:hello@cenk.dev"
+                  className="btn-secondary"
+                >
+                  <Mail className="w-4 h-4" />
+                  Email
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/cenkkarakuz/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary"
+                >
+                  <Linkedin className="w-4 h-4" />
+                  LinkedIn
+                </a>
+
+                <a
+                  href="https://twitter.com/vcenkkarakuz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary"
+                >
+                  DM on X
+                  <ArrowUpRight className="w-4 h-4" />
+                </a>
+              </div>
             </div>
           </div>
         </motion.div>

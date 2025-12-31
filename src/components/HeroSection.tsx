@@ -55,7 +55,7 @@ const HeroSection = () => {
             >
               <span className="section-label">
                 <Sparkles className="w-4 h-4 text-accent" />
-                AI Product Studio
+                AI Landing Pages & Apps That Convert
               </span>
             </motion.div>
 
@@ -65,11 +65,10 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6"
             >
-              Building the next gen of
+              Get AI-powered
               <br />
-              <span className="gradient-text">intelligent apps</span>
-              <br />
-              & automations.
+              <span className="gradient-text">landing pages</span> &<br />
+              automations in 48hrs
             </motion.h1>
 
             <motion.p
@@ -78,7 +77,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl"
             >
-              I turn complex problems into elegant, scalable AI solutions. From concept to deployment—full-stack engineering meets creative automation.
+              I help AI founders launch faster with battle-tested templates, n8n workflows, and production-ready React apps. No agencies. No retainers. Just ship.
             </motion.p>
 
             <motion.div
@@ -87,12 +86,12 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-wrap gap-4"
             >
-              <a href="#products" className="btn-primary">
-                View Products
+              <a href="#pricing" className="btn-primary">
+                View Pricing
                 <ArrowRight className="w-4 h-4" />
               </a>
-              <a href="#contact" className="btn-secondary">
-                Let's Talk
+              <a href="/shop" className="btn-secondary">
+                Browse Templates
               </a>
             </motion.div>
 
@@ -104,9 +103,9 @@ const HeroSection = () => {
               className="flex gap-8 md:gap-12 mt-16 pt-8 border-t border-border/50"
             >
               {[
-                { value: '10+', label: 'Products' },
-                { value: '50K+', label: 'Users' },
-                { value: '100+', label: 'Automations' },
+                { value: '13+', label: 'Ready Products' },
+                { value: '48hrs', label: 'Avg Delivery' },
+                { value: '100%', label: 'Source Code' },
               ].map((stat) => (
                 <div key={stat.label}>
                   <div className="text-3xl font-display font-bold">{stat.value}</div>

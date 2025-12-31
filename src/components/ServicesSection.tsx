@@ -4,33 +4,45 @@ import { Bot, Workflow, Layout, Rocket, Code2, Database } from 'lucide-react';
 const services = [
   {
     icon: Layout,
-    title: 'UI & Design Systems',
-    description: 'Beautiful, accessible component libraries and landing pages built with React, Tailwind, and Framer Motion.',
+    title: 'Launch-Ready Landing Pages',
+    description: 'Get high-converting pages that look like you spent $10K on an agency. Delivered in 48hrs with React + Tailwind + Framer Motion.',
+    pricing: 'from $497',
+    deliveryTime: '2 days',
   },
   {
     icon: Workflow,
-    title: 'Automation & Operations',
-    description: 'Custom n8n workflows and AI agents that automate your repetitive tasks and lead generation.',
+    title: 'AI Automation That Pays For Itself',
+    description: 'Custom GPT-4 workflows that handle lead gen, content creation, and customer support. Save 20+ hours per week.',
+    pricing: 'from $997',
+    deliveryTime: '1 week',
   },
   {
     icon: Rocket,
-    title: 'MVP Development',
-    description: 'From idea to revenue-ready SaaS in weeks, not months. Full-stack development with scalability in mind.',
+    title: 'MVP to Market in 4 Weeks',
+    description: 'Launch your AI SaaS before your competitors. Full-stack dev with React, Supabase, OpenAI integration—ready for paying customers.',
+    pricing: 'from $8,500',
+    deliveryTime: '4 weeks',
   },
   {
     icon: Bot,
-    title: 'AI Integration',
-    description: 'Enhance your existing products with LLMs, RAG pipelines, and intelligent data processing.',
+    title: 'AI Integration & Enhancement',
+    description: 'Add ChatGPT-like features to your existing product. RAG pipelines, embeddings, and intelligent data processing that actually works.',
+    pricing: 'from $2,500',
+    deliveryTime: '2 weeks',
   },
   {
     icon: Code2,
-    title: 'Custom Engineering',
-    description: 'Complex frontend challenges, performance optimization, and technical architecture consulting.',
+    title: 'Custom React Development',
+    description: 'Complex UI challenges, performance optimization, and component architecture. Get code that scales and maintainers will thank you for.',
+    pricing: 'from $1,500',
+    deliveryTime: '1-2 weeks',
   },
   {
     icon: Database,
-    title: 'Backend Systems',
-    description: 'Robust APIs, database design (Supabase/Postgres), and serverless infrastructure.',
+    title: 'Backend & API Development',
+    description: 'Production-ready APIs with Supabase/Postgres that handle real traffic. Authentication, payments, webhooks—all the boring stuff done right.',
+    pricing: 'from $3,000',
+    deliveryTime: '2-3 weeks',
   },
 ];
 
@@ -87,12 +99,34 @@ const ServicesSection = () => {
               <h3 className="text-xl font-display font-semibold mb-3 group-hover:text-accent transition-colors">
                 {service.title}
               </h3>
-              
-              <p className="text-muted-foreground leading-relaxed text-sm">
+
+              <p className="text-muted-foreground leading-relaxed text-sm mb-6">
                 {service.description}
               </p>
+
+              {/* Pricing & Delivery */}
+              <div className="flex items-center justify-between pt-4 border-t border-border/50">
+                <div>
+                  <div className="text-sm font-semibold text-accent">{service.pricing}</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">Starting price</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-sm font-semibold">{service.deliveryTime}</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">Typical delivery</div>
+                </div>
+              </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center mt-16">
+          <p className="text-muted-foreground mb-6">
+            Ready to start your project?
+          </p>
+          <a href="#contact" className="btn-primary inline-flex">
+            Get a Custom Quote
+          </a>
         </div>
       </div>
     </section>

@@ -6,7 +6,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 const navLinks = [
   { name: 'Services', href: '/#services' },
   { name: 'Work', href: '/#products' },
-  { name: 'Animations', href: '/animations' }, // Added back
+  { name: 'Pricing', href: '/#pricing' },
+  { name: 'Animations', href: '/animations' },
   { name: 'About', href: '/#about' },
 ];
 

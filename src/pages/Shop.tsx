@@ -116,16 +116,72 @@ const Shop = () => {
                       </div>
                     </div>
 
-                    {/* Content Info (Price Removed) */}
+                    {/* Content Info */}
                     <div>
                       <h3 className="font-display text-lg font-bold group-hover:text-accent transition-colors leading-snug">
                         {product.title}
                       </h3>
-                      <p className="text-sm text-muted-foreground mt-1 line-clamp-1">
+                      <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
                         {product.description}
                       </p>
+
+                      {/* Price & Tech Stack */}
+                      <div className="flex items-center justify-between mt-4">
+                        <div>
+                          {product.isPremium && product.price ? (
+                            <span className="text-2xl font-display font-bold text-accent">
+                              ${product.price}
+                            </span>
+                          ) : (
+                            <span className="text-sm font-semibold text-accent">
+                              FREE
+                            </span>
+                          )}
+                        </div>
+                        {product.techStack && product.techStack.length > 0 && (
+                          <div className="flex gap-1">
+                            {product.techStack.slice(0, 2).map((tech) => (
+                              <span
+                                key={tech}
+                                className="text-xs px-2 py-1 rounded bg-secondary/50 text-muted-foreground"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                            {product.techStack.length > 2 && (
+                              <span className="text-xs px-2 py-1 rounded bg-secondary/50 text-muted-foreground">
+                                +{product.techStack.length - 2}
+                              </span>
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </Link>
+
+                  {/* Action Buttons - Outside the Link */}
+                  {!product.isLibrary && (
+                    <div className="flex gap-2 mt-4">
+                      {product.demoUrl && (
+                        <a
+                          href={product.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="flex-1 btn-secondary text-center text-sm py-2"
+                        >
+                          Preview
+                        </a>
+                      )}
+                      <a
+                        href={product.link || '#contact'}
+                        onClick={(e) => e.stopPropagation()}
+                        className="flex-1 btn-primary text-center text-sm py-2"
+                      >
+                        {product.isPremium ? `Buy - $${product.price}` : 'Get Free'}
+                      </a>
+                    </div>
+                  )}
                 </motion.div>
               ))}
             </AnimatePresence>
