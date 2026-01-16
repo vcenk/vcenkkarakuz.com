@@ -36,7 +36,7 @@ const LeadMagnetModal = ({ isOpen, onClose }: LeadMagnetModalProps) => {
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     // TODO: Replace with actual email service integration
-    console.log('Email submitted:', email);
+    // e.g., ConvertKit, Mailchimp, EmailOctopus API call here
 
     setIsLoading(false);
     setIsSubmitted(true);

@@ -59,7 +59,7 @@ const pricingTiers = [
       'Flexible scope',
     ],
     cta: 'Book a Call',
-    ctaLink: 'https://calendly.com/yourlink',
+    ctaLink: '#contact', // TODO: Replace with actual Calendly link
     popular: false,
     color: 'green',
   },

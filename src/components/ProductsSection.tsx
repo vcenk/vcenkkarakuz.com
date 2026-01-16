@@ -54,9 +54,10 @@ const ProductsSection = () => {
             >
               <div className="relative h-64 md:h-80 w-full overflow-hidden rounded-2xl bg-secondary">
                 <div className="absolute inset-0 bg-accent/10 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <img 
-                  src={venture.image} 
+                <img
+                  src={venture.image}
                   alt={venture.title}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>

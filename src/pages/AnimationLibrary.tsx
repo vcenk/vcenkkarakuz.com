@@ -423,7 +423,7 @@ const AnimationLibrary = () => {
               ].map((f) => (
                 <button
                   key={f.id}
-                  onClick={() => setFilter(f.id as any)}
+                  onClick={() => setFilter(f.id as typeof filter)}
                   className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
                     filter === f.id
                       ? 'text-background'

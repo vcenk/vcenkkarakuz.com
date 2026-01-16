@@ -44,6 +44,7 @@ export function ResourceCard({ resource, className }: ResourceCardProps) {
           <img
             src={resource.thumbnailUrl}
             alt={resource.title}
+            loading="lazy"
             className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
           />
         ) : (

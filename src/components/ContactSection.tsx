@@ -93,10 +93,9 @@ const ContactSection = () => {
                   <div>💰 From $5K/month</div>
                   <div>⏱️ Flexible scope</div>
                 </div>
+                {/* TODO: Replace href with actual Calendly link */}
                 <a
-                  href="https://calendly.com/yourlink"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#contact"
                   className="text-accent hover:underline text-sm font-semibold inline-flex items-center gap-1"
                 >
                   Book Call <ArrowUpRight className="w-3 h-3" />
