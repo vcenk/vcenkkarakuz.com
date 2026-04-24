@@ -1,0 +1,19 @@
+{
+  "name": "Cenk Karakuz — SaaS, Web & n8n Automation",
+  "short_name": "Cenk Karakuz",
+  "description": "Independent Vancouver-based developer building SaaS products, marketing sites, and n8n automation systems.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#0a0a0a",
+  "lang": "en-CA",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ]
+}

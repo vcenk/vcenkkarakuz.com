@@ -1,41 +1,105 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="CK lettermark social image">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Cenk Karakuz — Vancouver SaaS, Web & n8n Automation Developer">
   <defs>
     <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0%" stop-color="#0b0f19" />
-      <stop offset="100%" stop-color="#171f2e" />
+      <stop offset="0%" stop-color="#0a0a0a" />
+      <stop offset="100%" stop-color="#050505" />
     </linearGradient>
-    <linearGradient id="accent" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0%" stop-color="#66e3ff" />
-      <stop offset="100%" stop-color="#9cff8d" />
+    <radialGradient id="glow" cx="0.2" cy="0.3" r="0.6">
+      <stop offset="0%" stop-color="#ffcc33" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#ffcc33" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.85" cy="0.85" r="0.5">
+      <stop offset="0%" stop-color="#ff9933" stop-opacity="0.14" />
+      <stop offset="100%" stop-color="#ff9933" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="amber" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffd633" />
+      <stop offset="100%" stop-color="#ff9933" />
     </linearGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1" />
+    </pattern>
   </defs>
 
+  <!-- Background -->
   <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#grid)" />
+  <rect width="1200" height="630" fill="url(#glow)" />
+  <rect width="1200" height="630" fill="url(#glow2)" />
 
-  <rect x="420" y="135" width="360" height="360" rx="36" fill="#0f1726" stroke="#24324a" stroke-width="2" />
+  <!-- CK monogram badge (left) -->
+  <g transform="translate(80, 220)">
+    <rect width="190" height="190" rx="36" fill="#0f0f0f" stroke="#1f1f1f" stroke-width="1" />
+    <rect x="0.5" y="0.5" width="189" height="189" rx="35.5" fill="none" stroke="#ffcc33" stroke-opacity="0.25" stroke-width="1" />
+    <text
+      x="95"
+      y="130"
+      text-anchor="middle"
+      font-family="'Syne', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+      font-size="100"
+      font-weight="800"
+      letter-spacing="-3"
+      fill="url(#amber)"
+    >CK</text>
+  </g>
 
+  <!-- Right column: name + pitch -->
+  <g transform="translate(320, 230)">
+    <!-- Eyebrow -->
+    <text
+      x="0"
+      y="0"
+      font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+      font-size="22"
+      font-weight="600"
+      letter-spacing="6"
+      fill="#ffcc33"
+    >VANCOUVER · BC · CANADA</text>
+
+    <!-- Name -->
+    <text
+      x="0"
+      y="80"
+      font-family="'Syne', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+      font-size="76"
+      font-weight="800"
+      letter-spacing="-2"
+      fill="#ffffff"
+    >Cenk Karakuz</text>
+
+    <!-- Tagline -->
+    <text
+      x="0"
+      y="150"
+      font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+      font-size="36"
+      font-weight="500"
+      fill="#a8a8a8"
+    >SaaS · Web · n8n Automation</text>
+
+    <!-- Divider -->
+    <rect x="0" y="190" width="80" height="3" rx="1.5" fill="url(#amber)" />
+  </g>
+
+  <!-- Footer URL -->
   <text
-    x="600"
-    y="365"
-    text-anchor="middle"
-    font-family="Arial, Helvetica, sans-serif"
-    font-size="180"
-    font-weight="700"
-    letter-spacing="4"
-    fill="url(#accent)"
-  >
-    CK
-  </text>
-
-  <text
-    x="600"
-    y="545"
-    text-anchor="middle"
-    font-family="Arial, Helvetica, sans-serif"
-    font-size="40"
+    x="80"
+    y="565"
+    font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+    font-size="22"
     font-weight="600"
-    fill="#d5e2ff"
-  >
-    cenk.dev
-  </text>
+    letter-spacing="2"
+    fill="#666666"
+  >cenk.dev</text>
+
+  <!-- Footer right -->
+  <text
+    x="1120"
+    y="565"
+    text-anchor="end"
+    font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+    font-size="20"
+    font-weight="500"
+    fill="#666666"
+  >Independent developer · Available worldwide</text>
 </svg>
