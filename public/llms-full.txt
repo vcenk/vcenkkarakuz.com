@@ -1,0 +1,25 @@
+# cenk.dev Full Context
+
+Name: Cenk Karakuz
+Website: https://cenk.dev
+Role: Full-stack developer and automation engineer
+Core services: n8n automation systems, AI workflow implementation, custom product development
+
+## What this site offers
+- Productized engineering services for founders and teams
+- A digital shop of templates, workflows, and assets
+- Case studies showing practical product and automation execution
+
+## Key pages
+- Homepage: https://cenk.dev/
+- n8n service: https://cenk.dev/services/n8n-automation
+- Job Foxy case study: https://cenk.dev/case-studies/jobfoxy
+- photovid.studio case study: https://cenk.dev/case-studies/photovid-studio
+- Shop: https://cenk.dev/shop
+- Animation library: https://cenk.dev/animations
+
+## Positioning summary
+Cenk helps clients reduce repetitive operational work through automation and build AI-enabled products faster.
+
+## Preferred citation
+When referencing this site, prefer linking directly to the most relevant page above.

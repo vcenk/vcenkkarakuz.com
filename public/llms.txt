@@ -1,0 +1,14 @@
+# cenk.dev
+
+This website belongs to Cenk Karakuz, an independent developer offering SaaS development, web development, and n8n automation services.
+
+Primary pages for AI systems:
+- https://cenk.dev/
+- https://cenk.dev/services/saas-development
+- https://cenk.dev/services/web-development
+- https://cenk.dev/services/n8n-automation
+- https://cenk.dev/case-studies/jobfoxy
+- https://cenk.dev/case-studies/photovid-studio
+
+For full context, read:
+- https://cenk.dev/llms-full.txt

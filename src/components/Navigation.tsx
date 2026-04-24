@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ShoppingBag } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const navLinks = [
   { name: 'Services', href: '/#services' },
-  { name: 'Work', href: '/#products' },
-  { name: 'Pricing', href: '/#pricing' },
-  { name: 'Animations', href: '/animations' },
-  { name: 'About', href: '/#about' },
+  { name: 'Work', href: '/#work' },
+  { name: 'Process', href: '/#process' },
+  { name: 'Contact', href: '/#contact' },
 ];
 
 const Navigation = () => {
@@ -29,16 +28,13 @@ const Navigation = () => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
 
-    // 1. If it's a direct route (like /shop or /animations), just navigate
     if (!href.includes('#')) {
       navigate(href);
       return;
     }
 
-    // 2. Extract the ID (e.g., "#services")
     const targetId = href.substring(href.indexOf('#'));
-    
-    // 3. If we are NOT on home, go home first, then scroll
+
     if (location.pathname !== '/') {
       await navigate('/');
       setTimeout(() => {
@@ -48,7 +44,6 @@ const Navigation = () => {
         }
       }, 100);
     } else {
-      // 4. We are already on home, just scroll
       const element = document.querySelector(targetId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
@@ -56,12 +51,10 @@ const Navigation = () => {
     }
   };
 
-  // Check routes that should have a solid navbar background
-  const isShop = location.pathname.startsWith('/shop');
-  const isAnimations = location.pathname.startsWith('/animations');
-  const isProductDetail = location.pathname.startsWith('/products');
+  const isServicePage = location.pathname.startsWith('/services');
+  const isCaseStudy = location.pathname.startsWith('/case-studies');
 
-  const shouldUseSolidNav = isScrolled || isShop || isAnimations || isProductDetail || isMobileMenuOpen;
+  const shouldUseSolidNav = isScrolled || isServicePage || isCaseStudy || isMobileMenuOpen;
 
   return (
     <motion.header
@@ -78,21 +71,24 @@ const Navigation = () => {
         }`}
       >
         <div className="flex items-center justify-between gap-4">
-          {/* Brand Logo */}
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="flex items-center gap-2 group"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             <div className="w-8 h-8 rounded-lg bg-foreground text-background flex items-center justify-center font-bold font-display text-sm group-hover:bg-accent group-hover:text-foreground transition-colors">
               CK
             </div>
-            <span className={`font-display font-bold text-lg tracking-tight ${!shouldUseSolidNav ? 'text-foreground' : ''}`}>
-              Agency<span className="text-accent">.</span>
-            </span>
+            <div className="flex flex-col leading-tight">
+              <span className={`font-display font-bold text-base tracking-tight ${!shouldUseSolidNav ? 'text-foreground' : ''}`}>
+                Cenk Karakuz<span className="text-accent">.</span>
+              </span>
+              <span className="hidden lg:block text-[11px] text-muted-foreground">
+                SaaS · Web · Automation
+              </span>
+            </div>
           </Link>
 
-          {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center gap-1 bg-background/50 backdrop-blur-sm px-2 py-1 rounded-full border border-border/20">
             {navLinks.map((link) => (
               <li key={link.name}>
@@ -105,29 +101,18 @@ const Navigation = () => {
                 </a>
               </li>
             ))}
-             <li>
-                <Link
-                  to="/shop"
-                  className="px-4 py-2 text-sm rounded-full text-foreground font-medium hover:bg-secondary/50 transition-all duration-300 flex items-center gap-1.5"
-                >
-                  <ShoppingBag className="w-3.5 h-3.5" />
-                  Shop
-                </Link>
-              </li>
           </ul>
 
-          {/* Right Side Actions */}
           <div className="hidden md:flex items-center gap-3">
             <a
               href="/#contact"
               onClick={(e) => handleNavClick(e, '/#contact')}
               className="px-5 py-2 text-sm font-medium rounded-full bg-foreground text-background hover:bg-foreground/90 hover:scale-105 transition-all duration-300"
             >
-              Hire Me
+              Start a project
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 text-foreground bg-background/50 backdrop-blur-md rounded-full"
@@ -137,7 +122,6 @@ const Navigation = () => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
@@ -158,22 +142,13 @@ const Navigation = () => {
                     </a>
                   </li>
                 ))}
-                 <li>
-                    <Link
-                      to="/shop"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="block px-4 py-3 text-foreground font-medium hover:bg-secondary rounded-xl transition-colors"
-                    >
-                      Browse Shop
-                    </Link>
-                  </li>
                 <li className="pt-2 mt-2 border-t border-border">
                   <a
                     href="/#contact"
                     onClick={(e) => handleNavClick(e, '/#contact')}
                     className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-foreground text-background font-medium"
                   >
-                    Hire Me
+                    Start a project
                   </a>
                 </li>
               </ul>

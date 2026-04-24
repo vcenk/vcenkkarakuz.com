@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="CK lettermark social image">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="100%" stop-color="#171f2e" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#66e3ff" />
+      <stop offset="100%" stop-color="#9cff8d" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+
+  <rect x="420" y="135" width="360" height="360" rx="36" fill="#0f1726" stroke="#24324a" stroke-width="2" />
+
+  <text
+    x="600"
+    y="365"
+    text-anchor="middle"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="180"
+    font-weight="700"
+    letter-spacing="4"
+    fill="url(#accent)"
+  >
+    CK
+  </text>
+
+  <text
+    x="600"
+    y="545"
+    text-anchor="middle"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="40"
+    font-weight="600"
+    fill="#d5e2ff"
+  >
+    cenk.dev
+  </text>
+</svg>

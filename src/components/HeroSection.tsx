@@ -1,38 +1,33 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Bot, Zap, Terminal } from 'lucide-react';
+import { ArrowRight, Sparkles, Box, Globe, Workflow } from 'lucide-react';
 
 const HeroSection = () => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      
-      {/* Spotlight Background - CORRECTED STRUCTURE */}
+
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Blob 1 */}
-        <motion.div 
-          animate={{ 
+        <motion.div
+          animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3], 
+            opacity: [0.3, 0.5, 0.3],
             x: [0, 100, 0],
             y: [0, 50, 0]
           }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] rounded-full bg-accent/5 blur-[120px]" 
+          className="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] rounded-full bg-accent/5 blur-[120px]"
         />
-        
-        {/* Blob 2 */}
-        <motion.div 
-          animate={{ 
+        <motion.div
+          animate={{
             scale: [1, 1.1, 1],
-            opacity: [0.3, 0.6, 0.3], 
+            opacity: [0.3, 0.6, 0.3],
             x: [0, -100, 0],
             y: [0, 50, 0]
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-primary/5 blur-[100px]" 
+          className="absolute top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-primary/5 blur-[100px]"
         />
 
-        {/* Grid Overlay */}
-        <div 
+        <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
@@ -44,8 +39,7 @@ const HeroSection = () => {
 
       <div className="section-container relative z-10 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          
-          {/* Left Column: Text Content */}
+
           <div className="text-left max-w-2xl mx-auto lg:mx-0">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -55,7 +49,7 @@ const HeroSection = () => {
             >
               <span className="section-label">
                 <Sparkles className="w-4 h-4 text-accent" />
-                AI Landing Pages & Apps That Convert
+                SaaS · Web · Automation
               </span>
             </motion.div>
 
@@ -65,10 +59,11 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6"
             >
-              Get AI-powered
+              I build
               <br />
-              <span className="gradient-text">landing pages</span> &<br />
-              automations in 48hrs
+              <span className="gradient-text">software & automations</span>
+              <br />
+              that ship.
             </motion.h1>
 
             <motion.p
@@ -77,7 +72,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl"
             >
-              I help AI founders launch faster with battle-tested templates, n8n workflows, and production-ready React apps. No agencies. No retainers. Just ship.
+              Independent developer helping founders launch SaaS products, marketing sites, and n8n automation systems — without an agency-sized invoice.
             </motion.p>
 
             <motion.div
@@ -86,42 +81,20 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-wrap gap-4"
             >
-              <a href="#pricing" className="btn-primary">
-                View Pricing
+              <a href="#contact" className="btn-primary">
+                Start a project
                 <ArrowRight className="w-4 h-4" />
               </a>
-              <a href="/shop" className="btn-secondary">
-                Browse Templates
+              <a href="#work" className="btn-secondary">
+                See my work
               </a>
-            </motion.div>
-
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex gap-8 md:gap-12 mt-16 pt-8 border-t border-border/50"
-            >
-              {[
-                { value: '13+', label: 'Ready Products' },
-                { value: '48hrs', label: 'Avg Delivery' },
-                { value: '100%', label: 'Source Code' },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <div className="text-3xl font-display font-bold">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
-                </div>
-              ))}
             </motion.div>
           </div>
 
-          {/* Right Column: Visual Composition */}
           <div className="relative hidden lg:block h-[600px] w-full">
-            {/* Abstract Decorative Circles */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-border/30 rounded-full" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] border border-border/30 rounded-full" />
 
-            {/* Card 1: AI (Top Right) */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -131,14 +104,13 @@ const HeroSection = () => {
             >
               <div className="glass-card p-6 w-48 backdrop-blur-md bg-card/50 border-white/10">
                 <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center mb-4">
-                  <Bot className="w-5 h-5 text-accent" />
+                  <Box className="w-5 h-5 text-accent" />
                 </div>
-                <h3 className="font-semibold mb-1">AI Agents</h3>
-                <p className="text-xs text-muted-foreground">Autonomous systems that work for you.</p>
+                <h3 className="font-semibold mb-1">SaaS</h3>
+                <p className="text-xs text-muted-foreground">Production-ready products, end to end.</p>
               </div>
             </motion.div>
 
-            {/* Card 2: Automation (Center Left) */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -148,14 +120,13 @@ const HeroSection = () => {
             >
               <div className="glass-card p-6 w-52 backdrop-blur-md bg-card/50 border-white/10">
                 <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center mb-4">
-                  <Zap className="w-5 h-5 text-blue-500" />
+                  <Globe className="w-5 h-5 text-blue-500" />
                 </div>
-                <h3 className="font-semibold mb-1">Workflows</h3>
-                <p className="text-xs text-muted-foreground">Streamlined processes for maximum efficiency.</p>
+                <h3 className="font-semibold mb-1">Web</h3>
+                <p className="text-xs text-muted-foreground">Marketing sites that convert.</p>
               </div>
             </motion.div>
 
-            {/* Card 3: Engineering (Bottom Right) */}
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
@@ -165,10 +136,10 @@ const HeroSection = () => {
             >
               <div className="glass-card p-6 w-48 backdrop-blur-md bg-card/50 border-white/10">
                 <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
-                  <Terminal className="w-5 h-5 text-green-500" />
+                  <Workflow className="w-5 h-5 text-green-500" />
                 </div>
-                <h3 className="font-semibold mb-1">Full Stack</h3>
-                <p className="text-xs text-muted-foreground">Robust and scalable web architecture.</p>
+                <h3 className="font-semibold mb-1">Automation</h3>
+                <p className="text-xs text-muted-foreground">n8n workflows that save hours.</p>
               </div>
             </motion.div>
           </div>
