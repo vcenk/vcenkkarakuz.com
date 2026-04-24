@@ -19,11 +19,11 @@ const SaasDevelopmentServicePage = () => {
       '@type': 'Service',
       name: 'SaaS Development',
       serviceType: 'Full-stack SaaS product development',
-      url: 'https://cenk.dev/services/saas-development',
+      url: 'https://vcenkkarakuz.com/services/saas-development',
       provider: {
         '@type': 'Person',
         name: 'Cenk Karakuz',
-        url: 'https://cenk.dev',
+        url: 'https://vcenkkarakuz.com',
         address: {
           '@type': 'PostalAddress',
           addressLocality: 'Vancouver',
@@ -47,9 +47,9 @@ const SaasDevelopmentServicePage = () => {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cenk.dev/' },
-        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://cenk.dev/#services' },
-        { '@type': 'ListItem', position: 3, name: 'SaaS Development', item: 'https://cenk.dev/services/saas-development' }
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vcenkkarakuz.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://vcenkkarakuz.com/#services' },
+        { '@type': 'ListItem', position: 3, name: 'SaaS Development', item: 'https://vcenkkarakuz.com/services/saas-development' }
       ]
     }
   ];

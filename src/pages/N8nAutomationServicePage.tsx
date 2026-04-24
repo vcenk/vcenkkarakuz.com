@@ -19,11 +19,11 @@ const N8nAutomationServicePage = () => {
       '@type': 'Service',
       name: 'n8n Automation Services',
       serviceType: 'Business automation and AI workflow services',
-      url: 'https://cenk.dev/services/n8n-automation',
+      url: 'https://vcenkkarakuz.com/services/n8n-automation',
       provider: {
         '@type': 'Person',
         name: 'Cenk Karakuz',
-        url: 'https://cenk.dev',
+        url: 'https://vcenkkarakuz.com',
         address: {
           '@type': 'PostalAddress',
           addressLocality: 'Vancouver',
@@ -47,9 +47,9 @@ const N8nAutomationServicePage = () => {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cenk.dev/' },
-        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://cenk.dev/#services' },
-        { '@type': 'ListItem', position: 3, name: 'n8n Automation', item: 'https://cenk.dev/services/n8n-automation' }
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vcenkkarakuz.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://vcenkkarakuz.com/#services' },
+        { '@type': 'ListItem', position: 3, name: 'n8n Automation', item: 'https://vcenkkarakuz.com/services/n8n-automation' }
       ]
     }
   ];

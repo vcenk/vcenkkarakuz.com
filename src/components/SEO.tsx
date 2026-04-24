@@ -15,8 +15,8 @@ type SEOProps = {
   geoPosition?: string;
 };
 
-const SITE_URL = "https://cenk.dev";
-const DEFAULT_IMAGE = "https://cenk.dev/ck-og.svg";
+const SITE_URL = "https://vcenkkarakuz.com";
+const DEFAULT_IMAGE = "https://vcenkkarakuz.com/ck-og.svg";
 const TWITTER_HANDLE = "@vcenkkarakuz";
 
 const upsertMeta = (

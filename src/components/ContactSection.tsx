@@ -33,7 +33,7 @@ const ContactSection = () => {
       project_type: formData.get('project_type'),
       budget: formData.get('budget') || 'Not specified',
       message: formData.get('message'),
-      _subject: `New project inquiry from ${formData.get('name')} via cenk.dev`,
+      _subject: `New project inquiry from ${formData.get('name')} via vcenkkarakuz.com`,
       _template: 'table',
       _captcha: 'false',
     };
@@ -56,7 +56,7 @@ const ContactSection = () => {
       form.reset();
       toast.success("Message sent. I'll reply within 24 hours.");
     } catch (error) {
-      toast.error('Something went wrong. Please email hello@cenk.dev directly.');
+      toast.error('Something went wrong. Please email cenkkarakuz@gmail.com directly.');
     } finally {
       setIsSubmitting(false);
     }

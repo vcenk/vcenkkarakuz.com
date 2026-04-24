@@ -1,4 +1,4 @@
-# cenk.dev
+# vcenkkarakuz.com
 
 Cenk Karakuz — independent software developer based in Vancouver, BC, Canada.
 Services: SaaS development, web development, and n8n automation.
@@ -11,12 +11,12 @@ Contact:
 - GitHub: https://github.com/vcenk
 
 Primary pages:
-- Home: https://cenk.dev/
-- SaaS Development: https://cenk.dev/services/saas-development
-- Web Development: https://cenk.dev/services/web-development
-- n8n Automation: https://cenk.dev/services/n8n-automation
-- Job Foxy case study: https://cenk.dev/case-studies/jobfoxy
-- photovid.studio case study: https://cenk.dev/case-studies/photovid-studio
+- Home: https://vcenkkarakuz.com/
+- SaaS Development: https://vcenkkarakuz.com/services/saas-development
+- Web Development: https://vcenkkarakuz.com/services/web-development
+- n8n Automation: https://vcenkkarakuz.com/services/n8n-automation
+- Job Foxy case study: https://vcenkkarakuz.com/case-studies/jobfoxy
+- photovid.studio case study: https://vcenkkarakuz.com/case-studies/photovid-studio
 
 For full context, read:
-- https://cenk.dev/llms-full.txt
+- https://vcenkkarakuz.com/llms-full.txt

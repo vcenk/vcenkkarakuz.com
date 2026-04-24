@@ -15,7 +15,7 @@ const PhotovidStudioCaseStudyPage = () => {
       author: {
         '@type': 'Person',
         name: 'Cenk Karakuz',
-        url: 'https://cenk.dev'
+        url: 'https://vcenkkarakuz.com'
       },
       about: ['photovid.studio', 'AI media generation', 'product strategy']
     },
@@ -24,18 +24,18 @@ const PhotovidStudioCaseStudyPage = () => {
       '@type': 'Article',
       headline: 'photovid.studio — AI Media Generation SaaS Case Study',
       description: 'Case study of photovid.studio, an AI image and video generation product built by Vancouver developer Cenk Karakuz.',
-      author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://cenk.dev' },
+      author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://vcenkkarakuz.com' },
       publisher: { '@type': 'Person', name: 'Cenk Karakuz' },
-      mainEntityOfPage: 'https://cenk.dev/case-studies/photovid-studio',
-      image: 'https://cenk.dev/ck-og.svg'
+      mainEntityOfPage: 'https://vcenkkarakuz.com/case-studies/photovid-studio',
+      image: 'https://vcenkkarakuz.com/ck-og.svg'
     },
     {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cenk.dev/' },
-        { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://cenk.dev/#work' },
-        { '@type': 'ListItem', position: 3, name: 'photovid.studio', item: 'https://cenk.dev/case-studies/photovid-studio' }
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vcenkkarakuz.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://vcenkkarakuz.com/#work' },
+        { '@type': 'ListItem', position: 3, name: 'photovid.studio', item: 'https://vcenkkarakuz.com/case-studies/photovid-studio' }
       ]
     }
   ];

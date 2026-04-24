@@ -24,7 +24,7 @@ const JobFoxyCaseStudyPage = () => {
       author: {
         '@type': 'Person',
         name: 'Cenk Karakuz',
-        url: 'https://cenk.dev'
+        url: 'https://vcenkkarakuz.com'
       },
       offers: {
         '@type': 'Offer',
@@ -37,18 +37,18 @@ const JobFoxyCaseStudyPage = () => {
       '@type': 'Article',
       headline: 'Job Foxy — AI Job Application Assistant Case Study',
       description: 'Case study of Job Foxy, an AI-powered job application assistant built by Vancouver developer Cenk Karakuz.',
-      author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://cenk.dev' },
+      author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://vcenkkarakuz.com' },
       publisher: { '@type': 'Person', name: 'Cenk Karakuz' },
-      mainEntityOfPage: 'https://cenk.dev/case-studies/jobfoxy',
-      image: 'https://cenk.dev/ck-og.svg'
+      mainEntityOfPage: 'https://vcenkkarakuz.com/case-studies/jobfoxy',
+      image: 'https://vcenkkarakuz.com/ck-og.svg'
     },
     {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cenk.dev/' },
-        { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://cenk.dev/#work' },
-        { '@type': 'ListItem', position: 3, name: 'Job Foxy', item: 'https://cenk.dev/case-studies/jobfoxy' }
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vcenkkarakuz.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://vcenkkarakuz.com/#work' },
+        { '@type': 'ListItem', position: 3, name: 'Job Foxy', item: 'https://vcenkkarakuz.com/case-studies/jobfoxy' }
       ]
     }
   ];

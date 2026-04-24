@@ -19,11 +19,11 @@ const WebDevelopmentServicePage = () => {
       '@type': 'Service',
       name: 'Web Development',
       serviceType: 'Marketing site and landing page development',
-      url: 'https://cenk.dev/services/web-development',
+      url: 'https://vcenkkarakuz.com/services/web-development',
       provider: {
         '@type': 'Person',
         name: 'Cenk Karakuz',
-        url: 'https://cenk.dev',
+        url: 'https://vcenkkarakuz.com',
         address: {
           '@type': 'PostalAddress',
           addressLocality: 'Vancouver',
@@ -47,9 +47,9 @@ const WebDevelopmentServicePage = () => {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cenk.dev/' },
-        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://cenk.dev/#services' },
-        { '@type': 'ListItem', position: 3, name: 'Web Development', item: 'https://cenk.dev/services/web-development' }
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vcenkkarakuz.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://vcenkkarakuz.com/#services' },
+        { '@type': 'ListItem', position: 3, name: 'Web Development', item: 'https://vcenkkarakuz.com/services/web-development' }
       ]
     }
   ];

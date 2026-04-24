@@ -1,10 +1,10 @@
-# cenk.dev — Full Context
+# vcenkkarakuz.com — Full Context
 
 ## About
 Name: Cenk Karakuz
 Location: Vancouver, British Columbia, Canada
 Role: Independent full-stack software developer
-Website: https://cenk.dev
+Website: https://vcenkkarakuz.com
 Email: cenkkarakuz@gmail.com
 LinkedIn: https://www.linkedin.com/in/cenkkarakuz/
 X / Twitter: https://twitter.com/vcenkkarakuz
@@ -15,15 +15,15 @@ Cenk operates as a single-person studio offering three focused services:
 
 1. SaaS Development — full-stack product builds from idea to paying customers.
    Stack: React, TypeScript, Supabase / Postgres, Stripe, OpenAI, Vercel.
-   Page: https://cenk.dev/services/saas-development
+   Page: https://vcenkkarakuz.com/services/saas-development
 
 2. Web Development — marketing sites and landing pages built with React + Tailwind.
    Focus: performance, accessibility, conversion, SEO.
-   Page: https://cenk.dev/services/web-development
+   Page: https://vcenkkarakuz.com/services/web-development
 
 3. n8n Automation — workflow automation systems for lead handling, AI content
    pipelines, reporting, and CRM operations.
-   Page: https://cenk.dev/services/n8n-automation
+   Page: https://vcenkkarakuz.com/services/n8n-automation
 
 ## Engagement model
 - Discovery call to scope the work
@@ -38,9 +38,9 @@ Remote work: worldwide for clients in compatible time zones.
 
 ## Selected work / case studies
 - Job Foxy (https://jobfoxy.com) — AI job application assistant
-  https://cenk.dev/case-studies/jobfoxy
+  https://vcenkkarakuz.com/case-studies/jobfoxy
 - photovid.studio (https://photovid.studio) — AI image and video generation product
-  https://cenk.dev/case-studies/photovid-studio
+  https://vcenkkarakuz.com/case-studies/photovid-studio
 
 ## Positioning summary
 Cenk helps founders and small teams ship modern web products and remove manual

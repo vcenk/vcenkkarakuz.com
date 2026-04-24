@@ -12,10 +12,10 @@ const homeSchema = [
   {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    '@id': 'https://cenk.dev/#person',
+    '@id': 'https://vcenkkarakuz.com/#person',
     name: 'Cenk Karakuz',
-    url: 'https://cenk.dev',
-    image: 'https://cenk.dev/ck-og.svg',
+    url: 'https://vcenkkarakuz.com',
+    image: 'https://vcenkkarakuz.com/ck-og.svg',
     email: 'mailto:cenkkarakuz@gmail.com',
     jobTitle: 'Independent Software Developer',
     description: 'Vancouver-based independent developer building SaaS products, marketing sites, and n8n automation systems.',
@@ -44,10 +44,10 @@ const homeSchema = [
   {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    '@id': 'https://cenk.dev/#business',
+    '@id': 'https://vcenkkarakuz.com/#business',
     name: 'Cenk Karakuz — SaaS, Web & Automation',
-    url: 'https://cenk.dev',
-    image: 'https://cenk.dev/ck-og.svg',
+    url: 'https://vcenkkarakuz.com',
+    image: 'https://vcenkkarakuz.com/ck-og.svg',
     priceRange: '$$',
     telephone: '',
     email: 'cenkkarakuz@gmail.com',
@@ -69,7 +69,7 @@ const homeSchema = [
       { '@type': 'Place', name: 'Worldwide (remote)' }
     ],
     provider: {
-      '@id': 'https://cenk.dev/#person'
+      '@id': 'https://vcenkkarakuz.com/#person'
     },
     serviceType: ['SaaS development', 'Web development', 'n8n automation'],
     hasOfferCatalog: {
@@ -78,15 +78,15 @@ const homeSchema = [
       itemListElement: [
         {
           '@type': 'Offer',
-          itemOffered: { '@type': 'Service', name: 'SaaS Development', url: 'https://cenk.dev/services/saas-development' }
+          itemOffered: { '@type': 'Service', name: 'SaaS Development', url: 'https://vcenkkarakuz.com/services/saas-development' }
         },
         {
           '@type': 'Offer',
-          itemOffered: { '@type': 'Service', name: 'Web Development', url: 'https://cenk.dev/services/web-development' }
+          itemOffered: { '@type': 'Service', name: 'Web Development', url: 'https://vcenkkarakuz.com/services/web-development' }
         },
         {
           '@type': 'Offer',
-          itemOffered: { '@type': 'Service', name: 'n8n Automation', url: 'https://cenk.dev/services/n8n-automation' }
+          itemOffered: { '@type': 'Service', name: 'n8n Automation', url: 'https://vcenkkarakuz.com/services/n8n-automation' }
         }
       ]
     }
@@ -94,9 +94,9 @@ const homeSchema = [
   {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    url: 'https://cenk.dev',
+    url: 'https://vcenkkarakuz.com',
     name: 'Cenk Karakuz',
-    publisher: { '@id': 'https://cenk.dev/#person' },
+    publisher: { '@id': 'https://vcenkkarakuz.com/#person' },
     inLanguage: 'en-CA'
   }
 ];
