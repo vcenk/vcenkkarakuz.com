@@ -13,26 +13,54 @@ const deliverables = [
 ];
 
 const SaasDevelopmentServicePage = () => {
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: 'SaaS Development',
-    serviceType: 'Full-stack SaaS product development',
-    provider: {
-      '@type': 'Person',
-      name: 'Cenk Karakuz',
-      url: 'https://cenk.dev'
+  const schema = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: 'SaaS Development',
+      serviceType: 'Full-stack SaaS product development',
+      url: 'https://cenk.dev/services/saas-development',
+      provider: {
+        '@type': 'Person',
+        name: 'Cenk Karakuz',
+        url: 'https://cenk.dev',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Vancouver',
+          addressRegion: 'BC',
+          addressCountry: 'CA'
+        }
+      },
+      areaServed: [
+        { '@type': 'City', name: 'Vancouver' },
+        { '@type': 'AdministrativeArea', name: 'British Columbia' },
+        { '@type': 'Country', name: 'Canada' },
+        { '@type': 'Place', name: 'Worldwide (remote)' }
+      ],
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: 'CAD',
+        availability: 'https://schema.org/InStock'
+      }
     },
-    areaServed: 'Worldwide'
-  };
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cenk.dev/' },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://cenk.dev/#services' },
+        { '@type': 'ListItem', position: 3, name: 'SaaS Development', item: 'https://cenk.dev/services/saas-development' }
+      ]
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="SaaS Development | Cenk Karakuz"
-        description="Full-stack SaaS development for founders. From architecture to launch — React, TypeScript, Supabase, payments, and AI integration."
+        title="SaaS Development in Vancouver | Cenk Karakuz"
+        description="Vancouver-based SaaS developer building full-stack products end to end. React, TypeScript, Supabase, payments, and AI integration for founders in Canada and worldwide."
         path="/services/saas-development"
-        keywords="saas developer, mvp development, react saas, full stack developer, indie saas"
+        keywords="Vancouver SaaS developer, SaaS development Canada, MVP development Vancouver, react SaaS developer, full stack developer BC, indie SaaS developer Canada, supabase developer Vancouver, AI SaaS builder"
         schema={schema}
       />
 
@@ -41,15 +69,15 @@ const SaasDevelopmentServicePage = () => {
       <main className="pt-28 pb-20">
         <section className="section-container">
           <div className="max-w-3xl">
-            <span className="section-label">Service</span>
+            <span className="section-label">Service · Vancouver, BC</span>
             <h1 className="font-display text-4xl md:text-6xl font-bold leading-tight mt-4 mb-6">
               SaaS products,
               <br />
               built end to end.
             </h1>
             <p className="text-lg text-muted-foreground mb-10">
-              I help founders take a SaaS idea from a doc to a live product with paying users.
-              Frontend, backend, infra, and the AI bits in between — by one person, in tight increments.
+              Vancouver-based independent developer helping founders take a SaaS idea from a doc to a live product with paying users.
+              Frontend, backend, infra, and the AI bits in between — by one person, in tight increments. Available across Canada and remote worldwide.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="/#contact" className="btn-primary">
@@ -93,6 +121,16 @@ const SaasDevelopmentServicePage = () => {
               ))}
             </ul>
           </div>
+        </section>
+
+        <section className="section-container mt-16 text-center">
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">Ready to build your SaaS?</h2>
+          <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
+            Tell me about your idea — I'll respond within 24 hours with a scoped quote and timeline.
+          </p>
+          <a href="/#contact" className="btn-primary inline-flex">
+            Start a project <ArrowRight className="w-4 h-4" />
+          </a>
         </section>
       </main>
 

@@ -13,26 +13,54 @@ const deliverables = [
 ];
 
 const WebDevelopmentServicePage = () => {
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: 'Web Development',
-    serviceType: 'Marketing site and landing page development',
-    provider: {
-      '@type': 'Person',
-      name: 'Cenk Karakuz',
-      url: 'https://cenk.dev'
+  const schema = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: 'Web Development',
+      serviceType: 'Marketing site and landing page development',
+      url: 'https://cenk.dev/services/web-development',
+      provider: {
+        '@type': 'Person',
+        name: 'Cenk Karakuz',
+        url: 'https://cenk.dev',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Vancouver',
+          addressRegion: 'BC',
+          addressCountry: 'CA'
+        }
+      },
+      areaServed: [
+        { '@type': 'City', name: 'Vancouver' },
+        { '@type': 'AdministrativeArea', name: 'British Columbia' },
+        { '@type': 'Country', name: 'Canada' },
+        { '@type': 'Place', name: 'Worldwide (remote)' }
+      ],
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: 'CAD',
+        availability: 'https://schema.org/InStock'
+      }
     },
-    areaServed: 'Worldwide'
-  };
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cenk.dev/' },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://cenk.dev/#services' },
+        { '@type': 'ListItem', position: 3, name: 'Web Development', item: 'https://cenk.dev/services/web-development' }
+      ]
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Web Development | Cenk Karakuz"
-        description="Marketing sites and landing pages built with React, Tailwind, and modern tooling — fast, accessible, and conversion-focused."
+        title="Web Development in Vancouver | Cenk Karakuz"
+        description="Vancouver web developer building React + Tailwind marketing sites and landing pages. Fast, accessible, and SEO-tuned for Canadian businesses and global clients."
         path="/services/web-development"
-        keywords="web developer, landing page developer, react developer, marketing site, tailwind"
+        keywords="Vancouver web developer, Vancouver landing page developer, react developer Canada, tailwind developer Vancouver, marketing site developer BC, freelance web developer Vancouver, conversion optimization Canada"
         schema={schema}
       />
 
@@ -41,15 +69,15 @@ const WebDevelopmentServicePage = () => {
       <main className="pt-28 pb-20">
         <section className="section-container">
           <div className="max-w-3xl">
-            <span className="section-label">Service</span>
+            <span className="section-label">Service · Vancouver, BC</span>
             <h1 className="font-display text-4xl md:text-6xl font-bold leading-tight mt-4 mb-6">
               Marketing sites
               <br />
               that pull their weight.
             </h1>
             <p className="text-lg text-muted-foreground mb-10">
-              Landing pages and marketing sites built with React and Tailwind — fast, accessible,
-              and tuned for conversion. Designed to feel premium without the agency timeline.
+              Vancouver-based developer building landing pages and marketing sites with React and Tailwind —
+              fast, accessible, and tuned for conversion. Designed to feel premium without the agency timeline. Serving clients across Canada and worldwide.
             </p>
             <div className="flex flex-wrap gap-4">
               <a href="/#contact" className="btn-primary">
@@ -93,6 +121,16 @@ const WebDevelopmentServicePage = () => {
               ))}
             </ul>
           </div>
+        </section>
+
+        <section className="section-container mt-16 text-center">
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">Need a site that actually converts?</h2>
+          <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
+            Send the brief — I'll come back with a scoped quote and timeline within 24 hours.
+          </p>
+          <a href="/#contact" className="btn-primary inline-flex">
+            Start a project <ArrowRight className="w-4 h-4" />
+          </a>
         </section>
       </main>
 

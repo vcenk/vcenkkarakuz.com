@@ -13,31 +13,53 @@ const featureList = [
 ];
 
 const JobFoxyCaseStudyPage = () => {
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'Job Foxy',
-    applicationCategory: 'BusinessApplication',
-    operatingSystem: 'Web',
-    url: 'https://jobfoxy.com/',
-    author: {
-      '@type': 'Person',
-      name: 'Cenk Karakuz'
+  const schema = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'Job Foxy',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      url: 'https://jobfoxy.com/',
+      author: {
+        '@type': 'Person',
+        name: 'Cenk Karakuz',
+        url: 'https://cenk.dev'
+      },
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD'
+      }
     },
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD'
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: 'Job Foxy — AI Job Application Assistant Case Study',
+      description: 'Case study of Job Foxy, an AI-powered job application assistant built by Vancouver developer Cenk Karakuz.',
+      author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://cenk.dev' },
+      publisher: { '@type': 'Person', name: 'Cenk Karakuz' },
+      mainEntityOfPage: 'https://cenk.dev/case-studies/jobfoxy',
+      image: 'https://cenk.dev/ck-og.svg'
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cenk.dev/' },
+        { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://cenk.dev/#work' },
+        { '@type': 'ListItem', position: 3, name: 'Job Foxy', item: 'https://cenk.dev/case-studies/jobfoxy' }
+      ]
     }
-  };
+  ];
 
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Job Foxy Case Study | Cenk Karakuz"
-        description="Deep dive into Job Foxy: AI-powered job application assistant with cover letter generation, tracking workflows, and product growth learnings."
+        title="Job Foxy Case Study | SaaS Built by Vancouver Developer"
+        description="How I designed and shipped Job Foxy, an AI-powered job application assistant with cover letter generation and application tracking. A Vancouver-built SaaS case study."
         path="/case-studies/jobfoxy"
-        keywords="Job Foxy, jobfoxy, AI cover letter app, job application tracker, product case study"
+        keywords="Job Foxy case study, AI cover letter app, job application tracker, Vancouver SaaS case study, indie SaaS Canada, react SaaS project"
         type="article"
         schema={schema}
       />

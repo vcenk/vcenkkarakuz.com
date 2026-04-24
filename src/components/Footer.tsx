@@ -15,9 +15,15 @@ const Footer = () => {
                 Cenk Karakuz<span className="text-accent">.</span>
               </span>
             </Link>
-            <p className="text-muted-foreground text-sm max-w-xs leading-relaxed">
-              Independent developer building SaaS products, marketing sites, and n8n automations.
+            <p className="text-muted-foreground text-sm max-w-xs leading-relaxed mb-4">
+              Independent developer building SaaS products, marketing sites, and n8n automations. Based in Vancouver, BC — working with clients across Canada and worldwide.
             </p>
+            <a
+              href="mailto:cenkkarakuz@gmail.com"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              cenkkarakuz@gmail.com
+            </a>
           </div>
 
           <div>

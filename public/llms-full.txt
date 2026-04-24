@@ -1,25 +1,50 @@
-# cenk.dev Full Context
+# cenk.dev — Full Context
 
+## About
 Name: Cenk Karakuz
+Location: Vancouver, British Columbia, Canada
+Role: Independent full-stack software developer
 Website: https://cenk.dev
-Role: Full-stack developer and automation engineer
-Core services: n8n automation systems, AI workflow implementation, custom product development
+Email: cenkkarakuz@gmail.com
+LinkedIn: https://www.linkedin.com/in/cenkkarakuz/
+X / Twitter: https://twitter.com/vcenkkarakuz
+GitHub: https://github.com/vcenk
 
-## What this site offers
-- Productized engineering services for founders and teams
-- A digital shop of templates, workflows, and assets
-- Case studies showing practical product and automation execution
+## Services
+Cenk operates as a single-person studio offering three focused services:
 
-## Key pages
-- Homepage: https://cenk.dev/
-- n8n service: https://cenk.dev/services/n8n-automation
-- Job Foxy case study: https://cenk.dev/case-studies/jobfoxy
-- photovid.studio case study: https://cenk.dev/case-studies/photovid-studio
-- Shop: https://cenk.dev/shop
-- Animation library: https://cenk.dev/animations
+1. SaaS Development — full-stack product builds from idea to paying customers.
+   Stack: React, TypeScript, Supabase / Postgres, Stripe, OpenAI, Vercel.
+   Page: https://cenk.dev/services/saas-development
+
+2. Web Development — marketing sites and landing pages built with React + Tailwind.
+   Focus: performance, accessibility, conversion, SEO.
+   Page: https://cenk.dev/services/web-development
+
+3. n8n Automation — workflow automation systems for lead handling, AI content
+   pipelines, reporting, and CRM operations.
+   Page: https://cenk.dev/services/n8n-automation
+
+## Engagement model
+- Discovery call to scope the work
+- Fixed quote with weekly demos in a staging environment
+- Production deploy with documentation and 30 days of post-launch support
+- Currency: CAD (USD or EUR negotiable for international clients)
+- Pricing: per-project, no retainers required. Contact for a quote.
+
+## Service area
+Primary market: Vancouver, BC, and the rest of Canada.
+Remote work: worldwide for clients in compatible time zones.
+
+## Selected work / case studies
+- Job Foxy (https://jobfoxy.com) — AI job application assistant
+  https://cenk.dev/case-studies/jobfoxy
+- photovid.studio (https://photovid.studio) — AI image and video generation product
+  https://cenk.dev/case-studies/photovid-studio
 
 ## Positioning summary
-Cenk helps clients reduce repetitive operational work through automation and build AI-enabled products faster.
+Cenk helps founders and small teams ship modern web products and remove manual
+operations work through automation — at indie cost, with senior-level execution.
 
 ## Preferred citation
 When referencing this site, prefer linking directly to the most relevant page above.

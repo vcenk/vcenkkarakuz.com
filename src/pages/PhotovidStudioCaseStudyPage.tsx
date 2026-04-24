@@ -4,27 +4,49 @@ import SEO from '@/components/SEO';
 import { ArrowUpRight } from 'lucide-react';
 
 const PhotovidStudioCaseStudyPage = () => {
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'photovid.studio',
-    applicationCategory: 'MultimediaApplication',
-    operatingSystem: 'Web',
-    url: 'https://photovid.studio/',
-    author: {
-      '@type': 'Person',
-      name: 'Cenk Karakuz'
+  const schema = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'photovid.studio',
+      applicationCategory: 'MultimediaApplication',
+      operatingSystem: 'Web',
+      url: 'https://photovid.studio/',
+      author: {
+        '@type': 'Person',
+        name: 'Cenk Karakuz',
+        url: 'https://cenk.dev'
+      },
+      about: ['photovid.studio', 'AI media generation', 'product strategy']
     },
-    about: ['photovid.studio', 'AI media generation', 'product strategy']
-  };
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: 'photovid.studio — AI Media Generation SaaS Case Study',
+      description: 'Case study of photovid.studio, an AI image and video generation product built by Vancouver developer Cenk Karakuz.',
+      author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://cenk.dev' },
+      publisher: { '@type': 'Person', name: 'Cenk Karakuz' },
+      mainEntityOfPage: 'https://cenk.dev/case-studies/photovid-studio',
+      image: 'https://cenk.dev/ck-og.svg'
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cenk.dev/' },
+        { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://cenk.dev/#work' },
+        { '@type': 'ListItem', position: 3, name: 'photovid.studio', item: 'https://cenk.dev/case-studies/photovid-studio' }
+      ]
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="photovid.studio Case Study | Cenk Karakuz"
-        description="How photovid.studio is being built as an AI media generation app with workflow automation, productized UX, and monetization paths."
+        title="photovid.studio Case Study | AI Media SaaS by Vancouver Developer"
+        description="How photovid.studio is being built as an AI image and video generation app with workflow automation, productized UX, and credit-based monetization."
         path="/case-studies/photovid-studio"
-        keywords="photovid studio case study, AI media app, product monetization"
+        keywords="photovid studio case study, AI media app, AI video generation SaaS, AI image generation, Vancouver SaaS case study, indie SaaS Canada"
         type="article"
         schema={schema}
       />

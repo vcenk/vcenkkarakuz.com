@@ -12,26 +12,92 @@ const homeSchema = [
   {
     '@context': 'https://schema.org',
     '@type': 'Person',
+    '@id': 'https://cenk.dev/#person',
     name: 'Cenk Karakuz',
     url: 'https://cenk.dev',
+    image: 'https://cenk.dev/ck-og.svg',
+    email: 'mailto:cenkkarakuz@gmail.com',
+    jobTitle: 'Independent Software Developer',
+    description: 'Vancouver-based independent developer building SaaS products, marketing sites, and n8n automation systems.',
     sameAs: [
       'https://www.linkedin.com/in/cenkkarakuz/',
       'https://twitter.com/vcenkkarakuz',
       'https://github.com/vcenk'
     ],
-    jobTitle: 'Independent Software Developer',
-    knowsAbout: ['SaaS development', 'Web development', 'n8n automation', 'React', 'TypeScript', 'AI workflows']
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Vancouver',
+      addressRegion: 'BC',
+      addressCountry: 'CA'
+    },
+    knowsAbout: [
+      'SaaS development',
+      'Web development',
+      'n8n automation',
+      'React',
+      'TypeScript',
+      'AI workflows',
+      'Supabase',
+      'Tailwind CSS'
+    ]
   },
   {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
+    '@id': 'https://cenk.dev/#business',
     name: 'Cenk Karakuz — SaaS, Web & Automation',
-    provider: {
-      '@type': 'Person',
-      name: 'Cenk Karakuz'
+    url: 'https://cenk.dev',
+    image: 'https://cenk.dev/ck-og.svg',
+    priceRange: '$$',
+    telephone: '',
+    email: 'cenkkarakuz@gmail.com',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Vancouver',
+      addressRegion: 'BC',
+      addressCountry: 'CA'
     },
-    areaServed: 'Worldwide',
-    serviceType: ['SaaS development', 'Web development', 'n8n automation']
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 49.2827,
+      longitude: -123.1207
+    },
+    areaServed: [
+      { '@type': 'City', name: 'Vancouver' },
+      { '@type': 'AdministrativeArea', name: 'British Columbia' },
+      { '@type': 'Country', name: 'Canada' },
+      { '@type': 'Place', name: 'Worldwide (remote)' }
+    ],
+    provider: {
+      '@id': 'https://cenk.dev/#person'
+    },
+    serviceType: ['SaaS development', 'Web development', 'n8n automation'],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Development Services',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: 'SaaS Development', url: 'https://cenk.dev/services/saas-development' }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: 'Web Development', url: 'https://cenk.dev/services/web-development' }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: 'n8n Automation', url: 'https://cenk.dev/services/n8n-automation' }
+        }
+      ]
+    }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    url: 'https://cenk.dev',
+    name: 'Cenk Karakuz',
+    publisher: { '@id': 'https://cenk.dev/#person' },
+    inLanguage: 'en-CA'
   }
 ];
 
@@ -39,10 +105,10 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background selection:bg-accent/20 overflow-x-hidden">
       <SEO
-        title="Cenk Karakuz | SaaS, Web & Automation Developer"
-        description="Independent developer building SaaS products, marketing sites, and n8n automation systems for founders and teams."
+        title="Cenk Karakuz | Vancouver SaaS, Web & n8n Automation Developer"
+        description="Independent Vancouver-based developer building SaaS products, marketing sites, and n8n automation systems for founders and teams across Canada and worldwide."
         path="/"
-        keywords="saas developer, web developer, n8n automation, react developer, independent developer"
+        keywords="Vancouver developer, Vancouver SaaS developer, Vancouver web developer, Canada freelance developer, n8n automation Vancouver, react developer Vancouver, AI workflow developer, full stack developer Canada, BC software developer"
         schema={homeSchema}
       />
 
