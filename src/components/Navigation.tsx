@@ -76,9 +76,13 @@ const Navigation = () => {
             className="flex items-center gap-2 group"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            <div className="w-8 h-8 rounded-lg bg-foreground text-background flex items-center justify-center font-bold font-display text-sm group-hover:bg-accent group-hover:text-foreground transition-colors">
-              CK
-            </div>
+            <img
+              src="/favicon.svg"
+              alt="Cenk Karakuz monogram"
+              width={32}
+              height={32}
+              className="w-8 h-8 rounded-lg group-hover:scale-105 transition-transform"
+            />
             <div className="flex flex-col leading-tight">
               <span className={`font-display font-bold text-base tracking-tight ${!shouldUseSolidNav ? 'text-foreground' : ''}`}>
                 Cenk Karakuz<span className="text-accent">.</span>

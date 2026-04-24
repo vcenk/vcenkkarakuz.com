@@ -8,9 +8,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4 group w-fit">
-              <div className="w-8 h-8 rounded-lg bg-foreground text-background flex items-center justify-center font-bold font-display text-sm group-hover:bg-accent group-hover:text-foreground transition-colors">
-                CK
-              </div>
+              <img
+                src="/favicon.svg"
+                alt="Cenk Karakuz monogram"
+                width={32}
+                height={32}
+                className="w-8 h-8 rounded-lg group-hover:scale-105 transition-transform"
+              />
               <span className="font-display font-bold text-lg tracking-tight">
                 Cenk Karakuz<span className="text-accent">.</span>
               </span>
