@@ -93,13 +93,13 @@ const Navigation = () => {
             </div>
           </Link>
 
-          <ul className="hidden md:flex items-center gap-1 bg-background/50 backdrop-blur-sm px-2 py-1 rounded-full border border-border/20">
+          <ul className="hidden md:flex items-center gap-1 bg-background/50 backdrop-blur-sm px-2 py-1.5 rounded-full border border-border/20">
             {navLinks.map((link) => (
               <li key={link.name}>
                 <a
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="px-4 py-2 text-sm rounded-full text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-all duration-300"
+                  className="px-4 py-2 text-[15px] font-semibold tracking-tight rounded-full text-foreground/70 hover:text-foreground hover:bg-secondary/60 transition-all duration-300"
                 >
                   {link.name}
                 </a>
@@ -140,7 +140,7 @@ const Navigation = () => {
                     <a
                       href={link.href}
                       onClick={(e) => handleNavClick(e, link.href)}
-                      className="block px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-xl transition-colors"
+                      className="block px-4 py-3 text-base font-semibold tracking-tight text-foreground/80 hover:text-foreground hover:bg-secondary rounded-xl transition-colors"
                     >
                       {link.name}
                     </a>
