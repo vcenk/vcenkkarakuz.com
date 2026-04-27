@@ -1,6 +1,8 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const work = [
   {
@@ -64,7 +66,7 @@ const SelectedWork = () => {
               whileHover={{ y: -6 }}
               className="group relative flex flex-col bg-white/5 dark:bg-black/20 backdrop-blur-xl border border-white/10 dark:border-white/5 rounded-3xl overflow-hidden shadow-2xl hover:shadow-accent/10 hover:border-accent/30 transition-all duration-500"
             >
-              <Link to={project.href} className="relative aspect-[16/10] overflow-hidden block bg-gradient-to-br from-accent/10 via-secondary/30 to-primary/10">
+              <Link href={project.href} className="relative aspect-[16/10] overflow-hidden block bg-gradient-to-br from-accent/10 via-secondary/30 to-primary/10">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <span className="font-display text-5xl md:text-6xl font-bold text-foreground/10 group-hover:text-foreground/20 transition-colors duration-500">
                     {project.title}
@@ -85,7 +87,7 @@ const SelectedWork = () => {
                   ))}
                 </div>
 
-                <Link to={project.href}>
+                <Link href={project.href}>
                   <h3 className="font-display text-2xl font-bold mb-2 leading-tight group-hover:text-accent transition-colors">
                     {project.title}
                   </h3>
@@ -99,7 +101,7 @@ const SelectedWork = () => {
 
                 <div className="flex items-center gap-4 mt-auto">
                   <Link
-                    to={project.href}
+                    href={project.href}
                     className="inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-accent transition-colors"
                   >
                     Read case study

@@ -1,7 +1,10 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 
 const navLinks = [
   { name: 'Services', href: '/#services' },
@@ -13,8 +16,8 @@ const navLinks = [
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,25 +27,25 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = async (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
 
     if (!href.includes('#')) {
-      navigate(href);
+      router.push(href);
       return;
     }
 
     const targetId = href.substring(href.indexOf('#'));
 
-    if (location.pathname !== '/') {
-      await navigate('/');
+    if (pathname !== '/') {
+      router.push('/');
       setTimeout(() => {
         const element = document.querySelector(targetId);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
         }
-      }, 100);
+      }, 150);
     } else {
       const element = document.querySelector(targetId);
       if (element) {
@@ -51,8 +54,8 @@ const Navigation = () => {
     }
   };
 
-  const isServicePage = location.pathname.startsWith('/services');
-  const isCaseStudy = location.pathname.startsWith('/case-studies');
+  const isServicePage = pathname?.startsWith('/services') ?? false;
+  const isCaseStudy = pathname?.startsWith('/case-studies') ?? false;
 
   const shouldUseSolidNav = isScrolled || isServicePage || isCaseStudy || isMobileMenuOpen;
 
@@ -72,7 +75,7 @@ const Navigation = () => {
       >
         <div className="flex items-center justify-between gap-4">
           <Link
-            to="/"
+            href="/"
             className="flex items-center gap-2 group"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >

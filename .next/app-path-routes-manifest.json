@@ -1,0 +1,11 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/robots.txt/route": "/robots.txt",
+  "/page": "/",
+  "/case-studies/photovid-studio/page": "/case-studies/photovid-studio",
+  "/case-studies/jobfoxy/page": "/case-studies/jobfoxy",
+  "/services/web-development/page": "/services/web-development",
+  "/services/n8n-automation/page": "/services/n8n-automation",
+  "/services/saas-development/page": "/services/saas-development"
+}

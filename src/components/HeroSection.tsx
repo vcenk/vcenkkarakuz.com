@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, Box, Globe, Workflow } from 'lucide-react';
 

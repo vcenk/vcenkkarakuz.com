@@ -1,6 +1,8 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { Box, Globe, Workflow, ArrowUpRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const services = [
   {
@@ -82,7 +84,7 @@ const ServicesSection = () => {
               </p>
 
               <Link
-                to={service.href}
+                href={service.href}
                 className="inline-flex items-center gap-2 text-sm font-semibold text-accent group-hover:gap-3 transition-all w-fit"
               >
                 Learn more

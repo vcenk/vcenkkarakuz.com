@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import { useRive, useStateMachineInput, Layout, Fit, Alignment } from "@rive-app/react-canvas";
 import { cn } from "@/lib/utils";

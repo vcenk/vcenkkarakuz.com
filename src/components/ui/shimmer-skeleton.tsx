@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 
 interface ShimmerSkeletonProps extends React.HTMLAttributes<HTMLDivElement> {

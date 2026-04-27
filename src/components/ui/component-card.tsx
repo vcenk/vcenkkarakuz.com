@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { Highlight, themes, type Language } from "prism-react-renderer";
 import { Check, Copy, Terminal } from "lucide-react";
