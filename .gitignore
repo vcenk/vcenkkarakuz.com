@@ -1,3 +1,20 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Build / output
+.next/
+out/
+dist
+dist-ssr
+build
+
 # Logs
 logs
 *.log
@@ -7,10 +24,13 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Local env
 *.local
+.env*
+!.env.example
+
+# Vercel
+.vercel
 
 # Editor directories and files
 .vscode/*
@@ -22,3 +42,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local Claude session state
+.claude/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
