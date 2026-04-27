@@ -42,5 +42,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: `${SITE_URL}/case-studies/vancityguide`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}/case-studies/smart-calculator-pro`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}/case-studies/examcanada`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}/case-studies/llc-state-guide`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
   ];
 }

@@ -66,16 +66,40 @@
       "namedRegex": "^/_not\\-found(?:/)?$"
     },
     {
+      "page": "/case-studies/examcanada",
+      "regex": "^/case\\-studies/examcanada(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/case\\-studies/examcanada(?:/)?$"
+    },
+    {
       "page": "/case-studies/jobfoxy",
       "regex": "^/case\\-studies/jobfoxy(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/case\\-studies/jobfoxy(?:/)?$"
     },
     {
+      "page": "/case-studies/llc-state-guide",
+      "regex": "^/case\\-studies/llc\\-state\\-guide(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/case\\-studies/llc\\-state\\-guide(?:/)?$"
+    },
+    {
       "page": "/case-studies/photovid-studio",
       "regex": "^/case\\-studies/photovid\\-studio(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/case\\-studies/photovid\\-studio(?:/)?$"
+    },
+    {
+      "page": "/case-studies/smart-calculator-pro",
+      "regex": "^/case\\-studies/smart\\-calculator\\-pro(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/case\\-studies/smart\\-calculator\\-pro(?:/)?$"
+    },
+    {
+      "page": "/case-studies/vancityguide",
+      "regex": "^/case\\-studies/vancityguide(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/case\\-studies/vancityguide(?:/)?$"
     },
     {
       "page": "/robots.txt",

@@ -38,6 +38,7 @@ const work: Work[] = [
     description:
       'A guide to Greater Vancouver covering neighborhoods, cost of living, newcomer essentials, and local prices — built for people relocating or visiting.',
     tags: ['Web', 'SEO', 'Vancouver'],
+    caseStudyHref: '/case-studies/vancityguide',
     liveUrl: 'https://vancityguide.ca',
   },
   {
@@ -46,6 +47,7 @@ const work: Work[] = [
     description:
       'A free online calculator platform with organized tools across finance, health, math, construction, and everyday life categories.',
     tags: ['Web', 'Tools', 'SEO'],
+    caseStudyHref: '/case-studies/smart-calculator-pro',
     liveUrl: 'https://smartcalculatorpro.com',
   },
   {
@@ -54,6 +56,7 @@ const work: Work[] = [
     description:
       'Free practice tests for Canadian driving exams, citizenship tests, and workplace safety certifications.',
     tags: ['Web', 'EdTech', 'Canada'],
+    caseStudyHref: '/case-studies/examcanada',
     liveUrl: 'https://examcanada.online',
   },
   {
@@ -62,6 +65,7 @@ const work: Work[] = [
     description:
       'Step-by-step guides for forming limited liability companies across all 50 states, with filing fees, requirements, and timelines.',
     tags: ['Web', 'SEO', 'Directory'],
+    caseStudyHref: '/case-studies/llc-state-guide',
     liveUrl: 'https://llcstateguide.com',
   },
 ];

@@ -6,7 +6,11 @@
       "Bash(rm -v src/index.css)",
       "Bash(rmdir src/data)",
       "Bash(rm -rf node_modules package-lock.json)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "WebFetch(domain:vancityguide.ca)",
+      "WebFetch(domain:smartcalculatorpro.com)",
+      "WebFetch(domain:examcanada.online)",
+      "WebFetch(domain:llcstateguide.com)"
     ]
   }
 }

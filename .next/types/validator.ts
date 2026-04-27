@@ -36,6 +36,15 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
 }
 
 
+// Validate ../../src/app/case-studies/examcanada/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/case-studies/examcanada">> = Specific
+  const handler = {} as typeof import("../../src/app/case-studies/examcanada/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../src/app/case-studies/jobfoxy/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/case-studies/jobfoxy">> = Specific
@@ -45,10 +54,37 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
   type __Unused = __Check
 }
 
+// Validate ../../src/app/case-studies/llc-state-guide/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/case-studies/llc-state-guide">> = Specific
+  const handler = {} as typeof import("../../src/app/case-studies/llc-state-guide/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../src/app/case-studies/photovid-studio/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/case-studies/photovid-studio">> = Specific
   const handler = {} as typeof import("../../src/app/case-studies/photovid-studio/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/case-studies/smart-calculator-pro/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/case-studies/smart-calculator-pro">> = Specific
+  const handler = {} as typeof import("../../src/app/case-studies/smart-calculator-pro/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../src/app/case-studies/vancityguide/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/case-studies/vancityguide">> = Specific
+  const handler = {} as typeof import("../../src/app/case-studies/vancityguide/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
