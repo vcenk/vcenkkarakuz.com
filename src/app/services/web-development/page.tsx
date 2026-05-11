@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import FAQ, { buildFAQSchema, type FAQItem } from '@/components/FAQ';
 import { CheckCircle2, ArrowRight, Globe, Gauge, Sparkles } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -34,6 +35,39 @@ const deliverables = [
   'Lighthouse-tuned performance',
   'CMS or markdown-driven content if needed',
   'Vercel / Netlify deploy with analytics',
+];
+
+const faqs: FAQItem[] = [
+  {
+    question: 'How long does a marketing site take to build?',
+    answer:
+      'A typical landing page or marketing site ships in one to three weeks. The variable is content — if copy and images are ready, build is faster. If we need to write copy together, expect the longer end.',
+  },
+  {
+    question: 'Will my site rank in Google?',
+    answer:
+      'Every site I build is server-rendered with proper meta tags, structured data, sitemaps, and clean URLs out of the box. That gives Google everything it needs to index and understand your pages. Ranking on top of that depends on your topic, competition, and ongoing content — none of which a developer alone controls.',
+  },
+  {
+    question: 'Can you migrate my existing site from WordPress, Webflow, or Framer?',
+    answer:
+      'Yes. I rebuild the site in a modern stack (React + Tailwind), preserve URLs so SEO is not lost, and set up redirects for anything that does change. Migrations usually run faster than building from scratch since the content already exists.',
+  },
+  {
+    question: 'Do you handle design, or do I need to bring a designer?',
+    answer:
+      'Both options work. I can take a Figma file you already have and build it pixel-accurate, or design directly in code based on a reference style and your brand. My design taste leans toward clean, content-first layouts — not heavy illustration or motion.',
+  },
+  {
+    question: 'How is pricing structured?',
+    answer:
+      'Fixed price per project. A focused landing page typically lands in the $1.5K–$4K CAD range. A full multi-page marketing site with custom design is $4K–$10K. You get an exact quote after a 20-minute call.',
+  },
+  {
+    question: 'Will the site be fast on mobile?',
+    answer:
+      'Yes. Every site I build targets a Lighthouse mobile performance score of 90+, with optimized images, code splitting, lazy loading, and minimal third-party JavaScript. Speed is treated as a feature, not an afterthought.',
+  },
 ];
 
 const schema = [
@@ -76,6 +110,7 @@ const schema = [
       },
     ],
   },
+  buildFAQSchema(faqs),
 ];
 
 export default function WebDevelopmentServicePage() {
@@ -145,7 +180,9 @@ export default function WebDevelopmentServicePage() {
           </div>
         </section>
 
-        <section className="section-container mt-16 text-center">
+        <FAQ items={faqs} title="Web development FAQ" />
+
+        <section className="section-container mt-20 text-center">
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">Need a site that actually converts?</h2>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             Send the brief — I&apos;ll come back with a scoped quote and timeline within 24 hours.

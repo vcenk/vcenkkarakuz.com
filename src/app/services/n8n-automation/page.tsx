@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import FAQ, { buildFAQSchema, type FAQItem } from '@/components/FAQ';
 import { CheckCircle2, ArrowRight, Workflow, Clock3, TrendingUp } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -34,6 +35,39 @@ const deliverables = [
   'Prompt design and AI node optimization',
   'Monitoring, alerts, and retry policies',
   'Documentation and handoff video',
+];
+
+const faqs: FAQItem[] = [
+  {
+    question: 'What kinds of workflows can n8n actually handle?',
+    answer:
+      'Anything that involves moving data between systems, transforming it, or triggering actions on a schedule or event. Common ones I build: lead routing from forms to CRM, AI content pipelines, scheduled reports to Slack, invoice processing, customer onboarding sequences, and data sync between SaaS tools.',
+  },
+  {
+    question: 'Do you self-host n8n or use n8n Cloud?',
+    answer:
+      'Either, depending on your needs. n8n Cloud is faster to set up and well-suited for most teams. Self-hosting on a $10-a-month VPS makes sense when you need unlimited executions, custom nodes, or strict data residency. I help you pick the right path during the discovery call.',
+  },
+  {
+    question: 'How long does a typical automation take to build?',
+    answer:
+      'Most workflows ship in three to ten business days. A simple two-system integration is usually a few days. A multi-step AI pipeline with error handling, retries, and monitoring is closer to two weeks. You get a fixed quote and timeline before any work starts.',
+  },
+  {
+    question: 'Can you integrate with my existing tools?',
+    answer:
+      'n8n has 400+ native integrations including Slack, Notion, HubSpot, Salesforce, Airtable, Google Workspace, Stripe, Shopify, Postgres, and most popular SaaS. For anything not natively supported, I build custom HTTP requests or write a custom node.',
+  },
+  {
+    question: 'How is pricing structured?',
+    answer:
+      'Fixed price per workflow. A focused single automation typically lands in the $500–$2K CAD range. A multi-workflow system with monitoring and documentation is $2K–$8K. You get an exact quote after a 20-minute discovery call.',
+  },
+  {
+    question: 'What happens if a workflow breaks?',
+    answer:
+      'Every workflow ships with error handling, retry logic, and Slack or email alerts when something fails. You get 30 days of post-launch support included for fixing any issues. After that, ongoing maintenance is available as a small monthly retainer or pay-as-needed.',
+  },
 ];
 
 const schema = [
@@ -76,6 +110,7 @@ const schema = [
       },
     ],
   },
+  buildFAQSchema(faqs),
 ];
 
 export default function N8nAutomationServicePage() {
@@ -145,7 +180,9 @@ export default function N8nAutomationServicePage() {
           </div>
         </section>
 
-        <section className="section-container mt-16 text-center">
+        <FAQ items={faqs} title="n8n automation FAQ" />
+
+        <section className="section-container mt-20 text-center">
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">Got a workflow eating your week?</h2>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             Tell me what&apos;s manual today — I&apos;ll come back with what can be automated and what it costs.

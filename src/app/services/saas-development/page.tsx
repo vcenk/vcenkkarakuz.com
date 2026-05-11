@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import FAQ, { buildFAQSchema, type FAQItem } from '@/components/FAQ';
 import { CheckCircle2, ArrowRight, Box, Clock3, ShieldCheck } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -35,6 +36,39 @@ const deliverables = [
   'Postgres / Supabase backend with RLS',
   'AI integration (OpenAI, embeddings, RAG)',
   'CI/CD, monitoring, and production deploy',
+];
+
+const faqs: FAQItem[] = [
+  {
+    question: 'How long does it take to ship a SaaS MVP?',
+    answer:
+      'Most MVPs ship in four to eight weeks. The exact range depends on how complex the data model is, how many integrations are involved, and how much AI work is in scope. You get a fixed timeline before any code is written.',
+  },
+  {
+    question: 'What is your default tech stack?',
+    answer:
+      'Next.js 15 and React with TypeScript on the frontend, Supabase or Postgres on the backend, Stripe for billing, and OpenAI for AI features. Hosted on Vercel by default. The stack is chosen so you can hire any modern developer to extend it later.',
+  },
+  {
+    question: 'Do I own the code and data?',
+    answer:
+      'Yes — completely. You get the GitHub repo, the cloud accounts under your name, and full handoff documentation. There are no licensing fees, no platform lock-in, and no situation where you would need to keep paying me to keep the product running.',
+  },
+  {
+    question: 'Can you build AI features into my product?',
+    answer:
+      'Yes. I regularly build chat UIs, RAG pipelines with embeddings, structured-output prompting, and agent workflows. Job Foxy and photovid.studio (in my work section) are both production AI products I built end to end.',
+  },
+  {
+    question: 'How is pricing structured?',
+    answer:
+      'Fixed price per project, paid in milestones tied to deliverables. No hourly billing and no monthly retainer required. Most SaaS MVPs land in the $8K–$25K CAD range depending on scope. You get an exact quote after a discovery call.',
+  },
+  {
+    question: 'Can you take over a project that another developer started?',
+    answer:
+      'Yes, if the codebase is in a stack I work with. I do a paid code audit first to understand what is there, then propose either a continuation plan or a clean rewrite — whichever gives you better value for the next milestone.',
+  },
 ];
 
 const schema = [
@@ -77,6 +111,7 @@ const schema = [
       },
     ],
   },
+  buildFAQSchema(faqs),
 ];
 
 export default function SaasDevelopmentServicePage() {
@@ -146,7 +181,9 @@ export default function SaasDevelopmentServicePage() {
           </div>
         </section>
 
-        <section className="section-container mt-16 text-center">
+        <FAQ items={faqs} title="SaaS development FAQ" />
+
+        <section className="section-container mt-20 text-center">
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">Ready to build your SaaS?</h2>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
             Tell me about your idea — I&apos;ll respond within 24 hours with a scoped quote and timeline.
