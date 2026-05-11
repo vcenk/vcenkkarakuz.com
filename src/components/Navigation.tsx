@@ -9,7 +9,7 @@ import { usePathname, useRouter } from 'next/navigation';
 const navLinks = [
   { name: 'Services', href: '/#services' },
   { name: 'Work', href: '/#work' },
-  { name: 'Process', href: '/#process' },
+  { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/#contact' },
 ];
 
@@ -56,8 +56,9 @@ const Navigation = () => {
 
   const isServicePage = pathname?.startsWith('/services') ?? false;
   const isCaseStudy = pathname?.startsWith('/case-studies') ?? false;
+  const isBlog = pathname?.startsWith('/blog') ?? false;
 
-  const shouldUseSolidNav = isScrolled || isServicePage || isCaseStudy || isMobileMenuOpen;
+  const shouldUseSolidNav = isScrolled || isServicePage || isCaseStudy || isBlog || isMobileMenuOpen;
 
   return (
     <motion.header

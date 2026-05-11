@@ -17,6 +17,7 @@ Primary pages:
 - n8n Automation: https://vcenkkarakuz.com/services/n8n-automation
 - Job Foxy case study: https://vcenkkarakuz.com/case-studies/jobfoxy
 - photovid.studio case study: https://vcenkkarakuz.com/case-studies/photovid-studio
+- Blog: https://vcenkkarakuz.com/blog
 
 For full context, read:
 - https://vcenkkarakuz.com/llms-full.txt
