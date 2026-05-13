@@ -1,85 +1,112 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Sparkles, ArrowUpRight } from 'lucide-react';
 
-type ProjectCard = {
+type Project = {
   title: string;
+  tagline: string;
   domain: string;
   url: string;
   /** Tailwind gradient classes for the placeholder background */
   gradient: string;
-  /** Optional screenshot in /public, replaces the placeholder when provided */
+  /** Small visual accent shown inside the featured card */
+  accent: 'amber' | 'purple' | 'teal' | 'blue' | 'rose' | 'lime';
+  /** Optional screenshot path in /public, replaces the placeholder */
   screenshot?: string;
-  /** Where the card floats in the right column */
-  position: string;
-  /** CSS animation-delay offset so each card bobs independently */
-  floatDelay: string;
-  /** Framer-motion entrance delay */
-  enterDelay: number;
-  /** Enter direction for the framer transition */
-  enter: { opacity: number; x?: number; y?: number };
 };
 
-const projects: ProjectCard[] = [
+const projects: Project[] = [
   {
     title: 'Job Foxy',
+    tagline: 'AI job application assistant',
     domain: 'jobfoxy.com',
     url: 'https://jobfoxy.com',
-    gradient: 'from-accent/30 via-orange-500/15 to-rose-500/10',
-    position: 'top-[6%] right-[6%]',
-    floatDelay: '0s',
-    enterDelay: 0.4,
-    enter: { opacity: 0, x: 50 },
+    gradient: 'from-accent/35 via-orange-500/15 to-rose-500/10',
+    accent: 'amber',
   },
   {
     title: 'photovid.studio',
+    tagline: 'AI image & video generation',
     domain: 'photovid.studio',
     url: 'https://photovid.studio',
-    gradient: 'from-purple-500/30 via-fuchsia-500/15 to-indigo-500/10',
-    position: 'top-[36%] left-[2%]',
-    floatDelay: '2s',
-    enterDelay: 0.6,
-    enter: { opacity: 0, x: -50 },
+    gradient: 'from-purple-500/35 via-fuchsia-500/15 to-indigo-500/10',
+    accent: 'purple',
   },
   {
     title: 'VanCityGuide',
+    tagline: 'Hyperlocal Vancouver guide',
     domain: 'vancityguide.ca',
     url: 'https://vancityguide.ca',
-    gradient: 'from-emerald-500/25 via-teal-500/15 to-sky-500/10',
-    position: 'bottom-[8%] right-[14%]',
-    floatDelay: '1s',
-    enterDelay: 0.8,
-    enter: { opacity: 0, y: 50 },
+    gradient: 'from-emerald-500/30 via-teal-500/15 to-sky-500/10',
+    accent: 'teal',
+  },
+  {
+    title: 'Smart Calculator Pro',
+    tagline: 'Calculator tools platform',
+    domain: 'smartcalculatorpro.com',
+    url: 'https://smartcalculatorpro.com',
+    gradient: 'from-blue-500/30 via-cyan-500/15 to-sky-500/10',
+    accent: 'blue',
+  },
+  {
+    title: 'ExamCanada',
+    tagline: 'Canadian exam prep',
+    domain: 'examcanada.online',
+    url: 'https://examcanada.online',
+    gradient: 'from-rose-500/30 via-red-500/15 to-orange-500/10',
+    accent: 'rose',
+  },
+  {
+    title: 'LLC State Guide',
+    tagline: 'US LLC formation guides',
+    domain: 'llcstateguide.com',
+    url: 'https://llcstateguide.com',
+    gradient: 'from-lime-500/30 via-green-500/15 to-emerald-500/10',
+    accent: 'lime',
   },
 ];
 
+const accentDot: Record<Project['accent'], string> = {
+  amber: 'bg-amber-400',
+  purple: 'bg-purple-400',
+  teal: 'bg-teal-400',
+  blue: 'bg-blue-400',
+  rose: 'bg-rose-400',
+  lime: 'bg-lime-400',
+};
+
+const ROTATION_MS = 4500;
+
 const HeroSection = () => {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => {
+      setActiveIdx((i) => (i + 1) % projects.length);
+    }, ROTATION_MS);
+    return () => clearInterval(id);
+  }, [paused]);
+
+  const active = projects[activeIdx];
+
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
       {/* Ambient background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-            x: [0, 100, 0],
-            y: [0, 50, 0],
-          }}
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3], x: [0, 100, 0], y: [0, 50, 0] }}
           transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
           className="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] rounded-full bg-accent/5 blur-[120px]"
         />
         <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.6, 0.3],
-            x: [0, -100, 0],
-            y: [0, 50, 0],
-          }}
+          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3], x: [0, -100, 0], y: [0, 50, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
           className="absolute top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-primary/5 blur-[100px]"
         />
-
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -91,7 +118,7 @@ const HeroSection = () => {
       </div>
 
       <div className="section-container relative z-10 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-16 items-center">
           {/* Left: copy + CTAs */}
           <div className="text-left max-w-2xl mx-auto lg:mx-0">
             <motion.div
@@ -143,84 +170,156 @@ const HeroSection = () => {
               </a>
             </motion.div>
 
-            {/* Live work strip (mobile-only, hidden on lg where right column takes over) */}
+            {/* Live work strip — visible always; on lg the big composition is also shown */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-wrap items-center gap-3 mt-10 lg:hidden"
+              className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-12 pt-8 border-t border-border/40"
             >
-              <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-mono">Live:</span>
-              {projects.map((p) => (
-                <a
-                  key={p.domain}
-                  href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-accent hover:text-foreground transition-colors"
-                >
-                  {p.domain}
-                </a>
-              ))}
+              <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground font-mono">Live projects</span>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                {projects.map((p) => (
+                  <a
+                    key={p.domain}
+                    href={p.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-muted-foreground hover:text-accent transition-colors"
+                  >
+                    {p.domain}
+                  </a>
+                ))}
+              </div>
             </motion.div>
           </div>
 
-          {/* Right: project browser cards */}
-          <div className="relative hidden lg:block h-[620px] w-full">
+          {/* Right: featured browser window with auto-rotating projects + depth stack */}
+          <div className="relative hidden lg:flex items-center justify-center h-[600px]">
             {/* Decorative orbital rings */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-border/30 rounded-full" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] border border-border/30 rounded-full" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] border border-border/30 rounded-full pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] border border-border/20 rounded-full pointer-events-none" />
 
-            {projects.map((project) => (
-              <motion.a
-                key={project.domain}
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={project.enter}
-                animate={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ duration: 0.8, delay: project.enterDelay }}
-                whileHover={{ y: -6, scale: 1.02 }}
-                className={`absolute ${project.position} w-72 animate-float group block`}
-                style={{ animationDelay: project.floatDelay }}
-              >
-                <div className="rounded-xl overflow-hidden bg-card/80 backdrop-blur-xl border border-white/10 shadow-2xl group-hover:border-accent/40 group-hover:shadow-accent/10 transition-all duration-500">
-                  {/* Browser chrome */}
-                  <div className="flex items-center gap-2 px-3 py-2 bg-background/60 border-b border-white/5">
-                    <div className="flex gap-1.5">
-                      <span className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
-                    </div>
-                    <div className="flex-1 ml-2 px-2.5 py-0.5 rounded-md bg-secondary/50 text-[10px] font-mono text-muted-foreground truncate">
-                      {project.domain}
-                    </div>
+            {/* Back stack — two ghost windows offset for depth */}
+            <motion.div
+              initial={{ opacity: 0, x: 30, y: 30 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 1, delay: 0.6 }}
+              className="absolute right-[6%] top-[8%] w-[420px] rounded-xl bg-card/40 border border-white/5 backdrop-blur-sm pointer-events-none"
+              style={{ transform: 'rotate(3deg)' }}
+            >
+              <div className="aspect-[16/10]" />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: -30, y: 30 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="absolute left-[2%] bottom-[12%] w-[400px] rounded-xl bg-card/30 border border-white/5 backdrop-blur-sm pointer-events-none"
+              style={{ transform: 'rotate(-4deg)' }}
+            >
+              <div className="aspect-[16/10]" />
+            </motion.div>
+
+            {/* Featured (rotating) window */}
+            <motion.a
+              href={active.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
+              className="relative z-10 w-[520px] max-w-full rounded-2xl overflow-hidden bg-card/85 backdrop-blur-xl border border-white/10 shadow-[0_24px_60px_-15px_hsl(45_100%_60%_/_0.18),0_8px_24px_-8px_hsl(0_0%_0%_/_0.6)] hover:border-accent/40 transition-all duration-500 block group"
+            >
+              {/* Browser chrome */}
+              <div className="flex items-center gap-2 px-4 py-3 bg-background/70 border-b border-white/5">
+                <div className="flex gap-1.5">
+                  <span className="w-3 h-3 rounded-full bg-red-500/70" />
+                  <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
+                  <span className="w-3 h-3 rounded-full bg-green-500/70" />
+                </div>
+                <div className="flex-1 ml-2 flex items-center justify-center">
+                  <div className="px-3 py-1 rounded-md bg-secondary/60 text-xs font-mono text-muted-foreground flex items-center gap-2">
+                    <span className={`w-1.5 h-1.5 rounded-full ${accentDot[active.accent]} animate-pulse`} />
+                    {active.domain}
                   </div>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors" />
+              </div>
 
-                  {/* Content area — screenshot or stylized placeholder */}
-                  <div className={`relative aspect-[16/10] bg-gradient-to-br ${project.gradient} flex items-center justify-center`}>
-                    {project.screenshot ? (
+              {/* Content area — crossfade between projects */}
+              <div className="relative aspect-[16/10] overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={active.domain}
+                    initial={{ opacity: 0, scale: 1.04 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
+                    className={`absolute inset-0 bg-gradient-to-br ${active.gradient} flex flex-col items-center justify-center`}
+                  >
+                    {active.screenshot ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
-                        src={project.screenshot}
-                        alt={`${project.title} screenshot`}
+                        src={active.screenshot}
+                        alt={`${active.title} screenshot`}
                         className="absolute inset-0 w-full h-full object-cover"
                       />
                     ) : (
                       <>
-                        <span className="font-display text-2xl font-bold text-foreground/90 text-center px-4">
-                          {project.title}
-                        </span>
-                        <div className="absolute bottom-3 right-3 inline-flex items-center gap-1 text-[10px] font-mono text-foreground/60 group-hover:text-accent transition-colors">
-                          visit live
-                          <ArrowUpRight className="w-3 h-3" />
+                        {/* Decorative inner UI hints */}
+                        <div className="absolute top-6 left-6 right-6 flex gap-2">
+                          <div className="h-2 w-16 rounded-full bg-foreground/15" />
+                          <div className="h-2 w-8 rounded-full bg-foreground/10" />
+                          <div className="ml-auto h-2 w-12 rounded-full bg-foreground/10" />
+                        </div>
+
+                        <div className="text-center px-6">
+                          <div className={`inline-flex items-center gap-2 px-2.5 py-1 mb-4 rounded-full bg-background/40 border border-white/10 text-[10px] font-mono uppercase tracking-[0.2em] text-foreground/80`}>
+                            <span className={`w-1.5 h-1.5 rounded-full ${accentDot[active.accent]}`} />
+                            Live
+                          </div>
+                          <h3 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2 tracking-tight">
+                            {active.title}
+                          </h3>
+                          <p className="text-sm text-foreground/70">{active.tagline}</p>
+                        </div>
+
+                        <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
+                          <div className="flex gap-1.5">
+                            <div className="h-1.5 w-10 rounded-full bg-foreground/10" />
+                            <div className="h-1.5 w-6 rounded-full bg-foreground/10" />
+                          </div>
+                          <div className="inline-flex items-center gap-1 text-[10px] font-mono text-foreground/60 group-hover:text-accent transition-colors">
+                            visit live
+                            <ArrowUpRight className="w-3 h-3" />
+                          </div>
                         </div>
                       </>
                     )}
-                  </div>
-                </div>
-              </motion.a>
-            ))}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </motion.a>
+
+            {/* Indicator dots */}
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2">
+              {projects.map((p, i) => (
+                <button
+                  key={p.domain}
+                  onClick={() => setActiveIdx(i)}
+                  onMouseEnter={() => setPaused(true)}
+                  onMouseLeave={() => setPaused(false)}
+                  aria-label={`Show ${p.title}`}
+                  className={`h-1.5 rounded-full transition-all duration-500 ${
+                    i === activeIdx
+                      ? 'w-8 bg-accent'
+                      : 'w-1.5 bg-foreground/20 hover:bg-foreground/40'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
