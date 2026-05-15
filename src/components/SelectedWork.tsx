@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 type Work = {
   title: string;
@@ -11,6 +12,7 @@ type Work = {
   tags: string[];
   liveUrl: string;
   caseStudyHref?: string;
+  screenshot?: string;
 };
 
 const work: Work[] = [
@@ -22,6 +24,7 @@ const work: Work[] = [
     tags: ['SaaS', 'AI', 'React'],
     caseStudyHref: '/case-studies/jobfoxy',
     liveUrl: 'https://jobfoxy.com',
+    screenshot: '/projects/jobfoxy.png',
   },
   {
     title: 'photovid.studio',
@@ -31,6 +34,7 @@ const work: Work[] = [
     tags: ['SaaS', 'AI', 'Media'],
     caseStudyHref: '/case-studies/photovid-studio',
     liveUrl: 'https://photovid.studio',
+    screenshot: '/projects/PhotoVidStudio.png',
   },
   {
     title: 'VanCityGuide',
@@ -40,6 +44,7 @@ const work: Work[] = [
     tags: ['Web', 'SEO', 'Vancouver'],
     caseStudyHref: '/case-studies/vancityguide',
     liveUrl: 'https://vancityguide.ca',
+    screenshot: '/projects/VanCityGuide.png',
   },
   {
     title: 'Smart Calculator Pro',
@@ -49,6 +54,7 @@ const work: Work[] = [
     tags: ['Web', 'Tools', 'SEO'],
     caseStudyHref: '/case-studies/smart-calculator-pro',
     liveUrl: 'https://smartcalculatorpro.com',
+    screenshot: '/projects/SmartCalculatorPro.png',
   },
   {
     title: 'ExamCanada',
@@ -58,6 +64,7 @@ const work: Work[] = [
     tags: ['Web', 'EdTech', 'Canada'],
     caseStudyHref: '/case-studies/examcanada',
     liveUrl: 'https://examcanada.online',
+    screenshot: '/projects/ExamCanada.png',
   },
   {
     title: 'LLC State Guide',
@@ -67,6 +74,7 @@ const work: Work[] = [
     tags: ['Web', 'SEO', 'Directory'],
     caseStudyHref: '/case-studies/llc-state-guide',
     liveUrl: 'https://llcstateguide.com',
+    screenshot: '/projects/LLCGuide.png',
   },
   {
     title: 'Meet and Eat',
@@ -76,6 +84,7 @@ const work: Work[] = [
     tags: ['Web', 'Client Work', 'Vancouver'],
     caseStudyHref: '/case-studies/meet-and-eat',
     liveUrl: 'https://meetandeat.ca',
+    screenshot: '/projects/MeetandEat.png',
   },
 ];
 
@@ -144,12 +153,22 @@ const SelectedWork = () => {
                 className="group relative flex flex-col bg-white/5 dark:bg-black/20 backdrop-blur-xl border border-white/10 dark:border-white/5 rounded-3xl overflow-hidden shadow-2xl hover:shadow-accent/10 hover:border-accent/30 transition-all duration-500"
               >
                 <TitleLink className="relative aspect-[16/10] overflow-hidden block bg-gradient-to-br from-accent/10 via-secondary/30 to-primary/10">
-                  <div className="absolute inset-0 flex items-center justify-center px-4">
-                    <span className="font-display text-3xl md:text-4xl font-bold text-foreground/10 group-hover:text-foreground/20 transition-colors duration-500 text-center">
-                      {project.title}
-                    </span>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-tr from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  {project.screenshot ? (
+                    <Image
+                      src={project.screenshot}
+                      alt={`${project.title} website screenshot`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center px-4">
+                      <span className="font-display text-3xl md:text-4xl font-bold text-foreground/10 group-hover:text-foreground/20 transition-colors duration-500 text-center">
+                        {project.title}
+                      </span>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-accent/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </TitleLink>
 
                 <div className="p-6 flex flex-col flex-grow">

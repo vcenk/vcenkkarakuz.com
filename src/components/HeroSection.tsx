@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { ArrowRight, Sparkles, ArrowUpRight } from 'lucide-react';
 
 type Project = {
@@ -25,6 +26,7 @@ const projects: Project[] = [
     url: 'https://jobfoxy.com',
     gradient: 'from-accent/35 via-orange-500/15 to-rose-500/10',
     accent: 'amber',
+    screenshot: '/projects/jobfoxy.png',
   },
   {
     title: 'photovid.studio',
@@ -33,6 +35,7 @@ const projects: Project[] = [
     url: 'https://photovid.studio',
     gradient: 'from-purple-500/35 via-fuchsia-500/15 to-indigo-500/10',
     accent: 'purple',
+    screenshot: '/projects/PhotoVidStudio.png',
   },
   {
     title: 'VanCityGuide',
@@ -41,6 +44,7 @@ const projects: Project[] = [
     url: 'https://vancityguide.ca',
     gradient: 'from-emerald-500/30 via-teal-500/15 to-sky-500/10',
     accent: 'teal',
+    screenshot: '/projects/VanCityGuide.png',
   },
   {
     title: 'Smart Calculator Pro',
@@ -49,6 +53,7 @@ const projects: Project[] = [
     url: 'https://smartcalculatorpro.com',
     gradient: 'from-blue-500/30 via-cyan-500/15 to-sky-500/10',
     accent: 'blue',
+    screenshot: '/projects/SmartCalculatorPro.png',
   },
   {
     title: 'ExamCanada',
@@ -57,6 +62,7 @@ const projects: Project[] = [
     url: 'https://examcanada.online',
     gradient: 'from-rose-500/30 via-red-500/15 to-orange-500/10',
     accent: 'rose',
+    screenshot: '/projects/ExamCanada.png',
   },
   {
     title: 'LLC State Guide',
@@ -65,6 +71,7 @@ const projects: Project[] = [
     url: 'https://llcstateguide.com',
     gradient: 'from-lime-500/30 via-green-500/15 to-emerald-500/10',
     accent: 'lime',
+    screenshot: '/projects/LLCGuide.png',
   },
   {
     title: 'Meet and Eat',
@@ -73,6 +80,7 @@ const projects: Project[] = [
     url: 'https://meetandeat.ca',
     gradient: 'from-red-500/30 via-orange-500/15 to-amber-500/10',
     accent: 'red',
+    screenshot: '/projects/MeetandEat.png',
   },
 ];
 
@@ -269,11 +277,13 @@ const HeroSection = () => {
                     className={`absolute inset-0 bg-gradient-to-br ${active.gradient} flex flex-col items-center justify-center`}
                   >
                     {active.screenshot ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
+                      <Image
                         src={active.screenshot}
-                        alt={`${active.title} screenshot`}
-                        className="absolute inset-0 w-full h-full object-cover"
+                        alt={`${active.title} website screenshot`}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 520px"
+                        className="object-cover object-top"
+                        priority={activeIdx === 0}
                       />
                     ) : (
                       <>
