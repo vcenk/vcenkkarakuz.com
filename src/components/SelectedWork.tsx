@@ -68,6 +68,15 @@ const work: Work[] = [
     caseStudyHref: '/case-studies/llc-state-guide',
     liveUrl: 'https://llcstateguide.com',
   },
+  {
+    title: 'Meet and Eat',
+    tagline: 'Vancouver Turkish restaurant',
+    description:
+      'A modern website for a family-run Turkish restaurant in East Vancouver — menu, ordering, catering, and reservations in one mobile-first experience.',
+    tags: ['Web', 'Client Work', 'Vancouver'],
+    caseStudyHref: '/case-studies/meet-and-eat',
+    liveUrl: 'https://meetandeat.ca',
+  },
 ];
 
 const SelectedWork = () => {

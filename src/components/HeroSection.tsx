@@ -12,7 +12,7 @@ type Project = {
   /** Tailwind gradient classes for the placeholder background */
   gradient: string;
   /** Small visual accent shown inside the featured card */
-  accent: 'amber' | 'purple' | 'teal' | 'blue' | 'rose' | 'lime';
+  accent: 'amber' | 'purple' | 'teal' | 'blue' | 'rose' | 'lime' | 'red';
   /** Optional screenshot path in /public, replaces the placeholder */
   screenshot?: string;
 };
@@ -66,6 +66,14 @@ const projects: Project[] = [
     gradient: 'from-lime-500/30 via-green-500/15 to-emerald-500/10',
     accent: 'lime',
   },
+  {
+    title: 'Meet and Eat',
+    tagline: 'Vancouver Turkish restaurant',
+    domain: 'meetandeat.ca',
+    url: 'https://meetandeat.ca',
+    gradient: 'from-red-500/30 via-orange-500/15 to-amber-500/10',
+    accent: 'red',
+  },
 ];
 
 const accentDot: Record<Project['accent'], string> = {
@@ -75,6 +83,7 @@ const accentDot: Record<Project['accent'], string> = {
   blue: 'bg-blue-400',
   rose: 'bg-rose-400',
   lime: 'bg-lime-400',
+  red: 'bg-red-400',
 };
 
 const ROTATION_MS = 4500;
