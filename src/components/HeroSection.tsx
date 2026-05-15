@@ -266,14 +266,14 @@ const HeroSection = () => {
               </div>
 
               {/* Content area — crossfade between projects */}
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <AnimatePresence mode="wait">
+              <div className="relative aspect-[16/10] overflow-hidden bg-secondary/40">
+                <AnimatePresence initial={false}>
                   <motion.div
                     key={active.domain}
-                    initial={{ opacity: 0, scale: 1.04 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.6, ease: 'easeOut' }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5, ease: 'easeOut' }}
                     className={`absolute inset-0 bg-gradient-to-br ${active.gradient} flex flex-col items-center justify-center`}
                   >
                     {active.screenshot ? (
