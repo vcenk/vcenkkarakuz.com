@@ -4,9 +4,10 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { ArrowUpRight } from 'lucide-react';
 import { getSortedPosts } from '@/lib/posts';
+import { buildGraph, buildOrganization, buildWebSite, buildWebPage, buildBreadcrumb, SITE } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Blog | Notes on SaaS, Web, and Automation',
+  title: 'Blog — SaaS, Web & n8n Automation Notes | Cenk Karakuz',
   description:
     'Practical notes on building SaaS products, marketing sites, and n8n automations — from a Vancouver-based independent developer.',
   keywords: [
@@ -17,23 +18,42 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: '/blog' },
   openGraph: {
-    title: 'Blog | Cenk Karakuz',
+    title: 'Blog — SaaS, Web & n8n Automation Notes | Cenk Karakuz',
     description:
       'Practical notes on SaaS, web development, and n8n automation from Vancouver.',
-    url: 'https://vcenkkarakuz.com/blog',
+    url: `${SITE.url}/blog`,
     type: 'website',
   },
 };
 
-const blogSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Blog',
-  name: 'Cenk Karakuz — Blog',
-  url: 'https://vcenkkarakuz.com/blog',
-  description: 'Notes on SaaS, web development, and n8n automation.',
-  author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://vcenkkarakuz.com' },
-  inLanguage: 'en-CA',
-};
+const BREADCRUMB_ID = `${SITE.url}/blog#breadcrumb`;
+const PAGE_ID = `${SITE.url}/blog#webpage`;
+
+const blogSchema = buildGraph(
+  buildOrganization(),
+  buildWebSite(),
+  buildWebPage({
+    id: PAGE_ID,
+    url: `${SITE.url}/blog`,
+    name: 'Blog — SaaS, Web & n8n Automation Notes | Cenk Karakuz',
+    description:
+      'Practical notes on building SaaS products, marketing sites, and n8n automations — from a Vancouver-based independent developer.',
+    breadcrumbId: BREADCRUMB_ID,
+  }),
+  buildBreadcrumb(BREADCRUMB_ID, [
+    { name: 'Home', item: `${SITE.url}/` },
+    { name: 'Blog', item: `${SITE.url}/blog` },
+  ]),
+  {
+    '@type': 'Blog',
+    name: 'Cenk Karakuz — Blog',
+    url: `${SITE.url}/blog`,
+    description: 'Notes on SaaS, web development, and n8n automation.',
+    author: { '@id': `${SITE.url}/#person` },
+    publisher: { '@id': `${SITE.url}/#organization` },
+    inLanguage: 'en-CA',
+  },
+);
 
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-CA', {

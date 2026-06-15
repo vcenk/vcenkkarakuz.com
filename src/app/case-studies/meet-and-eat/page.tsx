@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { buildGraph, buildOrganization, buildWebSite, buildWebPage, buildBreadcrumb, SITE } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Meet and Eat Case Study | Vancouver Turkish Restaurant Website',
@@ -34,37 +35,39 @@ const features = [
   'Accessible navigation that works for all customers',
 ];
 
-const schema = [
+const schema = buildGraph(
+  buildOrganization(),
+  buildWebSite(),
+  buildWebPage({
+    id: `${SITE.url}/case-studies/meet-and-eat#webpage`,
+    url: `${SITE.url}/case-studies/meet-and-eat`,
+    name: 'Meet and Eat Case Study | Vancouver Turkish Restaurant Website',
+    description: 'How I designed and built meetandeat.ca for a family-run Turkish restaurant in East Vancouver — a mobile-first site covering menu, ordering, catering, and reservations.',
+    breadcrumbId: `${SITE.url}/case-studies/meet-and-eat#breadcrumb`,
+  }),
+  buildBreadcrumb(`${SITE.url}/case-studies/meet-and-eat#breadcrumb`, [
+    { name: 'Home', item: `${SITE.url}/` },
+    { name: 'Work', item: `${SITE.url}/#work` },
+    { name: 'Meet and Eat', item: `${SITE.url}/case-studies/meet-and-eat` },
+  ]),
   {
-    '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Meet and Eat',
     url: 'https://meetandeat.ca',
     inLanguage: 'en-CA',
-    author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://vcenkkarakuz.com' },
+    author: { '@id': `${SITE.url}/#person` },
     about: 'Family-run halal Turkish restaurant in East Vancouver',
   },
   {
-    '@context': 'https://schema.org',
     '@type': 'Article',
     headline: 'Meet and Eat — Vancouver Turkish Restaurant Website Case Study',
-    description:
-      'Case study of meetandeat.ca, a website built for a family-run Turkish restaurant in East Vancouver by Cenk Karakuz.',
-    author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://vcenkkarakuz.com' },
-    publisher: { '@type': 'Person', name: 'Cenk Karakuz' },
-    mainEntityOfPage: 'https://vcenkkarakuz.com/case-studies/meet-and-eat',
-    image: 'https://vcenkkarakuz.com/ck-og.svg',
+    description: 'Case study of meetandeat.ca, a website built for a family-run Turkish restaurant in East Vancouver by Cenk Karakuz.',
+    author: { '@id': `${SITE.url}/#person` },
+    publisher: { '@id': `${SITE.url}/#organization` },
+    mainEntityOfPage: `${SITE.url}/case-studies/meet-and-eat`,
+    image: `${SITE.url}/ck-og.svg`,
   },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vcenkkarakuz.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://vcenkkarakuz.com/#work' },
-      { '@type': 'ListItem', position: 3, name: 'Meet and Eat', item: 'https://vcenkkarakuz.com/case-studies/meet-and-eat' },
-    ],
-  },
-];
+);
 
 export default function MeetAndEatCaseStudyPage() {
   return (

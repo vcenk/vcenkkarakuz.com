@@ -22,11 +22,11 @@ const SITE_URL = 'https://vcenkkarakuz.com';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Cenk Karakuz | Vancouver SaaS, Web & n8n Automation Developer',
+    default: 'Vancouver SaaS, Web & n8n Developer | Cenk Karakuz',
     template: '%s | Cenk Karakuz',
   },
   description:
-    'Independent Vancouver-based developer building SaaS products, marketing sites, and n8n automation systems for founders and teams across Canada and worldwide.',
+    'Vancouver developer building SaaS products, marketing sites, and n8n automation for founders and teams across Canada and worldwide.',
   authors: [{ name: 'Cenk Karakuz', url: SITE_URL }],
   creator: 'Cenk Karakuz',
   publisher: 'Cenk Karakuz',

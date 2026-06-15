@@ -4,9 +4,10 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import FAQ, { buildFAQSchema, type FAQItem } from '@/components/FAQ';
 import { CheckCircle2, ArrowRight, Workflow, Clock3, TrendingUp } from 'lucide-react';
+import { buildGraph, buildOrganization, buildWebSite, buildWebPage, buildBreadcrumb, SITE } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'n8n Automation Services in Vancouver',
+  title: 'n8n Automation Services Vancouver | Workflow Developer',
   description:
     'Vancouver n8n automation developer building workflow systems for lead handling, AI content pipelines, reporting, and CRM automations. Serving Canada and global clients.',
   keywords: [
@@ -20,10 +21,10 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: '/services/n8n-automation' },
   openGraph: {
-    title: 'n8n Automation Services in Vancouver | Cenk Karakuz',
+    title: 'n8n Automation Services Vancouver | Workflow Developer',
     description:
       'Workflow automation systems for lead handling, AI content pipelines, and CRM operations.',
-    url: 'https://vcenkkarakuz.com/services/n8n-automation',
+    url: `${SITE.url}/services/n8n-automation`,
     type: 'website',
   },
 };
@@ -70,24 +71,32 @@ const faqs: FAQItem[] = [
   },
 ];
 
-const schema = [
+const BREADCRUMB_ID = `${SITE.url}/services/n8n-automation#breadcrumb`;
+const PAGE_ID = `${SITE.url}/services/n8n-automation#webpage`;
+const PAGE_URL = `${SITE.url}/services/n8n-automation`;
+
+const schema = buildGraph(
+  buildOrganization(),
+  buildWebSite(),
+  buildWebPage({
+    id: PAGE_ID,
+    url: PAGE_URL,
+    name: 'n8n Automation Services Vancouver | Workflow Developer',
+    description:
+      'Vancouver n8n automation developer building workflow systems for lead handling, AI content pipelines, reporting, and CRM automations. Serving Canada and global clients.',
+    breadcrumbId: BREADCRUMB_ID,
+  }),
+  buildBreadcrumb(BREADCRUMB_ID, [
+    { name: 'Home', item: `${SITE.url}/` },
+    { name: 'Services', item: `${SITE.url}/#services` },
+    { name: 'n8n Automation', item: PAGE_URL },
+  ]),
   {
-    '@context': 'https://schema.org',
     '@type': 'Service',
     name: 'n8n Automation Services',
     serviceType: 'Business automation and AI workflow services',
-    url: 'https://vcenkkarakuz.com/services/n8n-automation',
-    provider: {
-      '@type': 'Person',
-      name: 'Cenk Karakuz',
-      url: 'https://vcenkkarakuz.com',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Vancouver',
-        addressRegion: 'BC',
-        addressCountry: 'CA',
-      },
-    },
+    url: PAGE_URL,
+    provider: { '@id': `${SITE.url}/#organization` },
     areaServed: [
       { '@type': 'City', name: 'Vancouver' },
       { '@type': 'AdministrativeArea', name: 'British Columbia' },
@@ -97,21 +106,32 @@ const schema = [
     offers: { '@type': 'Offer', priceCurrency: 'CAD', availability: 'https://schema.org/InStock' },
   },
   {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vcenkkarakuz.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://vcenkkarakuz.com/#services' },
+    '@type': 'HowTo',
+    name: 'How n8n automation works with Cenk Karakuz',
+    description: 'From identifying the manual work to a live, monitored automation — three stages.',
+    step: [
       {
-        '@type': 'ListItem',
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Discover',
+        text: 'A 20-minute call to map the workflow, agree on integrations, and produce a fixed-price quote.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Build',
+        text: 'Implement in n8n with error handling, retries, and a staging test run before production.',
+      },
+      {
+        '@type': 'HowToStep',
         position: 3,
-        name: 'n8n Automation',
-        item: 'https://vcenkkarakuz.com/services/n8n-automation',
+        name: 'Ship',
+        text: 'Go live with monitoring, Slack alerts, and a handoff video so your team can manage it day-to-day.',
       },
     ],
   },
   buildFAQSchema(faqs),
-];
+);
 
 export default function N8nAutomationServicePage() {
   return (

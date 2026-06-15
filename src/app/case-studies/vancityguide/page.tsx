@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { buildGraph, buildOrganization, buildWebSite, buildWebPage, buildBreadcrumb, SITE } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'VanCityGuide Case Study | Hyperlocal Vancouver Guide',
@@ -34,37 +35,39 @@ const features = [
   'Schema markup for local content discoverability',
 ];
 
-const schema = [
+const schema = buildGraph(
+  buildOrganization(),
+  buildWebSite(),
+  buildWebPage({
+    id: `${SITE.url}/case-studies/vancityguide#webpage`,
+    url: `${SITE.url}/case-studies/vancityguide`,
+    name: 'VanCityGuide Case Study | Hyperlocal Vancouver Guide',
+    description: 'How VanCityGuide.ca was built as a hyperlocal Vancouver guide for newcomers and visitors — covering neighborhoods, cost of living, services, and real local prices.',
+    breadcrumbId: `${SITE.url}/case-studies/vancityguide#breadcrumb`,
+  }),
+  buildBreadcrumb(`${SITE.url}/case-studies/vancityguide#breadcrumb`, [
+    { name: 'Home', item: `${SITE.url}/` },
+    { name: 'Work', item: `${SITE.url}/#work` },
+    { name: 'VanCityGuide', item: `${SITE.url}/case-studies/vancityguide` },
+  ]),
   {
-    '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'VanCityGuide',
     url: 'https://vancityguide.ca',
     inLanguage: 'en-CA',
-    author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://vcenkkarakuz.com' },
+    author: { '@id': `${SITE.url}/#person` },
     about: 'Hyperlocal guide for Greater Vancouver newcomers and visitors',
   },
   {
-    '@context': 'https://schema.org',
     '@type': 'Article',
     headline: 'VanCityGuide — Hyperlocal Vancouver Guide Case Study',
-    description:
-      'Case study of VanCityGuide.ca, a hyperlocal Vancouver content site built by Cenk Karakuz.',
-    author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://vcenkkarakuz.com' },
-    publisher: { '@type': 'Person', name: 'Cenk Karakuz' },
-    mainEntityOfPage: 'https://vcenkkarakuz.com/case-studies/vancityguide',
-    image: 'https://vcenkkarakuz.com/ck-og.svg',
+    description: 'Case study of VanCityGuide.ca, a hyperlocal Vancouver content site built by Cenk Karakuz.',
+    author: { '@id': `${SITE.url}/#person` },
+    publisher: { '@id': `${SITE.url}/#organization` },
+    mainEntityOfPage: `${SITE.url}/case-studies/vancityguide`,
+    image: `${SITE.url}/ck-og.svg`,
   },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vcenkkarakuz.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://vcenkkarakuz.com/#work' },
-      { '@type': 'ListItem', position: 3, name: 'VanCityGuide', item: 'https://vcenkkarakuz.com/case-studies/vancityguide' },
-    ],
-  },
-];
+);
 
 export default function VanCityGuideCaseStudyPage() {
   return (

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { buildGraph, buildOrganization, buildWebSite, buildWebPage, buildBreadcrumb, SITE } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'ExamCanada Case Study | Canadian Exam Prep Platform',
@@ -34,37 +35,39 @@ const features = [
   'Schema markup for educational content discoverability',
 ];
 
-const schema = [
+const schema = buildGraph(
+  buildOrganization(),
+  buildWebSite(),
+  buildWebPage({
+    id: `${SITE.url}/case-studies/examcanada#webpage`,
+    url: `${SITE.url}/case-studies/examcanada`,
+    name: 'ExamCanada Case Study | Canadian Exam Prep Platform',
+    description: 'How ExamCanada.online was built as a free practice-test platform for Canadian driving, citizenship, and workplace safety exams — designed for newcomers and learners.',
+    breadcrumbId: `${SITE.url}/case-studies/examcanada#breadcrumb`,
+  }),
+  buildBreadcrumb(`${SITE.url}/case-studies/examcanada#breadcrumb`, [
+    { name: 'Home', item: `${SITE.url}/` },
+    { name: 'Work', item: `${SITE.url}/#work` },
+    { name: 'ExamCanada', item: `${SITE.url}/case-studies/examcanada` },
+  ]),
   {
-    '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'ExamCanada',
     url: 'https://examcanada.online',
     inLanguage: 'en-CA',
-    author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://vcenkkarakuz.com' },
+    author: { '@id': `${SITE.url}/#person` },
     about: 'Free practice tests for Canadian driving, citizenship, and workplace safety exams',
   },
   {
-    '@context': 'https://schema.org',
     '@type': 'Article',
     headline: 'ExamCanada — Canadian Exam Prep Platform Case Study',
-    description:
-      'Case study of ExamCanada.online, a free Canadian exam preparation platform built by Cenk Karakuz.',
-    author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://vcenkkarakuz.com' },
-    publisher: { '@type': 'Person', name: 'Cenk Karakuz' },
-    mainEntityOfPage: 'https://vcenkkarakuz.com/case-studies/examcanada',
-    image: 'https://vcenkkarakuz.com/ck-og.svg',
+    description: 'Case study of ExamCanada.online, a free Canadian exam preparation platform built by Cenk Karakuz.',
+    author: { '@id': `${SITE.url}/#person` },
+    publisher: { '@id': `${SITE.url}/#organization` },
+    mainEntityOfPage: `${SITE.url}/case-studies/examcanada`,
+    image: `${SITE.url}/ck-og.svg`,
   },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vcenkkarakuz.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://vcenkkarakuz.com/#work' },
-      { '@type': 'ListItem', position: 3, name: 'ExamCanada', item: 'https://vcenkkarakuz.com/case-studies/examcanada' },
-    ],
-  },
-];
+);
 
 export default function ExamCanadaCaseStudyPage() {
   return (

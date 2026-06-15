@@ -4,11 +4,12 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import FAQ, { buildFAQSchema, type FAQItem } from '@/components/FAQ';
 import { CheckCircle2, ArrowRight, Box, Clock3, ShieldCheck } from 'lucide-react';
+import { buildGraph, buildOrganization, buildWebSite, buildWebPage, buildBreadcrumb, SITE } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'SaaS Development in Vancouver',
+  title: 'SaaS Development Vancouver | Full-Stack MVP Builder',
   description:
-    'Vancouver-based SaaS developer building full-stack products end to end. React, TypeScript, Supabase, payments, and AI integration for founders in Canada and worldwide.',
+    'Vancouver SaaS developer building full-stack products end to end. React, TypeScript, Supabase, payments, and AI integration for founders in Canada and worldwide.',
   keywords: [
     'Vancouver SaaS developer',
     'SaaS development Canada',
@@ -21,10 +22,10 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: '/services/saas-development' },
   openGraph: {
-    title: 'SaaS Development in Vancouver | Cenk Karakuz',
+    title: 'SaaS Development Vancouver | Full-Stack MVP Builder',
     description:
       'Full-stack SaaS development for founders. React, TypeScript, Supabase, payments, AI integration.',
-    url: 'https://vcenkkarakuz.com/services/saas-development',
+    url: `${SITE.url}/services/saas-development`,
     type: 'website',
   },
 };
@@ -71,24 +72,32 @@ const faqs: FAQItem[] = [
   },
 ];
 
-const schema = [
+const BREADCRUMB_ID = `${SITE.url}/services/saas-development#breadcrumb`;
+const PAGE_ID = `${SITE.url}/services/saas-development#webpage`;
+const PAGE_URL = `${SITE.url}/services/saas-development`;
+
+const schema = buildGraph(
+  buildOrganization(),
+  buildWebSite(),
+  buildWebPage({
+    id: PAGE_ID,
+    url: PAGE_URL,
+    name: 'SaaS Development Vancouver | Full-Stack MVP Builder',
+    description:
+      'Vancouver SaaS developer building full-stack products end to end. React, TypeScript, Supabase, payments, and AI integration for founders in Canada and worldwide.',
+    breadcrumbId: BREADCRUMB_ID,
+  }),
+  buildBreadcrumb(BREADCRUMB_ID, [
+    { name: 'Home', item: `${SITE.url}/` },
+    { name: 'Services', item: `${SITE.url}/#services` },
+    { name: 'SaaS Development', item: PAGE_URL },
+  ]),
   {
-    '@context': 'https://schema.org',
     '@type': 'Service',
     name: 'SaaS Development',
     serviceType: 'Full-stack SaaS product development',
-    url: 'https://vcenkkarakuz.com/services/saas-development',
-    provider: {
-      '@type': 'Person',
-      name: 'Cenk Karakuz',
-      url: 'https://vcenkkarakuz.com',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Vancouver',
-        addressRegion: 'BC',
-        addressCountry: 'CA',
-      },
-    },
+    url: PAGE_URL,
+    provider: { '@id': `${SITE.url}/#organization` },
     areaServed: [
       { '@type': 'City', name: 'Vancouver' },
       { '@type': 'AdministrativeArea', name: 'British Columbia' },
@@ -98,21 +107,32 @@ const schema = [
     offers: { '@type': 'Offer', priceCurrency: 'CAD', availability: 'https://schema.org/InStock' },
   },
   {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vcenkkarakuz.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://vcenkkarakuz.com/#services' },
+    '@type': 'HowTo',
+    name: 'How SaaS development works with Cenk Karakuz',
+    description: 'From first call to a live product with paying users — three focused stages.',
+    step: [
       {
-        '@type': 'ListItem',
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Discover',
+        text: 'A 20-minute call to scope the idea, agree on the MVP feature set, and produce a fixed-price quote.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Build',
+        text: 'Weekly milestones with live demos — auth, data model, AI features, billing — shipped incrementally.',
+      },
+      {
+        '@type': 'HowToStep',
         position: 3,
-        name: 'SaaS Development',
-        item: 'https://vcenkkarakuz.com/services/saas-development',
+        name: 'Ship',
+        text: 'Production deploy to Vercel, repo handoff, documentation, and 30 days of post-launch support.',
       },
     ],
   },
   buildFAQSchema(faqs),
-];
+);
 
 export default function SaasDevelopmentServicePage() {
   return (
@@ -129,7 +149,7 @@ export default function SaasDevelopmentServicePage() {
           <div className="max-w-3xl">
             <span className="section-label">Service · Vancouver, BC</span>
             <h1 className="font-display text-4xl md:text-6xl font-bold leading-tight mt-4 mb-6">
-              SaaS products,
+              SaaS development,
               <br />
               built end to end.
             </h1>

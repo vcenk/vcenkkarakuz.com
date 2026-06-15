@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { buildGraph, buildOrganization, buildWebSite, buildWebPage, buildBreadcrumb, SITE } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'LLC State Guide Case Study | US LLC Formation Guides',
@@ -33,37 +34,39 @@ const features = [
   'Clear comparisons for entrepreneurs deciding where to form',
 ];
 
-const schema = [
+const schema = buildGraph(
+  buildOrganization(),
+  buildWebSite(),
+  buildWebPage({
+    id: `${SITE.url}/case-studies/llc-state-guide#webpage`,
+    url: `${SITE.url}/case-studies/llc-state-guide`,
+    name: 'LLC State Guide Case Study | US LLC Formation Guides',
+    description: 'How LLC State Guide was built as a free 50-state resource for forming an LLC in the US — covering filing fees, requirements, and timelines without the agency upsell.',
+    breadcrumbId: `${SITE.url}/case-studies/llc-state-guide#breadcrumb`,
+  }),
+  buildBreadcrumb(`${SITE.url}/case-studies/llc-state-guide#breadcrumb`, [
+    { name: 'Home', item: `${SITE.url}/` },
+    { name: 'Work', item: `${SITE.url}/#work` },
+    { name: 'LLC State Guide', item: `${SITE.url}/case-studies/llc-state-guide` },
+  ]),
   {
-    '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'LLC State Guide',
     url: 'https://llcstateguide.com',
     inLanguage: 'en',
-    author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://vcenkkarakuz.com' },
+    author: { '@id': `${SITE.url}/#person` },
     about: 'Free guides for forming a limited liability company in any US state',
   },
   {
-    '@context': 'https://schema.org',
     '@type': 'Article',
     headline: 'LLC State Guide — US LLC Formation Resource Case Study',
-    description:
-      'Case study of LLC State Guide, a 50-state LLC formation resource built by Cenk Karakuz.',
-    author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://vcenkkarakuz.com' },
-    publisher: { '@type': 'Person', name: 'Cenk Karakuz' },
-    mainEntityOfPage: 'https://vcenkkarakuz.com/case-studies/llc-state-guide',
-    image: 'https://vcenkkarakuz.com/ck-og.svg',
+    description: 'Case study of LLC State Guide, a 50-state LLC formation resource built by Cenk Karakuz.',
+    author: { '@id': `${SITE.url}/#person` },
+    publisher: { '@id': `${SITE.url}/#organization` },
+    mainEntityOfPage: `${SITE.url}/case-studies/llc-state-guide`,
+    image: `${SITE.url}/ck-og.svg`,
   },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vcenkkarakuz.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://vcenkkarakuz.com/#work' },
-      { '@type': 'ListItem', position: 3, name: 'LLC State Guide', item: 'https://vcenkkarakuz.com/case-studies/llc-state-guide' },
-    ],
-  },
-];
+);
 
 export default function LLCStateGuideCaseStudyPage() {
   return (

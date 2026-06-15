@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { ArrowUpRight } from 'lucide-react';
+import { buildGraph, buildOrganization, buildWebSite, buildWebPage, buildBreadcrumb, SITE } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'photovid.studio Case Study | AI Media SaaS by Vancouver Developer',
@@ -25,43 +26,40 @@ export const metadata: Metadata = {
   },
 };
 
-const schema = [
+const schema = buildGraph(
+  buildOrganization(),
+  buildWebSite(),
+  buildWebPage({
+    id: `${SITE.url}/case-studies/photovid-studio#webpage`,
+    url: `${SITE.url}/case-studies/photovid-studio`,
+    name: 'photovid.studio Case Study | AI Media SaaS by Vancouver Developer',
+    description: 'How photovid.studio is being built as an AI image and video generation app with workflow automation, productized UX, and credit-based monetization.',
+    breadcrumbId: `${SITE.url}/case-studies/photovid-studio#breadcrumb`,
+  }),
+  buildBreadcrumb(`${SITE.url}/case-studies/photovid-studio#breadcrumb`, [
+    { name: 'Home', item: `${SITE.url}/` },
+    { name: 'Work', item: `${SITE.url}/#work` },
+    { name: 'photovid.studio', item: `${SITE.url}/case-studies/photovid-studio` },
+  ]),
   {
-    '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     name: 'photovid.studio',
     applicationCategory: 'MultimediaApplication',
     operatingSystem: 'Web',
     url: 'https://photovid.studio/',
-    author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://vcenkkarakuz.com' },
+    author: { '@id': `${SITE.url}/#person` },
     about: ['photovid.studio', 'AI media generation', 'product strategy'],
   },
   {
-    '@context': 'https://schema.org',
     '@type': 'Article',
     headline: 'photovid.studio — AI Media Generation SaaS Case Study',
-    description:
-      'Case study of photovid.studio, an AI image and video generation product built by Vancouver developer Cenk Karakuz.',
-    author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://vcenkkarakuz.com' },
-    publisher: { '@type': 'Person', name: 'Cenk Karakuz' },
-    mainEntityOfPage: 'https://vcenkkarakuz.com/case-studies/photovid-studio',
-    image: 'https://vcenkkarakuz.com/ck-og.svg',
+    description: 'Case study of photovid.studio, an AI image and video generation product built by Vancouver developer Cenk Karakuz.',
+    author: { '@id': `${SITE.url}/#person` },
+    publisher: { '@id': `${SITE.url}/#organization` },
+    mainEntityOfPage: `${SITE.url}/case-studies/photovid-studio`,
+    image: `${SITE.url}/ck-og.svg`,
   },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vcenkkarakuz.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://vcenkkarakuz.com/#work' },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: 'photovid.studio',
-        item: 'https://vcenkkarakuz.com/case-studies/photovid-studio',
-      },
-    ],
-  },
-];
+);
 
 export default function PhotovidStudioCaseStudyPage() {
   return (

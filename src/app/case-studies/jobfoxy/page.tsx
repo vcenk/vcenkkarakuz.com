@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { buildGraph, buildOrganization, buildWebSite, buildWebPage, buildBreadcrumb, SITE } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Job Foxy Case Study | SaaS Built by Vancouver Developer',
@@ -34,38 +35,40 @@ const featureList = [
   'Analytics hooks for activation and retention measurement',
 ];
 
-const schema = [
+const schema = buildGraph(
+  buildOrganization(),
+  buildWebSite(),
+  buildWebPage({
+    id: `${SITE.url}/case-studies/jobfoxy#webpage`,
+    url: `${SITE.url}/case-studies/jobfoxy`,
+    name: 'Job Foxy Case Study | SaaS Built by Vancouver Developer',
+    description: 'How I designed and shipped Job Foxy, an AI-powered job application assistant with cover letter generation and application tracking. A Vancouver-built SaaS case study.',
+    breadcrumbId: `${SITE.url}/case-studies/jobfoxy#breadcrumb`,
+  }),
+  buildBreadcrumb(`${SITE.url}/case-studies/jobfoxy#breadcrumb`, [
+    { name: 'Home', item: `${SITE.url}/` },
+    { name: 'Work', item: `${SITE.url}/#work` },
+    { name: 'Job Foxy', item: `${SITE.url}/case-studies/jobfoxy` },
+  ]),
   {
-    '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     name: 'Job Foxy',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
     url: 'https://jobfoxy.com/',
-    author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://vcenkkarakuz.com' },
+    author: { '@id': `${SITE.url}/#person` },
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   },
   {
-    '@context': 'https://schema.org',
     '@type': 'Article',
     headline: 'Job Foxy — AI Job Application Assistant Case Study',
-    description:
-      'Case study of Job Foxy, an AI-powered job application assistant built by Vancouver developer Cenk Karakuz.',
-    author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://vcenkkarakuz.com' },
-    publisher: { '@type': 'Person', name: 'Cenk Karakuz' },
-    mainEntityOfPage: 'https://vcenkkarakuz.com/case-studies/jobfoxy',
-    image: 'https://vcenkkarakuz.com/ck-og.svg',
+    description: 'Case study of Job Foxy, an AI-powered job application assistant built by Vancouver developer Cenk Karakuz.',
+    author: { '@id': `${SITE.url}/#person` },
+    publisher: { '@id': `${SITE.url}/#organization` },
+    mainEntityOfPage: `${SITE.url}/case-studies/jobfoxy`,
+    image: `${SITE.url}/ck-og.svg`,
   },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vcenkkarakuz.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://vcenkkarakuz.com/#work' },
-      { '@type': 'ListItem', position: 3, name: 'Job Foxy', item: 'https://vcenkkarakuz.com/case-studies/jobfoxy' },
-    ],
-  },
-];
+);
 
 export default function JobFoxyCaseStudyPage() {
   return (

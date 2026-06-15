@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { buildGraph, buildOrganization, buildWebSite, buildWebPage, buildBreadcrumb, SITE } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Smart Calculator Pro Case Study | Calculator Tools Platform',
@@ -33,37 +34,39 @@ const features = [
   'Fast first paint on any device',
 ];
 
-const schema = [
+const schema = buildGraph(
+  buildOrganization(),
+  buildWebSite(),
+  buildWebPage({
+    id: `${SITE.url}/case-studies/smart-calculator-pro#webpage`,
+    url: `${SITE.url}/case-studies/smart-calculator-pro`,
+    name: 'Smart Calculator Pro Case Study | Calculator Tools Platform',
+    description: 'How Smart Calculator Pro was built as a free calculator hub spanning finance, health, math, construction, and everyday life — designed for fast, trustworthy calculations.',
+    breadcrumbId: `${SITE.url}/case-studies/smart-calculator-pro#breadcrumb`,
+  }),
+  buildBreadcrumb(`${SITE.url}/case-studies/smart-calculator-pro#breadcrumb`, [
+    { name: 'Home', item: `${SITE.url}/` },
+    { name: 'Work', item: `${SITE.url}/#work` },
+    { name: 'Smart Calculator Pro', item: `${SITE.url}/case-studies/smart-calculator-pro` },
+  ]),
   {
-    '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Smart Calculator Pro',
     url: 'https://smartcalculatorpro.com',
     inLanguage: 'en',
-    author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://vcenkkarakuz.com' },
+    author: { '@id': `${SITE.url}/#person` },
     about: 'Free online calculators across finance, health, math, construction, and everyday life',
   },
   {
-    '@context': 'https://schema.org',
     '@type': 'Article',
     headline: 'Smart Calculator Pro — Calculator Tools Platform Case Study',
-    description:
-      'Case study of Smart Calculator Pro, a free calculator hub built by Cenk Karakuz.',
-    author: { '@type': 'Person', name: 'Cenk Karakuz', url: 'https://vcenkkarakuz.com' },
-    publisher: { '@type': 'Person', name: 'Cenk Karakuz' },
-    mainEntityOfPage: 'https://vcenkkarakuz.com/case-studies/smart-calculator-pro',
-    image: 'https://vcenkkarakuz.com/ck-og.svg',
+    description: 'Case study of Smart Calculator Pro, a free calculator hub built by Cenk Karakuz.',
+    author: { '@id': `${SITE.url}/#person` },
+    publisher: { '@id': `${SITE.url}/#organization` },
+    mainEntityOfPage: `${SITE.url}/case-studies/smart-calculator-pro`,
+    image: `${SITE.url}/ck-og.svg`,
   },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vcenkkarakuz.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://vcenkkarakuz.com/#work' },
-      { '@type': 'ListItem', position: 3, name: 'Smart Calculator Pro', item: 'https://vcenkkarakuz.com/case-studies/smart-calculator-pro' },
-    ],
-  },
-];
+);
 
 export default function SmartCalculatorProCaseStudyPage() {
   return (

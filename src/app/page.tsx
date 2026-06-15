@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
@@ -6,50 +7,56 @@ import HowItWorksSection from '@/components/HowItWorksSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import {
+  buildGraph,
+  buildOrganization,
+  buildPerson,
+  buildWebSite,
+  buildWebPage,
+  buildBreadcrumb,
+  SITE,
+} from '@/lib/seo';
 
-const homeSchema = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    '@id': 'https://vcenkkarakuz.com/#person',
-    name: 'Cenk Karakuz',
-    url: 'https://vcenkkarakuz.com',
-    image: 'https://vcenkkarakuz.com/ck-og.svg',
-    email: 'mailto:cenkkarakuz@gmail.com',
-    jobTitle: 'Independent Software Developer',
-    description:
-      'Vancouver-based independent developer building SaaS products, marketing sites, and n8n automation systems.',
-    sameAs: [
-      'https://www.linkedin.com/in/cenkkarakuz/',
-      'https://twitter.com/vcenkkarakuz',
-      'https://github.com/vcenk',
-    ],
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Vancouver',
-      addressRegion: 'BC',
-      addressCountry: 'CA',
-    },
-    knowsAbout: [
-      'SaaS development',
-      'Web development',
-      'n8n automation',
-      'React',
-      'TypeScript',
-      'AI workflows',
-      'Supabase',
-      'Tailwind CSS',
-    ],
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+    languages: { 'en-CA': '/', 'x-default': '/' },
   },
+  openGraph: {
+    title: 'Vancouver SaaS, Web & n8n Developer | Cenk Karakuz',
+    description:
+      'Vancouver developer building SaaS products, marketing sites, and n8n automation for founders and teams across Canada and worldwide.',
+    url: SITE.url,
+    type: 'website',
+  },
+};
+
+const BREADCRUMB_ID = `${SITE.url}/#breadcrumb`;
+const PAGE_ID = `${SITE.url}/#webpage`;
+
+const homeSchema = buildGraph(
+  buildOrganization(),
+  buildPerson(),
+  buildWebSite(),
+  buildWebPage({
+    id: PAGE_ID,
+    url: SITE.url,
+    name: 'Vancouver SaaS, Web & n8n Developer | Cenk Karakuz',
+    description:
+      'Vancouver developer building SaaS products, marketing sites, and n8n automation for founders and teams across Canada and worldwide.',
+    breadcrumbId: BREADCRUMB_ID,
+  }),
+  buildBreadcrumb(BREADCRUMB_ID, [
+    { name: 'Home', item: `${SITE.url}/` },
+  ]),
   {
-    '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    '@id': 'https://vcenkkarakuz.com/#business',
+    '@id': `${SITE.url}/#business`,
     name: 'Cenk Karakuz — SaaS, Web & Automation',
-    url: 'https://vcenkkarakuz.com',
-    image: 'https://vcenkkarakuz.com/ck-og.svg',
+    url: SITE.url,
+    image: `${SITE.url}/ck-og.svg`,
     priceRange: '$$',
-    email: 'cenkkarakuz@gmail.com',
+    email: SITE.email,
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Vancouver',
@@ -67,7 +74,7 @@ const homeSchema = [
       { '@type': 'Country', name: 'Canada' },
       { '@type': 'Place', name: 'Worldwide (remote)' },
     ],
-    provider: { '@id': 'https://vcenkkarakuz.com/#person' },
+    provider: { '@id': `${SITE.url}/#person` },
     serviceType: ['SaaS development', 'Web development', 'n8n automation'],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -78,7 +85,7 @@ const homeSchema = [
           itemOffered: {
             '@type': 'Service',
             name: 'SaaS Development',
-            url: 'https://vcenkkarakuz.com/services/saas-development',
+            url: `${SITE.url}/services/saas-development`,
           },
         },
         {
@@ -86,7 +93,7 @@ const homeSchema = [
           itemOffered: {
             '@type': 'Service',
             name: 'Web Development',
-            url: 'https://vcenkkarakuz.com/services/web-development',
+            url: `${SITE.url}/services/web-development`,
           },
         },
         {
@@ -94,21 +101,26 @@ const homeSchema = [
           itemOffered: {
             '@type': 'Service',
             name: 'n8n Automation',
-            url: 'https://vcenkkarakuz.com/services/n8n-automation',
+            url: `${SITE.url}/services/n8n-automation`,
           },
         },
       ],
     },
   },
   {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    url: 'https://vcenkkarakuz.com',
-    name: 'Cenk Karakuz',
-    publisher: { '@id': 'https://vcenkkarakuz.com/#person' },
-    inLanguage: 'en-CA',
+    '@type': 'ItemList',
+    name: 'Selected Work',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Job Foxy', url: `${SITE.url}/case-studies/jobfoxy` },
+      { '@type': 'ListItem', position: 2, name: 'photovid.studio', url: `${SITE.url}/case-studies/photovid-studio` },
+      { '@type': 'ListItem', position: 3, name: 'VanCityGuide', url: `${SITE.url}/case-studies/vancityguide` },
+      { '@type': 'ListItem', position: 4, name: 'Smart Calculator Pro', url: `${SITE.url}/case-studies/smart-calculator-pro` },
+      { '@type': 'ListItem', position: 5, name: 'ExamCanada', url: `${SITE.url}/case-studies/examcanada` },
+      { '@type': 'ListItem', position: 6, name: 'LLC State Guide', url: `${SITE.url}/case-studies/llc-state-guide` },
+      { '@type': 'ListItem', position: 7, name: 'Meet and Eat', url: `${SITE.url}/case-studies/meet-and-eat` },
+    ],
   },
-];
+);
 
 export default function HomePage() {
   return (

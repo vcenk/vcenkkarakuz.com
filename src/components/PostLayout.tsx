@@ -3,8 +3,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import type { PostMeta } from '@/lib/posts';
-
-const SITE_URL = 'https://vcenkkarakuz.com';
+import { buildGraph, buildOrganization, buildWebSite, buildWebPage, SITE } from '@/lib/seo';
 
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-CA', {
@@ -13,31 +12,40 @@ const formatDate = (iso: string) =>
     day: 'numeric',
   });
 
-export const buildPostSchema = (post: PostMeta) => [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: post.title,
-    description: post.description,
-    datePublished: post.date,
-    dateModified: post.date,
-    author: { '@type': 'Person', name: 'Cenk Karakuz', url: SITE_URL },
-    publisher: { '@type': 'Person', name: 'Cenk Karakuz' },
-    mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
-    image: `${SITE_URL}/ck-og.svg`,
-    keywords: post.tags.join(', '),
-    inLanguage: 'en-CA',
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` },
-      { '@type': 'ListItem', position: 3, name: post.title, item: `${SITE_URL}/blog/${post.slug}` },
-    ],
-  },
-];
+export const buildPostSchema = (post: PostMeta) =>
+  buildGraph(
+    buildOrganization(),
+    buildWebSite(),
+    buildWebPage({
+      id: `${SITE.url}/blog/${post.slug}#webpage`,
+      url: `${SITE.url}/blog/${post.slug}`,
+      name: post.title,
+      description: post.description,
+      breadcrumbId: `${SITE.url}/blog/${post.slug}#breadcrumb`,
+    }),
+    {
+      '@type': 'Article',
+      headline: post.title,
+      description: post.description,
+      datePublished: post.date,
+      dateModified: post.date,
+      author: { '@id': `${SITE.url}/#person` },
+      publisher: { '@id': `${SITE.url}/#organization` },
+      mainEntityOfPage: `${SITE.url}/blog/${post.slug}`,
+      image: `${SITE.url}/ck-og.svg`,
+      keywords: post.tags.join(', '),
+      inLanguage: 'en-CA',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${SITE.url}/blog/${post.slug}#breadcrumb`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE.url}/blog` },
+        { '@type': 'ListItem', position: 3, name: post.title, item: `${SITE.url}/blog/${post.slug}` },
+      ],
+    },
+  );
 
 type PostLayoutProps = {
   post: PostMeta;

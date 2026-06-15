@@ -4,9 +4,10 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import FAQ, { buildFAQSchema, type FAQItem } from '@/components/FAQ';
 import { CheckCircle2, ArrowRight, Globe, Gauge, Sparkles } from 'lucide-react';
+import { buildGraph, buildOrganization, buildWebSite, buildWebPage, buildBreadcrumb, SITE } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Web Development in Vancouver',
+  title: 'Web Development Vancouver | React Marketing Sites',
   description:
     'Vancouver web developer building React + Tailwind marketing sites and landing pages. Fast, accessible, and SEO-tuned for Canadian businesses and global clients.',
   keywords: [
@@ -20,10 +21,10 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: '/services/web-development' },
   openGraph: {
-    title: 'Web Development in Vancouver | Cenk Karakuz',
+    title: 'Web Development Vancouver | React Marketing Sites',
     description:
       'React + Tailwind marketing sites and landing pages, conversion-tuned and SEO-ready.',
-    url: 'https://vcenkkarakuz.com/services/web-development',
+    url: `${SITE.url}/services/web-development`,
     type: 'website',
   },
 };
@@ -70,24 +71,32 @@ const faqs: FAQItem[] = [
   },
 ];
 
-const schema = [
+const BREADCRUMB_ID = `${SITE.url}/services/web-development#breadcrumb`;
+const PAGE_ID = `${SITE.url}/services/web-development#webpage`;
+const PAGE_URL = `${SITE.url}/services/web-development`;
+
+const schema = buildGraph(
+  buildOrganization(),
+  buildWebSite(),
+  buildWebPage({
+    id: PAGE_ID,
+    url: PAGE_URL,
+    name: 'Web Development Vancouver | React Marketing Sites',
+    description:
+      'Vancouver web developer building React + Tailwind marketing sites and landing pages. Fast, accessible, and SEO-tuned for Canadian businesses and global clients.',
+    breadcrumbId: BREADCRUMB_ID,
+  }),
+  buildBreadcrumb(BREADCRUMB_ID, [
+    { name: 'Home', item: `${SITE.url}/` },
+    { name: 'Services', item: `${SITE.url}/#services` },
+    { name: 'Web Development', item: PAGE_URL },
+  ]),
   {
-    '@context': 'https://schema.org',
     '@type': 'Service',
     name: 'Web Development',
     serviceType: 'Marketing site and landing page development',
-    url: 'https://vcenkkarakuz.com/services/web-development',
-    provider: {
-      '@type': 'Person',
-      name: 'Cenk Karakuz',
-      url: 'https://vcenkkarakuz.com',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Vancouver',
-        addressRegion: 'BC',
-        addressCountry: 'CA',
-      },
-    },
+    url: PAGE_URL,
+    provider: { '@id': `${SITE.url}/#organization` },
     areaServed: [
       { '@type': 'City', name: 'Vancouver' },
       { '@type': 'AdministrativeArea', name: 'British Columbia' },
@@ -97,21 +106,32 @@ const schema = [
     offers: { '@type': 'Offer', priceCurrency: 'CAD', availability: 'https://schema.org/InStock' },
   },
   {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vcenkkarakuz.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://vcenkkarakuz.com/#services' },
+    '@type': 'HowTo',
+    name: 'How web development works with Cenk Karakuz',
+    description: 'From brief to live site — three focused stages.',
+    step: [
       {
-        '@type': 'ListItem',
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Discover',
+        text: 'A 20-minute call to understand your goals, audience, and existing assets — then a fixed-price quote.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Build',
+        text: 'Design and build in React + Tailwind, with a preview link for feedback at each stage.',
+      },
+      {
+        '@type': 'HowToStep',
         position: 3,
-        name: 'Web Development',
-        item: 'https://vcenkkarakuz.com/services/web-development',
+        name: 'Ship',
+        text: 'Deploy to Vercel or your host with analytics, redirects, and SEO fully configured.',
       },
     ],
   },
   buildFAQSchema(faqs),
-];
+);
 
 export default function WebDevelopmentServicePage() {
   return (
@@ -128,9 +148,9 @@ export default function WebDevelopmentServicePage() {
           <div className="max-w-3xl">
             <span className="section-label">Service · Vancouver, BC</span>
             <h1 className="font-display text-4xl md:text-6xl font-bold leading-tight mt-4 mb-6">
-              Marketing sites
+              Web development
               <br />
-              that pull their weight.
+              that pulls its weight.
             </h1>
             <p className="text-lg text-muted-foreground mb-10">
               Vancouver-based developer building landing pages and marketing sites with React and Tailwind —
