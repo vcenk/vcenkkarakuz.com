@@ -44,6 +44,8 @@ const schema = buildGraph(
     name: 'Job Foxy Case Study | SaaS Built by Vancouver Developer',
     description: 'How I designed and shipped Job Foxy, an AI-powered job application assistant with cover letter generation and application tracking. A Vancouver-built SaaS case study.',
     breadcrumbId: `${SITE.url}/case-studies/jobfoxy#breadcrumb`,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
   }),
   buildBreadcrumb(`${SITE.url}/case-studies/jobfoxy#breadcrumb`, [
     { name: 'Home', item: `${SITE.url}/` },
@@ -66,6 +68,8 @@ const schema = buildGraph(
     author: { '@id': `${SITE.url}/#person` },
     publisher: { '@id': `${SITE.url}/#organization` },
     mainEntityOfPage: `${SITE.url}/case-studies/jobfoxy`,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
     image: `${SITE.url}/ck-og.svg`,
   },
 );

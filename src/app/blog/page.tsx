@@ -9,7 +9,7 @@ import { buildGraph, buildOrganization, buildWebSite, buildWebPage, buildBreadcr
 export const metadata: Metadata = {
   title: 'Blog — SaaS, Web & n8n Automation Notes | Cenk Karakuz',
   description:
-    'Practical notes on building SaaS products, marketing sites, and n8n automations — from a Vancouver-based independent developer.',
+    'Vancouver developer notes on building SaaS products, marketing sites, and n8n automation systems — what worked, what didn\'t, and what to do differently.',
   keywords: [
     'SaaS development blog',
     'n8n automation tutorials',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Blog — SaaS, Web & n8n Automation Notes | Cenk Karakuz',
     description:
-      'Practical notes on SaaS, web development, and n8n automation from Vancouver.',
+      'Vancouver developer notes on SaaS, web development, and n8n automation — what worked and what to do differently.',
     url: `${SITE.url}/blog`,
     type: 'website',
   },
@@ -37,8 +37,10 @@ const blogSchema = buildGraph(
     url: `${SITE.url}/blog`,
     name: 'Blog — SaaS, Web & n8n Automation Notes | Cenk Karakuz',
     description:
-      'Practical notes on building SaaS products, marketing sites, and n8n automations — from a Vancouver-based independent developer.',
+      'Vancouver developer notes on building SaaS products, marketing sites, and n8n automation systems — what worked, what didn\'t, and what to do differently.',
     breadcrumbId: BREADCRUMB_ID,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
   }),
   buildBreadcrumb(BREADCRUMB_ID, [
     { name: 'Home', item: `${SITE.url}/` },
@@ -78,9 +80,9 @@ export default function BlogIndexPage() {
         <div className="max-w-3xl mb-16">
           <span className="section-label">Blog</span>
           <h1 className="font-display text-4xl md:text-6xl font-bold mt-4 mb-6">
-            Notes from
+            Notes on SaaS,
             <br />
-            <span className="gradient-text">building things.</span>
+            <span className="gradient-text">web & automation.</span>
           </h1>
           <p className="text-lg text-muted-foreground">
             Practical writing on SaaS, web development, and n8n automation — what worked, what didn&apos;t, and what I&apos;d do differently next time.

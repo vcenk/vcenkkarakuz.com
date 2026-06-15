@@ -43,6 +43,8 @@ const schema = buildGraph(
     name: 'LLC State Guide Case Study | US LLC Formation Guides',
     description: 'How LLC State Guide was built as a free 50-state resource for forming an LLC in the US — covering filing fees, requirements, and timelines without the agency upsell.',
     breadcrumbId: `${SITE.url}/case-studies/llc-state-guide#breadcrumb`,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
   }),
   buildBreadcrumb(`${SITE.url}/case-studies/llc-state-guide#breadcrumb`, [
     { name: 'Home', item: `${SITE.url}/` },
@@ -64,6 +66,8 @@ const schema = buildGraph(
     author: { '@id': `${SITE.url}/#person` },
     publisher: { '@id': `${SITE.url}/#organization` },
     mainEntityOfPage: `${SITE.url}/case-studies/llc-state-guide`,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
     image: `${SITE.url}/ck-og.svg`,
   },
 );

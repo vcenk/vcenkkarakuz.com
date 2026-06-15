@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Web Development Vancouver | React Marketing Sites',
     description:
-      'React + Tailwind marketing sites and landing pages, conversion-tuned and SEO-ready.',
+      'Vancouver web developer building React + Tailwind marketing sites and landing pages. Fast, accessible, conversion-tuned.',
     url: `${SITE.url}/services/web-development`,
     type: 'website',
   },
@@ -71,9 +71,9 @@ const faqs: FAQItem[] = [
   },
 ];
 
-const BREADCRUMB_ID = `${SITE.url}/services/web-development#breadcrumb`;
-const PAGE_ID = `${SITE.url}/services/web-development#webpage`;
 const PAGE_URL = `${SITE.url}/services/web-development`;
+const BREADCRUMB_ID = `${PAGE_URL}#breadcrumb`;
+const PAGE_ID = `${PAGE_URL}#webpage`;
 
 const schema = buildGraph(
   buildOrganization(),
@@ -85,6 +85,8 @@ const schema = buildGraph(
     description:
       'Vancouver web developer building React + Tailwind marketing sites and landing pages. Fast, accessible, and SEO-tuned for Canadian businesses and global clients.',
     breadcrumbId: BREADCRUMB_ID,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
   }),
   buildBreadcrumb(BREADCRUMB_ID, [
     { name: 'Home', item: `${SITE.url}/` },
@@ -93,6 +95,7 @@ const schema = buildGraph(
   ]),
   {
     '@type': 'Service',
+    '@id': `${PAGE_URL}#service`,
     name: 'Web Development',
     serviceType: 'Marketing site and landing page development',
     url: PAGE_URL,
@@ -107,8 +110,11 @@ const schema = buildGraph(
   },
   {
     '@type': 'HowTo',
+    '@id': `${PAGE_URL}#howto`,
     name: 'How web development works with Cenk Karakuz',
     description: 'From brief to live site — three focused stages.',
+    totalTime: 'P3W',
+    estimatedCost: { '@type': 'MonetaryAmount', currency: 'CAD', value: '1500' },
     step: [
       {
         '@type': 'HowToStep',
@@ -130,7 +136,7 @@ const schema = buildGraph(
       },
     ],
   },
-  buildFAQSchema(faqs),
+  buildFAQSchema(faqs, `${PAGE_URL}#faq`),
 );
 
 export default function WebDevelopmentServicePage() {
@@ -201,6 +207,20 @@ export default function WebDevelopmentServicePage() {
         </section>
 
         <FAQ items={faqs} title="Web development FAQ" />
+
+        <section className="section-container mt-16">
+          <h2 className="font-display text-2xl font-bold mb-6">Other services</h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            <Link href="/services/saas-development" className="glass-card p-6 group block">
+              <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors">SaaS Development</h3>
+              <p className="text-sm text-muted-foreground">Full-stack SaaS products from idea to launch — auth, billing, AI, and production deploy.</p>
+            </Link>
+            <Link href="/services/n8n-automation" className="glass-card p-6 group block">
+              <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors">n8n Automation</h3>
+              <p className="text-sm text-muted-foreground">Workflow systems for lead handling, AI pipelines, and CRM operations — built and monitored.</p>
+            </Link>
+          </div>
+        </section>
 
         <section className="section-container mt-20 text-center">
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">Need a site that actually converts?</h2>

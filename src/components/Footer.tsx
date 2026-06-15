@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <footer className="border-t border-border/50 bg-background pt-16 pb-8">
       <div className="section-container">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          <div className="col-span-1 md:col-span-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12 mb-16">
+          <div className="sm:col-span-2 lg:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4 group w-fit">
               <img
                 src="/favicon.svg"
@@ -46,6 +46,32 @@ const Footer = () => {
               <li><Link href="/case-studies/photovid-studio" className="hover:text-foreground transition-colors">photovid.studio</Link></li>
               <li><Link href="/blog" className="hover:text-foreground transition-colors">Blog</Link></li>
               <li><a href="/#contact" className="hover:text-foreground transition-colors">Get in touch</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-4 text-sm">From the same team</h4>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li>
+                <a href="https://llcstateguide.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                  LLC State Guide
+                </a>
+              </li>
+              <li>
+                <a href="https://smartcalculatorpro.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                  Smart Calculator Pro
+                </a>
+              </li>
+              <li>
+                <a href="https://vancityguide.ca" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                  VanCityGuide
+                </a>
+              </li>
+              <li>
+                <a href="https://examcanada.online" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                  ExamCanada
+                </a>
+              </li>
             </ul>
           </div>
         </div>

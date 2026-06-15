@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Vancouver SaaS, Web & n8n Developer | Cenk Karakuz',
     description:
-      'Vancouver developer building SaaS products, marketing sites, and n8n automation for founders and teams across Canada and worldwide.',
+      'Vancouver developer building SaaS products, marketing sites, and n8n automation for founders and teams across Canada and worldwide. Fixed scope, fast delivery.',
     url: SITE.url,
     type: 'website',
   },
@@ -43,8 +43,10 @@ const homeSchema = buildGraph(
     url: SITE.url,
     name: 'Vancouver SaaS, Web & n8n Developer | Cenk Karakuz',
     description:
-      'Vancouver developer building SaaS products, marketing sites, and n8n automation for founders and teams across Canada and worldwide.',
+      'Vancouver developer building SaaS products, marketing sites, and n8n automation for founders and teams across Canada and worldwide. Fixed scope, fast delivery.',
     breadcrumbId: BREADCRUMB_ID,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
   }),
   buildBreadcrumb(BREADCRUMB_ID, [
     { name: 'Home', item: `${SITE.url}/` },

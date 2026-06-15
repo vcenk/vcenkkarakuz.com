@@ -5,7 +5,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { buildGraph, buildOrganization, buildWebSite, buildWebPage, buildBreadcrumb, SITE } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'photovid.studio Case Study | AI Media SaaS by Vancouver Developer',
+  title: 'photovid.studio — AI SaaS Case Study | Cenk Karakuz',
   description:
     'How photovid.studio is being built as an AI image and video generation app with workflow automation, productized UX, and credit-based monetization.',
   keywords: [
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: '/case-studies/photovid-studio' },
   openGraph: {
-    title: 'photovid.studio Case Study | AI Media SaaS by Vancouver Developer',
+    title: 'photovid.studio — AI SaaS Case Study | Cenk Karakuz',
     description:
       'AI image and video generation product with workflow automation and credit-based monetization.',
     url: 'https://vcenkkarakuz.com/case-studies/photovid-studio',
@@ -32,9 +32,11 @@ const schema = buildGraph(
   buildWebPage({
     id: `${SITE.url}/case-studies/photovid-studio#webpage`,
     url: `${SITE.url}/case-studies/photovid-studio`,
-    name: 'photovid.studio Case Study | AI Media SaaS by Vancouver Developer',
+    name: 'photovid.studio — AI SaaS Case Study | Cenk Karakuz',
     description: 'How photovid.studio is being built as an AI image and video generation app with workflow automation, productized UX, and credit-based monetization.',
     breadcrumbId: `${SITE.url}/case-studies/photovid-studio#breadcrumb`,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
   }),
   buildBreadcrumb(`${SITE.url}/case-studies/photovid-studio#breadcrumb`, [
     { name: 'Home', item: `${SITE.url}/` },
@@ -57,6 +59,8 @@ const schema = buildGraph(
     author: { '@id': `${SITE.url}/#person` },
     publisher: { '@id': `${SITE.url}/#organization` },
     mainEntityOfPage: `${SITE.url}/case-studies/photovid-studio`,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
     image: `${SITE.url}/ck-og.svg`,
   },
 );

@@ -44,6 +44,8 @@ const schema = buildGraph(
     name: 'VanCityGuide Case Study | Hyperlocal Vancouver Guide',
     description: 'How VanCityGuide.ca was built as a hyperlocal Vancouver guide for newcomers and visitors — covering neighborhoods, cost of living, services, and real local prices.',
     breadcrumbId: `${SITE.url}/case-studies/vancityguide#breadcrumb`,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
   }),
   buildBreadcrumb(`${SITE.url}/case-studies/vancityguide#breadcrumb`, [
     { name: 'Home', item: `${SITE.url}/` },
@@ -65,6 +67,8 @@ const schema = buildGraph(
     author: { '@id': `${SITE.url}/#person` },
     publisher: { '@id': `${SITE.url}/#organization` },
     mainEntityOfPage: `${SITE.url}/case-studies/vancityguide`,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
     image: `${SITE.url}/ck-og.svg`,
   },
 );

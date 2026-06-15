@@ -156,11 +156,11 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6"
             >
-              I build
+              Vancouver developer.
               <br />
-              <span className="gradient-text">software & automations</span>
+              <span className="gradient-text">SaaS, web & automation</span>
               <br />
-              that ship.
+              that ships.
             </motion.h1>
 
             <motion.p

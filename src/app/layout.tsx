@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: '%s | Cenk Karakuz',
   },
   description:
-    'Vancouver developer building SaaS products, marketing sites, and n8n automation for founders and teams across Canada and worldwide.',
+    'Vancouver developer building SaaS products, marketing sites, and n8n automation for founders and teams across Canada and worldwide. Fixed scope, fast delivery.',
   authors: [{ name: 'Cenk Karakuz', url: SITE_URL }],
   creator: 'Cenk Karakuz',
   publisher: 'Cenk Karakuz',

@@ -26,9 +26,9 @@ export const posts: PostMeta[] = [
   },
   {
     slug: 'n8n-vs-zapier-vs-make',
-    title: 'n8n vs Zapier vs Make: which automation tool should you actually use?',
+    title: 'n8n vs Zapier vs Make: which should you actually use?',
     description:
-      'A practical comparison of n8n, Zapier, and Make for teams choosing an automation platform in 2026 — pricing, flexibility, hosting, and the cases where each one wins.',
+      'A practical n8n, Zapier, and Make comparison for 2026 — pricing, flexibility, hosting options, and the exact scenarios where each automation platform wins.',
     date: '2026-05-05',
     readTime: '9 min read',
     tags: ['n8n', 'Automation', 'Tools'],
@@ -38,7 +38,7 @@ export const posts: PostMeta[] = [
     slug: 'n8n-workflow-ideas',
     title: '10 n8n workflow ideas that pay for themselves in a week',
     description:
-      'Practical, high-ROI n8n automations you can build in a few hours — lead routing, AI content pipelines, reporting, and CRM sync — with the actual node setup for each.',
+      'Practical, high-ROI n8n automations you can build in hours — lead routing, AI content pipelines, reporting, and CRM sync — with the node setup for each.',
     date: '2026-05-01',
     readTime: '11 min read',
     tags: ['n8n', 'Automation', 'Workflows'],

@@ -22,6 +22,8 @@ export const buildPostSchema = (post: PostMeta) =>
       name: post.title,
       description: post.description,
       breadcrumbId: `${SITE.url}/blog/${post.slug}#breadcrumb`,
+      datePublished: post.date,
+      dateModified: post.date,
     }),
     {
       '@type': 'Article',

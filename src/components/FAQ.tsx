@@ -50,9 +50,9 @@ const FAQ = ({ title = 'Common questions', eyebrow = 'FAQ', items }: FAQProps) =
  * Build a JSON-LD FAQPage schema fragment from a list of FAQ items.
  * Inline this into the page's <script type="application/ld+json"> array.
  */
-export const buildFAQSchema = (items: FAQItem[]) => ({
-  '@context': 'https://schema.org',
+export const buildFAQSchema = (items: FAQItem[], id?: string) => ({
   '@type': 'FAQPage',
+  ...(id ? { '@id': id } : {}),
   mainEntity: items.map((item) => ({
     '@type': 'Question',
     name: item.question,

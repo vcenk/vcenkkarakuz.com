@@ -9,7 +9,7 @@ import { buildGraph, buildOrganization, buildWebSite, buildWebPage, buildBreadcr
 export const metadata: Metadata = {
   title: 'SaaS Development Vancouver | Full-Stack MVP Builder',
   description:
-    'Vancouver SaaS developer building full-stack products end to end. React, TypeScript, Supabase, payments, and AI integration for founders in Canada and worldwide.',
+    'Vancouver SaaS developer building full-stack products end to end. React, TypeScript, Supabase, payments, AI integration for founders in Canada and worldwide.',
   keywords: [
     'Vancouver SaaS developer',
     'SaaS development Canada',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'SaaS Development Vancouver | Full-Stack MVP Builder',
     description:
-      'Full-stack SaaS development for founders. React, TypeScript, Supabase, payments, AI integration.',
+      'Vancouver SaaS developer building full-stack products end to end. React, TypeScript, Supabase, payments, AI integration.',
     url: `${SITE.url}/services/saas-development`,
     type: 'website',
   },
@@ -72,9 +72,9 @@ const faqs: FAQItem[] = [
   },
 ];
 
-const BREADCRUMB_ID = `${SITE.url}/services/saas-development#breadcrumb`;
-const PAGE_ID = `${SITE.url}/services/saas-development#webpage`;
 const PAGE_URL = `${SITE.url}/services/saas-development`;
+const BREADCRUMB_ID = `${PAGE_URL}#breadcrumb`;
+const PAGE_ID = `${PAGE_URL}#webpage`;
 
 const schema = buildGraph(
   buildOrganization(),
@@ -84,8 +84,10 @@ const schema = buildGraph(
     url: PAGE_URL,
     name: 'SaaS Development Vancouver | Full-Stack MVP Builder',
     description:
-      'Vancouver SaaS developer building full-stack products end to end. React, TypeScript, Supabase, payments, and AI integration for founders in Canada and worldwide.',
+      'Vancouver SaaS developer building full-stack products end to end. React, TypeScript, Supabase, payments, AI integration for founders in Canada and worldwide.',
     breadcrumbId: BREADCRUMB_ID,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
   }),
   buildBreadcrumb(BREADCRUMB_ID, [
     { name: 'Home', item: `${SITE.url}/` },
@@ -94,6 +96,7 @@ const schema = buildGraph(
   ]),
   {
     '@type': 'Service',
+    '@id': `${PAGE_URL}#service`,
     name: 'SaaS Development',
     serviceType: 'Full-stack SaaS product development',
     url: PAGE_URL,
@@ -108,8 +111,11 @@ const schema = buildGraph(
   },
   {
     '@type': 'HowTo',
+    '@id': `${PAGE_URL}#howto`,
     name: 'How SaaS development works with Cenk Karakuz',
     description: 'From first call to a live product with paying users — three focused stages.',
+    totalTime: 'P8W',
+    estimatedCost: { '@type': 'MonetaryAmount', currency: 'CAD', value: '8000' },
     step: [
       {
         '@type': 'HowToStep',
@@ -131,7 +137,7 @@ const schema = buildGraph(
       },
     ],
   },
-  buildFAQSchema(faqs),
+  buildFAQSchema(faqs, `${PAGE_URL}#faq`),
 );
 
 export default function SaasDevelopmentServicePage() {
@@ -202,6 +208,20 @@ export default function SaasDevelopmentServicePage() {
         </section>
 
         <FAQ items={faqs} title="SaaS development FAQ" />
+
+        <section className="section-container mt-16">
+          <h2 className="font-display text-2xl font-bold mb-6">Other services</h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            <Link href="/services/web-development" className="glass-card p-6 group block">
+              <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors">Web Development</h3>
+              <p className="text-sm text-muted-foreground">React + Tailwind marketing sites and landing pages — fast, accessible, conversion-tuned.</p>
+            </Link>
+            <Link href="/services/n8n-automation" className="glass-card p-6 group block">
+              <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors">n8n Automation</h3>
+              <p className="text-sm text-muted-foreground">Workflow systems for lead handling, AI pipelines, and CRM operations — built and monitored.</p>
+            </Link>
+          </div>
+        </section>
 
         <section className="section-container mt-20 text-center">
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">Ready to build your SaaS?</h2>

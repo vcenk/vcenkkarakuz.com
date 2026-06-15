@@ -44,6 +44,8 @@ const schema = buildGraph(
     name: 'ExamCanada Case Study | Canadian Exam Prep Platform',
     description: 'How ExamCanada.online was built as a free practice-test platform for Canadian driving, citizenship, and workplace safety exams — designed for newcomers and learners.',
     breadcrumbId: `${SITE.url}/case-studies/examcanada#breadcrumb`,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
   }),
   buildBreadcrumb(`${SITE.url}/case-studies/examcanada#breadcrumb`, [
     { name: 'Home', item: `${SITE.url}/` },
@@ -65,6 +67,8 @@ const schema = buildGraph(
     author: { '@id': `${SITE.url}/#person` },
     publisher: { '@id': `${SITE.url}/#organization` },
     mainEntityOfPage: `${SITE.url}/case-studies/examcanada`,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
     image: `${SITE.url}/ck-og.svg`,
   },
 );

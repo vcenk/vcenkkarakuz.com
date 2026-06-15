@@ -94,6 +94,8 @@ export interface WebPageOpts {
   name: string;
   description: string;
   breadcrumbId?: string;
+  datePublished?: string;
+  dateModified?: string;
 }
 
 export function buildWebPage(opts: WebPageOpts) {
@@ -108,6 +110,8 @@ export function buildWebPage(opts: WebPageOpts) {
     inLanguage: 'en-CA',
     primaryImageOfPage: OG_IMAGE,
     ...(opts.breadcrumbId ? { breadcrumb: { '@id': opts.breadcrumbId } } : {}),
+    ...(opts.datePublished ? { datePublished: opts.datePublished } : {}),
+    ...(opts.dateModified ? { dateModified: opts.dateModified } : {}),
     speakable: {
       '@type': 'SpeakableSpecification',
       cssSelector: ['h1', '.section-label', 'p:first-of-type'],

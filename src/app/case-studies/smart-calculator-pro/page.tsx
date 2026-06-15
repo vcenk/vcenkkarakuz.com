@@ -43,6 +43,8 @@ const schema = buildGraph(
     name: 'Smart Calculator Pro Case Study | Calculator Tools Platform',
     description: 'How Smart Calculator Pro was built as a free calculator hub spanning finance, health, math, construction, and everyday life — designed for fast, trustworthy calculations.',
     breadcrumbId: `${SITE.url}/case-studies/smart-calculator-pro#breadcrumb`,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
   }),
   buildBreadcrumb(`${SITE.url}/case-studies/smart-calculator-pro#breadcrumb`, [
     { name: 'Home', item: `${SITE.url}/` },
@@ -64,6 +66,8 @@ const schema = buildGraph(
     author: { '@id': `${SITE.url}/#person` },
     publisher: { '@id': `${SITE.url}/#organization` },
     mainEntityOfPage: `${SITE.url}/case-studies/smart-calculator-pro`,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
     image: `${SITE.url}/ck-og.svg`,
   },
 );

@@ -5,7 +5,7 @@ import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { buildGraph, buildOrganization, buildWebSite, buildWebPage, buildBreadcrumb, SITE } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'Meet and Eat Case Study | Vancouver Turkish Restaurant Website',
+  title: 'Meet and Eat Case Study | Vancouver Restaurant Site',
   description:
     'How I designed and built meetandeat.ca for a family-run Turkish restaurant in East Vancouver — a mobile-first site covering menu, ordering, catering, and reservations.',
   keywords: [
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: '/case-studies/meet-and-eat' },
   openGraph: {
-    title: 'Meet and Eat Case Study | Vancouver Turkish Restaurant Website',
+    title: 'Meet and Eat Case Study | Vancouver Restaurant Site',
     description:
       'A modern, mobile-first website for a family-run Turkish restaurant in East Vancouver.',
     url: 'https://vcenkkarakuz.com/case-studies/meet-and-eat',
@@ -41,9 +41,11 @@ const schema = buildGraph(
   buildWebPage({
     id: `${SITE.url}/case-studies/meet-and-eat#webpage`,
     url: `${SITE.url}/case-studies/meet-and-eat`,
-    name: 'Meet and Eat Case Study | Vancouver Turkish Restaurant Website',
+    name: 'Meet and Eat Case Study | Vancouver Restaurant Site',
     description: 'How I designed and built meetandeat.ca for a family-run Turkish restaurant in East Vancouver — a mobile-first site covering menu, ordering, catering, and reservations.',
     breadcrumbId: `${SITE.url}/case-studies/meet-and-eat#breadcrumb`,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
   }),
   buildBreadcrumb(`${SITE.url}/case-studies/meet-and-eat#breadcrumb`, [
     { name: 'Home', item: `${SITE.url}/` },
@@ -65,6 +67,8 @@ const schema = buildGraph(
     author: { '@id': `${SITE.url}/#person` },
     publisher: { '@id': `${SITE.url}/#organization` },
     mainEntityOfPage: `${SITE.url}/case-studies/meet-and-eat`,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
     image: `${SITE.url}/ck-og.svg`,
   },
 );

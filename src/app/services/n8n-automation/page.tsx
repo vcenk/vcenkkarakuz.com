@@ -9,7 +9,7 @@ import { buildGraph, buildOrganization, buildWebSite, buildWebPage, buildBreadcr
 export const metadata: Metadata = {
   title: 'n8n Automation Services Vancouver | Workflow Developer',
   description:
-    'Vancouver n8n automation developer building workflow systems for lead handling, AI content pipelines, reporting, and CRM automations. Serving Canada and global clients.',
+    'Vancouver n8n automation developer building workflow systems for lead handling, AI content pipelines, reporting, and CRM automations. Serving Canada and worldwide.',
   keywords: [
     'n8n developer Vancouver',
     'n8n consultant Canada',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'n8n Automation Services Vancouver | Workflow Developer',
     description:
-      'Workflow automation systems for lead handling, AI content pipelines, and CRM operations.',
+      'Vancouver n8n automation developer building workflow systems for lead handling, AI content pipelines, and CRM operations.',
     url: `${SITE.url}/services/n8n-automation`,
     type: 'website',
   },
@@ -71,9 +71,9 @@ const faqs: FAQItem[] = [
   },
 ];
 
-const BREADCRUMB_ID = `${SITE.url}/services/n8n-automation#breadcrumb`;
-const PAGE_ID = `${SITE.url}/services/n8n-automation#webpage`;
 const PAGE_URL = `${SITE.url}/services/n8n-automation`;
+const BREADCRUMB_ID = `${PAGE_URL}#breadcrumb`;
+const PAGE_ID = `${PAGE_URL}#webpage`;
 
 const schema = buildGraph(
   buildOrganization(),
@@ -83,8 +83,10 @@ const schema = buildGraph(
     url: PAGE_URL,
     name: 'n8n Automation Services Vancouver | Workflow Developer',
     description:
-      'Vancouver n8n automation developer building workflow systems for lead handling, AI content pipelines, reporting, and CRM automations. Serving Canada and global clients.',
+      'Vancouver n8n automation developer building workflow systems for lead handling, AI content pipelines, reporting, and CRM automations. Serving Canada and worldwide.',
     breadcrumbId: BREADCRUMB_ID,
+    datePublished: '2025-01-01',
+    dateModified: '2026-06-15',
   }),
   buildBreadcrumb(BREADCRUMB_ID, [
     { name: 'Home', item: `${SITE.url}/` },
@@ -93,6 +95,7 @@ const schema = buildGraph(
   ]),
   {
     '@type': 'Service',
+    '@id': `${PAGE_URL}#service`,
     name: 'n8n Automation Services',
     serviceType: 'Business automation and AI workflow services',
     url: PAGE_URL,
@@ -107,8 +110,11 @@ const schema = buildGraph(
   },
   {
     '@type': 'HowTo',
+    '@id': `${PAGE_URL}#howto`,
     name: 'How n8n automation works with Cenk Karakuz',
     description: 'From identifying the manual work to a live, monitored automation — three stages.',
+    totalTime: 'P2W',
+    estimatedCost: { '@type': 'MonetaryAmount', currency: 'CAD', value: '500' },
     step: [
       {
         '@type': 'HowToStep',
@@ -130,7 +136,7 @@ const schema = buildGraph(
       },
     ],
   },
-  buildFAQSchema(faqs),
+  buildFAQSchema(faqs, `${PAGE_URL}#faq`),
 );
 
 export default function N8nAutomationServicePage() {
@@ -201,6 +207,20 @@ export default function N8nAutomationServicePage() {
         </section>
 
         <FAQ items={faqs} title="n8n automation FAQ" />
+
+        <section className="section-container mt-16">
+          <h2 className="font-display text-2xl font-bold mb-6">Other services</h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            <Link href="/services/saas-development" className="glass-card p-6 group block">
+              <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors">SaaS Development</h3>
+              <p className="text-sm text-muted-foreground">Full-stack SaaS products from idea to launch — auth, billing, AI, and production deploy.</p>
+            </Link>
+            <Link href="/services/web-development" className="glass-card p-6 group block">
+              <h3 className="font-semibold mb-2 group-hover:text-accent transition-colors">Web Development</h3>
+              <p className="text-sm text-muted-foreground">React + Tailwind marketing sites and landing pages — fast, accessible, conversion-tuned.</p>
+            </Link>
+          </div>
+        </section>
 
         <section className="section-container mt-20 text-center">
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">Got a workflow eating your week?</h2>
