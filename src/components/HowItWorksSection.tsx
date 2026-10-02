@@ -1,125 +1,64 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Compass, Hammer, Rocket, ArrowRight } from 'lucide-react';
 
 const steps = [
   {
-    icon: Compass,
     number: '01',
-    title: 'Discover',
-    description: 'A short call to understand the problem, the constraints, and what success looks like. You leave with a written scope and a fixed quote.',
+    title: 'Frame the right problem',
+    description: 'A focused conversation to understand the opportunity, constraints, and what a successful first release needs to do.',
+    output: 'Clear scope · Priorities · Fixed proposal',
   },
   {
-    icon: Hammer,
     number: '02',
-    title: 'Build',
-    description: 'I work in tight increments with regular updates. You see progress in a staging environment, not in long status reports.',
+    title: 'Make the work visible',
+    description: 'Design and development happen in tight increments. You review real progress in a working environment, not a slide deck.',
+    output: 'Frequent demos · Fast decisions · No mystery',
   },
   {
-    icon: Rocket,
     number: '03',
-    title: 'Ship',
-    description: 'Production deploy, documentation, and a handoff so your team can run with it. 30 days of post-launch support included.',
+    title: 'Ship and keep moving',
+    description: 'Production launch, documentation, and a practical handoff — with support for the questions that appear after going live.',
+    output: 'Deployment · Documentation · 30-day support',
   },
 ];
 
 const HowItWorksSection = () => {
   return (
-    <section id="process" className="py-24 md:py-32 relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
-
-      <div className="section-container relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <span className="section-label mx-auto">
-              <Rocket className="w-4 h-4" />
-              Process
-            </span>
-            <h2 className="section-heading mt-4 mb-6">
-              From idea to live
-              <br />
-              <span className="gradient-text">in three steps</span>
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Lightweight, transparent, and built around shipping — not meetings.
-            </p>
-          </motion.div>
-        </div>
-
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8 relative">
-            <div className="hidden md:block absolute top-16 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-
-            {steps.map((step, index) => {
-              const Icon = step.icon;
-
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.15 }}
-                  className="relative"
-                >
-                  <div className="glass-card p-8 h-full flex flex-col relative overflow-hidden group hover:border-accent/30 transition-all">
-                    <div className="absolute top-4 right-4 text-8xl font-display font-bold text-foreground/5 select-none">
-                      {step.number}
-                    </div>
-
-                    <div className="relative z-10 w-14 h-14 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                      <Icon className="w-7 h-7 text-accent" />
-                    </div>
-
-                    <div className="relative z-10 flex-1 flex flex-col">
-                      <div className="text-xs font-bold text-muted-foreground tracking-wider mb-2">
-                        STEP {step.number}
-                      </div>
-                      <h3 className="text-xl font-display font-bold mb-3 group-hover:text-accent transition-colors">
-                        {step.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-                        {step.description}
-                      </p>
-                    </div>
-
-                    <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-                  </div>
-
-                  {index < steps.length - 1 && (
-                    <div className="hidden md:block absolute top-16 -right-4 z-20">
-                      <div className="w-8 h-8 rounded-full bg-background border-2 border-border flex items-center justify-center">
-                        <ArrowRight className="w-4 h-4 text-accent" />
-                      </div>
-                    </div>
-                  )}
-                </motion.div>
-              );
-            })}
+    <section id="process" className="border-b border-foreground/80 bg-white py-24 md:py-32">
+      <div className="section-container">
+        <div className="mb-14 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+          <div>
+            <span className="section-label">How the work moves</span>
+            <h2 className="section-heading">Less ceremony. More momentum.</h2>
           </div>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-20 pt-16 border-t border-border/50"
-        >
-          <h3 className="text-2xl font-display font-bold mb-4">Have a project in mind?</h3>
-          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Tell me what you're building. I'll get back within 24 hours.
+          <p className="max-w-xl text-lg leading-relaxed text-muted-foreground lg:justify-self-end lg:text-right">
+            A lightweight process built around clear decisions, visible progress, and getting useful work into the world.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <a href="#contact" className="btn-primary">
-              Start a project
-            </a>
-          </div>
-        </motion.div>
+        </div>
+
+        <div className="grid border-y border-foreground/80 md:grid-cols-3">
+          {steps.map((step, index) => (
+            <motion.article
+              key={step.number}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className={`group relative flex min-h-[360px] flex-col p-7 md:p-8 lg:p-10 ${index > 0 ? 'border-t border-foreground/80 md:border-l md:border-t-0' : ''}`}
+            >
+              <div className="mb-16 flex items-center justify-between">
+                <span className="font-mono text-xs font-semibold text-accent">{step.number}</span>
+                <span className="h-3 w-3 border border-foreground transition-colors group-hover:bg-accent" />
+              </div>
+              <h3 className="font-display text-3xl font-semibold leading-[1] tracking-[-0.045em] md:text-4xl">{step.title}</h3>
+              <p className="mt-5 flex-1 text-sm leading-relaxed text-muted-foreground md:text-base">{step.description}</p>
+              <p className="mt-8 border-t border-border pt-4 font-mono text-[9px] uppercase leading-relaxed tracking-[0.13em] text-muted-foreground">
+                {step.output}
+              </p>
+            </motion.article>
+          ))}
+        </div>
       </div>
     </section>
   );

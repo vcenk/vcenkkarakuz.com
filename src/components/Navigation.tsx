@@ -1,16 +1,16 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
 const navLinks = [
-  { name: 'Services', href: '/#services' },
   { name: 'Work', href: '/#work' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Contact', href: '/#contact' },
+  { name: 'Services', href: '/#services' },
+  { name: 'About', href: '/#about' },
+  { name: 'Notes', href: '/blog' },
 ];
 
 const Navigation = () => {
@@ -20,150 +20,122 @@ const Navigation = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 12);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setIsMobileMenuOpen(false);
-
+  const handleNavClick = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!href.includes('#')) {
-      router.push(href);
+      setIsMobileMenuOpen(false);
       return;
     }
 
-    const targetId = href.substring(href.indexOf('#'));
+    event.preventDefault();
+    setIsMobileMenuOpen(false);
+    const targetId = href.slice(href.indexOf('#'));
 
     if (pathname !== '/') {
       router.push('/');
-      setTimeout(() => {
-        const element = document.querySelector(targetId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 150);
-    } else {
-      const element = document.querySelector(targetId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+      window.setTimeout(() => document.querySelector(targetId)?.scrollIntoView({ behavior: 'smooth' }), 180);
+      return;
     }
+
+    document.querySelector(targetId)?.scrollIntoView({ behavior: 'smooth' });
   };
-
-  const isServicePage = pathname?.startsWith('/services') ?? false;
-  const isCaseStudy = pathname?.startsWith('/case-studies') ?? false;
-  const isBlog = pathname?.startsWith('/blog') ?? false;
-
-  const shouldUseSolidNav = isScrolled || isServicePage || isCaseStudy || isBlog || isMobileMenuOpen;
 
   return (
     <motion.header
-      initial={{ y: -100 }}
+      initial={{ y: -80 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4 md:p-6 pointer-events-none"
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        isScrolled
+          ? 'border-border bg-background/95 backdrop-blur-md'
+          : 'border-transparent bg-background/80 backdrop-blur-sm'
+      }`}
     >
-      <nav
-        className={`pointer-events-auto transition-all duration-500 ease-out ${
-          shouldUseSolidNav
-            ? 'w-full max-w-5xl px-6 py-3 rounded-3xl bg-background/80 backdrop-blur-xl border border-border shadow-lg'
-            : 'w-full px-2 py-2 bg-transparent'
-        }`}
-      >
-        <div className="flex items-center justify-between gap-4">
-          <Link
-            href="/"
-            className="flex items-center gap-2 group"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          >
-            <img
-              src="/favicon.svg"
-              alt="Cenk Karakuz monogram"
-              width={32}
-              height={32}
-              className="w-8 h-8 rounded-lg group-hover:scale-105 transition-transform"
-            />
-            <div className="flex flex-col leading-tight">
-              <span className={`font-display font-bold text-base tracking-tight ${!shouldUseSolidNav ? 'text-foreground' : ''}`}>
-                Cenk Karakuz<span className="text-accent">.</span>
-              </span>
-              <span className="hidden lg:block text-[11px] text-muted-foreground">
-                SaaS · Web · Automation
-              </span>
-            </div>
-          </Link>
+      <nav className="section-container flex h-[76px] items-center justify-between">
+        <Link href="/" className="group flex items-center gap-3" aria-label="Cenk Karakuz home">
+          <span className="grid h-9 w-9 place-items-center bg-foreground font-display text-sm font-bold text-background transition-colors group-hover:bg-accent">
+            CK
+          </span>
+          <span className="font-display text-[17px] font-semibold tracking-[-0.03em]">
+            Cenk Karakuz
+          </span>
+        </Link>
 
-          <ul className="hidden md:flex items-center gap-1 bg-background/50 backdrop-blur-sm px-2 py-1.5 rounded-full border border-border/20">
+        <div className="hidden items-center gap-8 md:flex">
+          <ul className="flex items-center gap-7">
             {navLinks.map((link) => (
               <li key={link.name}>
                 <a
                   href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="px-4 py-2 text-[15px] font-semibold tracking-tight rounded-full text-foreground/70 hover:text-foreground hover:bg-secondary/60 transition-all duration-300"
+                  onClick={(event) => handleNavClick(event, link.href)}
+                  className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {link.name}
                 </a>
               </li>
             ))}
           </ul>
-
-          <div className="hidden md:flex items-center gap-3">
-            <a
-              href="/#contact"
-              onClick={(e) => handleNavClick(e, '/#contact')}
-              className="px-5 py-2 text-sm font-medium rounded-full bg-foreground text-background hover:bg-foreground/90 hover:scale-105 transition-all duration-300"
-            >
-              Start a project
-            </a>
-          </div>
-
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-foreground bg-background/50 backdrop-blur-md rounded-full"
-            aria-label="Toggle menu"
+          <a
+            href="/#contact"
+            onClick={(event) => handleNavClick(event, '/#contact')}
+            className="inline-flex h-10 items-center gap-2 bg-accent px-4 font-display text-sm font-semibold text-white transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_hsl(var(--foreground))]"
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            Let&apos;s talk
+            <ArrowUpRight className="h-4 w-4" />
+          </a>
         </div>
 
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0, marginTop: 0 }}
-              animate={{ opacity: 1, height: 'auto', marginTop: 16 }}
-              exit={{ opacity: 0, height: 0, marginTop: 0 }}
-              className="md:hidden overflow-hidden bg-background/95 backdrop-blur-xl rounded-3xl border border-border"
-            >
-              <ul className="flex flex-col gap-1 p-4">
-                {navLinks.map((link) => (
+        <button
+          type="button"
+          onClick={() => setIsMobileMenuOpen((open) => !open)}
+          className="grid h-10 w-10 place-items-center border border-foreground md:hidden"
+          aria-expanded={isMobileMenuOpen}
+          aria-label="Toggle navigation menu"
+        >
+          {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </nav>
+
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden border-t border-border bg-background md:hidden"
+          >
+            <div className="section-container py-5">
+              <ul className="divide-y divide-border border-y border-border">
+                {navLinks.map((link, index) => (
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      onClick={(e) => handleNavClick(e, link.href)}
-                      className="block px-4 py-3 text-base font-semibold tracking-tight text-foreground/80 hover:text-foreground hover:bg-secondary rounded-xl transition-colors"
+                      onClick={(event) => handleNavClick(event, link.href)}
+                      className="flex items-center justify-between py-4 font-display text-2xl font-semibold"
                     >
                       {link.name}
+                      <span className="font-mono text-[10px] text-muted-foreground">0{index + 1}</span>
                     </a>
                   </li>
                 ))}
-                <li className="pt-2 mt-2 border-t border-border">
-                  <a
-                    href="/#contact"
-                    onClick={(e) => handleNavClick(e, '/#contact')}
-                    className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-foreground text-background font-medium"
-                  >
-                    Start a project
-                  </a>
-                </li>
               </ul>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+              <a
+                href="/#contact"
+                onClick={(event) => handleNavClick(event, '/#contact')}
+                className="btn-accent mt-5 w-full"
+              >
+                Discuss a project
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 };

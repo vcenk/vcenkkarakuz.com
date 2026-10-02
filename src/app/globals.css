@@ -4,48 +4,29 @@
 
 @layer base {
   :root {
-    --background: 0 0% 2%;
-    --foreground: 0 0% 98%;
-
-    --card: 0 0% 5%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 0 0% 5%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 2%;
-
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 55%;
-
-    --accent: 45 100% 60%;
-    --accent-foreground: 0 0% 2%;
-
+    --background: 48 33% 97%;
+    --foreground: 230 16% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 230 16% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 230 16% 9%;
+    --primary: 229 100% 57%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 18% 92%;
+    --secondary-foreground: 230 16% 9%;
+    --muted: 45 18% 92%;
+    --muted-foreground: 225 7% 42%;
+    --accent: 229 100% 57%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 0 0% 98%;
-
-    --radius: 0.5rem;
-
-    --gradient-accent: linear-gradient(135deg, hsl(45, 100%, 60%) 0%, hsl(35, 100%, 50%) 100%);
-    --gradient-subtle: linear-gradient(135deg, hsl(0, 0%, 8%) 0%, hsl(0, 0%, 4%) 100%);
-
-    --glow-accent: 0 0 40px hsl(45 100% 60% / 0.3);
-    --glow-soft: 0 0 60px hsl(0 0% 100% / 0.05);
-
-    --glass-bg: hsl(0 0% 5% / 0.8);
-    --glass-border: hsl(0 0% 20% / 0.5);
+    --border: 45 10% 79%;
+    --input: 45 10% 79%;
+    --ring: 229 100% 57%;
+    --radius: 0.45rem;
+    --signal: 61 100% 67%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
@@ -56,60 +37,76 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    background-image: radial-gradient(hsl(var(--foreground) / 0.055) 0.55px, transparent 0.55px);
+    background-size: 9px 9px;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background;
   }
 }
 
 @layer components {
   .section-container {
-    @apply container mx-auto px-6 lg:px-8;
+    @apply mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12;
   }
 
   .section-label {
-    @apply inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-4 font-mono;
+    @apply mb-5 inline-flex items-center gap-2 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground;
+  }
+
+  .section-label::before {
+    content: '';
+    @apply h-2 w-2 bg-accent;
   }
 
   .section-heading {
-    @apply text-3xl md:text-4xl lg:text-5xl font-display font-bold tracking-tight leading-[1.1];
+    @apply font-display text-4xl font-semibold leading-[0.98] tracking-[-0.045em] text-foreground md:text-6xl lg:text-7xl;
   }
 
   .section-subheading {
-    @apply text-lg md:text-xl text-muted-foreground max-w-2xl;
+    @apply max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl;
   }
 
   .glass-card {
-    @apply bg-card/80 backdrop-blur-sm border border-border rounded-2xl;
+    @apply border border-border bg-white;
   }
 
   .glass-card-hover {
-    @apply glass-card transition-all duration-300 hover:border-muted-foreground/30 hover:bg-card;
+    @apply glass-card transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-foreground hover:shadow-[8px_8px_0_0_hsl(var(--foreground))];
   }
 
-  .gradient-text {
-    background: var(--gradient-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .gradient-text,
+  .italic-accent {
+    @apply text-accent;
+  }
+
+  .italic-accent {
+    font-style: italic;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-foreground text-background font-medium rounded-full transition-all duration-300 hover:bg-foreground/90 hover:scale-[1.02];
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-sm bg-foreground px-6 py-3 font-display text-sm font-semibold text-background transition-[transform,background-color,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-accent hover:shadow-[5px_5px_0_0_hsl(var(--foreground))];
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-transparent border border-border text-foreground font-medium rounded-full transition-all duration-300 hover:bg-muted hover:border-muted-foreground/30;
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-sm border border-foreground bg-transparent px-6 py-3 font-display text-sm font-semibold text-foreground transition-colors duration-200 hover:bg-foreground hover:text-background;
   }
 
   .btn-accent {
-    background: var(--gradient-accent);
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-accent-foreground font-semibold rounded-full transition-all duration-300 hover:opacity-90;
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-sm bg-accent px-6 py-3 font-display text-sm font-semibold text-accent-foreground transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_hsl(var(--foreground))];
   }
 
-  .btn-accent:hover {
-    box-shadow: var(--glow-accent);
+  .editorial-rule {
+    @apply border-t border-foreground/80;
   }
 
-  .divider {
-    @apply h-px w-full bg-gradient-to-r from-transparent via-border to-transparent;
+  .paper-panel {
+    @apply border border-border bg-white shadow-[10px_10px_0_0_hsl(var(--secondary))];
   }
 }
 
@@ -118,24 +115,26 @@
     text-wrap: balance;
   }
 
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
+  .vertical-text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
   }
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+  .editorial-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--foreground) / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--foreground) / 0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
   }
 
-  .bg-noise {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 50;
-    opacity: 0.04;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }

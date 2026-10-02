@@ -47,7 +47,7 @@ export function buildPerson() {
     name: SITE.name,
     url: SITE_URL,
     email: SITE.email,
-    jobTitle: 'Independent Software Developer',
+    jobTitle: 'Independent Product Engineer & Founder',
     image: OG_IMAGE,
     sameAs: [SITE.linkedin, SITE.twitter, SITE.github],
     address: {
@@ -58,6 +58,8 @@ export function buildPerson() {
     },
     knowsAbout: [
       'SaaS development',
+      'Product engineering',
+      'Product design',
       'Web development',
       'n8n automation',
       'React',

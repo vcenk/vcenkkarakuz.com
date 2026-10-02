@@ -4,6 +4,7 @@ import HeroSection from '@/components/HeroSection';
 import ServicesSection from '@/components/ServicesSection';
 import SelectedWork from '@/components/SelectedWork';
 import HowItWorksSection from '@/components/HowItWorksSection';
+import AboutSection from '@/components/AboutSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
@@ -23,9 +24,9 @@ export const metadata: Metadata = {
     languages: { 'en-CA': '/', 'x-default': '/' },
   },
   openGraph: {
-    title: 'Vancouver SaaS, Web & n8n Developer | Cenk Karakuz',
+    title: 'Independent Product Engineer & Founder | Cenk Karakuz',
     description:
-      'Vancouver developer building SaaS products, marketing sites, and n8n automation for founders and teams across Canada and worldwide. Fixed scope, fast delivery.',
+      'Independent product engineer in Vancouver designing and building SaaS products, intelligent workflows, and high-performing websites for founders and small teams.',
     url: SITE.url,
     type: 'website',
   },
@@ -41,12 +42,12 @@ const homeSchema = buildGraph(
   buildWebPage({
     id: PAGE_ID,
     url: SITE.url,
-    name: 'Vancouver SaaS, Web & n8n Developer | Cenk Karakuz',
+    name: 'Independent Product Engineer & Founder | Cenk Karakuz',
     description:
-      'Vancouver developer building SaaS products, marketing sites, and n8n automation for founders and teams across Canada and worldwide. Fixed scope, fast delivery.',
+      'Independent product engineer in Vancouver designing and building SaaS products, intelligent workflows, and high-performing websites for founders and small teams.',
     breadcrumbId: BREADCRUMB_ID,
     datePublished: '2025-01-01',
-    dateModified: '2026-06-15',
+    dateModified: '2026-10-02',
   }),
   buildBreadcrumb(BREADCRUMB_ID, [
     { name: 'Home', item: `${SITE.url}/` },
@@ -54,7 +55,7 @@ const homeSchema = buildGraph(
   {
     '@type': 'ProfessionalService',
     '@id': `${SITE.url}/#business`,
-    name: 'Cenk Karakuz — SaaS, Web & Automation',
+    name: 'Cenk Karakuz — Independent Product Engineer',
     url: SITE.url,
     image: `${SITE.url}/ck-og.svg`,
     priceRange: '$$',
@@ -77,7 +78,7 @@ const homeSchema = buildGraph(
       { '@type': 'Place', name: 'Worldwide (remote)' },
     ],
     provider: { '@id': `${SITE.url}/#person` },
-    serviceType: ['SaaS development', 'Web development', 'n8n automation'],
+    serviceType: ['Product engineering', 'SaaS development', 'Web design and development', 'AI workflow automation'],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Development Services',
@@ -138,11 +139,15 @@ export default function HomePage() {
         <HeroSection />
 
         <ScrollReveal width="100%">
+          <SelectedWork />
+        </ScrollReveal>
+
+        <ScrollReveal width="100%">
           <ServicesSection />
         </ScrollReveal>
 
         <ScrollReveal width="100%">
-          <SelectedWork />
+          <AboutSection />
         </ScrollReveal>
 
         <HowItWorksSection />

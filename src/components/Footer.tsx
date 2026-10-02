@@ -1,96 +1,51 @@
 import Link from 'next/link';
-import { Github, Twitter, Linkedin } from 'lucide-react';
+import { ArrowUpRight, Github, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border/50 bg-background pt-16 pb-8">
+    <footer className="bg-foreground py-12 text-background">
       <div className="section-container">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12 mb-16">
-          <div className="sm:col-span-2 lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-4 group w-fit">
-              <img
-                src="/favicon.svg"
-                alt="Cenk Karakuz monogram"
-                width={32}
-                height={32}
-                className="w-8 h-8 rounded-lg group-hover:scale-105 transition-transform"
-              />
-              <span className="font-display font-bold text-lg tracking-tight">
-                Cenk Karakuz<span className="text-accent">.</span>
-              </span>
+        <div className="grid gap-12 border-b border-background/20 pb-12 lg:grid-cols-[1.25fr_0.75fr]">
+          <div>
+            <Link href="/" className="inline-flex items-center gap-3">
+              <span className="grid h-10 w-10 place-items-center bg-background font-display text-sm font-bold text-foreground">CK</span>
+              <span className="font-display text-xl font-semibold tracking-[-0.03em]">Cenk Karakuz</span>
             </Link>
-            <p className="text-muted-foreground text-sm max-w-xs leading-relaxed mb-4">
-              Independent developer building SaaS products, marketing sites, and n8n automations. Based in Vancouver, BC — working with clients across Canada and worldwide.
+            <p className="mt-6 max-w-xl font-display text-3xl font-medium leading-[1.08] tracking-[-0.04em] text-background/90 md:text-5xl">
+              Independent product engineer building useful things for the web.
             </p>
-            <a
-              href="mailto:cenkkarakuz@gmail.com"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              cenkkarakuz@gmail.com
-            </a>
           </div>
 
-          <div>
-            <h4 className="font-semibold mb-4 text-sm">Services</h4>
-            <ul className="space-y-3 text-sm text-muted-foreground">
-              <li><Link href="/services/saas-development" className="hover:text-foreground transition-colors">SaaS Development</Link></li>
-              <li><Link href="/services/web-development" className="hover:text-foreground transition-colors">Web Development</Link></li>
-              <li><Link href="/services/n8n-automation" className="hover:text-foreground transition-colors">n8n Automation</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold mb-4 text-sm">Work</h4>
-            <ul className="space-y-3 text-sm text-muted-foreground">
-              <li><Link href="/case-studies/jobfoxy" className="hover:text-foreground transition-colors">Job Foxy</Link></li>
-              <li><Link href="/case-studies/photovid-studio" className="hover:text-foreground transition-colors">photovid.studio</Link></li>
-              <li><Link href="/blog" className="hover:text-foreground transition-colors">Blog</Link></li>
-              <li><a href="/#contact" className="hover:text-foreground transition-colors">Get in touch</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold mb-4 text-sm">From the same team</h4>
-            <ul className="space-y-3 text-sm text-muted-foreground">
-              <li>
-                <a href="https://llcstateguide.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                  LLC State Guide
-                </a>
-              </li>
-              <li>
-                <a href="https://smartcalculatorpro.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                  Smart Calculator Pro
-                </a>
-              </li>
-              <li>
-                <a href="https://vancityguide.ca" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                  VanCityGuide
-                </a>
-              </li>
-              <li>
-                <a href="https://examcanada.online" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                  ExamCanada
-                </a>
-              </li>
-            </ul>
+          <div className="grid grid-cols-2 gap-8 lg:justify-self-end lg:gap-20">
+            <div>
+              <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.18em] text-background/45">Navigate</p>
+              <ul className="space-y-3 text-sm text-background/75">
+                <li><a href="/#work" className="hover:text-white">Work</a></li>
+                <li><a href="/#services" className="hover:text-white">Services</a></li>
+                <li><a href="/#about" className="hover:text-white">About</a></li>
+                <li><Link href="/blog" className="hover:text-white">Notes</Link></li>
+              </ul>
+            </div>
+            <div>
+              <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.18em] text-background/45">Explore</p>
+              <ul className="space-y-3 text-sm text-background/75">
+                <li><Link href="/case-studies/jobfoxy" className="hover:text-white">Job Foxy</Link></li>
+                <li><Link href="/case-studies/photovid-studio" className="hover:text-white">photovid.studio</Link></li>
+                <li><Link href="/case-studies/meet-and-eat" className="hover:text-white">Meet & Eat</Link></li>
+                <li><a href="/#contact" className="inline-flex items-center gap-1 text-[#f0ff5c]">Start a project <ArrowUpRight className="h-3.5 w-3.5" /></a></li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-border/30 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Cenk Karakuz. All rights reserved.
+        <div className="flex flex-col gap-6 pt-7 md:flex-row md:items-center md:justify-between">
+          <p className="font-mono text-[9px] uppercase tracking-[0.15em] text-background/45">
+            © {new Date().getFullYear()} Cenk Karakuz · Vancouver, BC
           </p>
-
-          <div className="flex items-center gap-6">
-            <a href="https://twitter.com/vcenkkarakuz" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="Twitter">
-              <Twitter className="w-4 h-4" />
-            </a>
-            <a href="https://github.com/vcenk" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="GitHub">
-              <Github className="w-4 h-4" />
-            </a>
-            <a href="https://linkedin.com/in/cenkkarakuz" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors" aria-label="LinkedIn">
-              <Linkedin className="w-4 h-4" />
-            </a>
+          <div className="flex items-center gap-5">
+            <a href="https://github.com/vcenk" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-background/55 transition-colors hover:text-white"><Github className="h-4 w-4" /></a>
+            <a href="https://linkedin.com/in/cenkkarakuz" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-background/55 transition-colors hover:text-white"><Linkedin className="h-4 w-4" /></a>
+            <a href="https://twitter.com/vcenkkarakuz" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-background/55 transition-colors hover:text-white"><Twitter className="h-4 w-4" /></a>
           </div>
         </div>
       </div>

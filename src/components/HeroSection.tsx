@@ -1,346 +1,153 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { ArrowRight, Sparkles, ArrowUpRight } from 'lucide-react';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { ArrowDown, ArrowUpRight } from 'lucide-react';
 
-type Project = {
-  title: string;
-  tagline: string;
-  domain: string;
-  url: string;
-  /** Tailwind gradient classes for the placeholder background */
-  gradient: string;
-  /** Small visual accent shown inside the featured card */
-  accent: 'amber' | 'purple' | 'teal' | 'blue' | 'rose' | 'lime' | 'red';
-  /** Optional screenshot path in /public, replaces the placeholder */
-  screenshot?: string;
-};
-
-const projects: Project[] = [
-  {
-    title: 'Job Foxy',
-    tagline: 'AI job application assistant',
-    domain: 'jobfoxy.com',
-    url: 'https://jobfoxy.com',
-    gradient: 'from-accent/35 via-orange-500/15 to-rose-500/10',
-    accent: 'amber',
-    screenshot: '/projects/jobfoxy.png',
-  },
-  {
-    title: 'photovid.studio',
-    tagline: 'AI image & video generation',
-    domain: 'photovid.studio',
-    url: 'https://photovid.studio',
-    gradient: 'from-purple-500/35 via-fuchsia-500/15 to-indigo-500/10',
-    accent: 'purple',
-    screenshot: '/projects/PhotoVidStudio.png',
-  },
-  {
-    title: 'VanCityGuide',
-    tagline: 'Hyperlocal Vancouver guide',
-    domain: 'vancityguide.ca',
-    url: 'https://vancityguide.ca',
-    gradient: 'from-emerald-500/30 via-teal-500/15 to-sky-500/10',
-    accent: 'teal',
-    screenshot: '/projects/VanCityGuide.png',
-  },
-  {
-    title: 'Smart Calculator Pro',
-    tagline: 'Calculator tools platform',
-    domain: 'smartcalculatorpro.com',
-    url: 'https://smartcalculatorpro.com',
-    gradient: 'from-blue-500/30 via-cyan-500/15 to-sky-500/10',
-    accent: 'blue',
-    screenshot: '/projects/SmartCalculatorPro.png',
-  },
-  {
-    title: 'ExamCanada',
-    tagline: 'Canadian exam prep',
-    domain: 'examcanada.online',
-    url: 'https://examcanada.online',
-    gradient: 'from-rose-500/30 via-red-500/15 to-orange-500/10',
-    accent: 'rose',
-    screenshot: '/projects/ExamCanada.png',
-  },
-  {
-    title: 'LLC State Guide',
-    tagline: 'US LLC formation guides',
-    domain: 'llcstateguide.com',
-    url: 'https://llcstateguide.com',
-    gradient: 'from-lime-500/30 via-green-500/15 to-emerald-500/10',
-    accent: 'lime',
-    screenshot: '/projects/LLCGuide.png',
-  },
-  {
-    title: 'Meet and Eat',
-    tagline: 'Vancouver Turkish restaurant',
-    domain: 'meetandeat.ca',
-    url: 'https://meetandeat.ca',
-    gradient: 'from-red-500/30 via-orange-500/15 to-amber-500/10',
-    accent: 'red',
-    screenshot: '/projects/MeetandEat.png',
-  },
+const buildLog = [
+  { index: '02', name: 'photovid.studio', type: 'AI product', href: '/case-studies/photovid-studio' },
+  { index: '03', name: 'Meet & Eat', type: 'Client website', href: '/case-studies/meet-and-eat' },
+  { index: '04', name: 'VanCityGuide', type: 'Content platform', href: '/case-studies/vancityguide' },
 ];
 
-const accentDot: Record<Project['accent'], string> = {
-  amber: 'bg-amber-400',
-  purple: 'bg-purple-400',
-  teal: 'bg-teal-400',
-  blue: 'bg-blue-400',
-  rose: 'bg-rose-400',
-  lime: 'bg-lime-400',
-  red: 'bg-red-400',
+const reveal = {
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0 },
 };
 
-const ROTATION_MS = 4500;
-
 const HeroSection = () => {
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [paused, setPaused] = useState(false);
-
-  useEffect(() => {
-    if (paused) return;
-    const id = setInterval(() => {
-      setActiveIdx((i) => (i + 1) % projects.length);
-    }, ROTATION_MS);
-    return () => clearInterval(id);
-  }, [paused]);
-
-  const active = projects[activeIdx];
-
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      {/* Ambient background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3], x: [0, 100, 0], y: [0, 50, 0] }}
-          transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-          className="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] rounded-full bg-accent/5 blur-[120px]"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3], x: [0, -100, 0], y: [0, 50, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-          className="absolute top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-primary/5 blur-[100px]"
-        />
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
-                           linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
-            backgroundSize: '80px 80px',
-          }}
-        />
-      </div>
+    <section id="hero" className="editorial-grid relative overflow-hidden border-b border-foreground/80 pt-[76px]">
+      <div className="section-container pb-10 pt-16 md:pb-14 md:pt-24 lg:pb-20 lg:pt-28">
+        <div className="mb-10 flex items-center justify-between border-b border-foreground/80 pb-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground md:mb-16">
+          <span>Independent product engineer</span>
+          <span className="hidden sm:inline">Vancouver, BC · Working worldwide</span>
+          <span className="flex items-center gap-2 text-foreground">
+            <span className="h-2 w-2 rounded-full bg-[#67d45c]" />
+            Selected projects
+          </span>
+        </div>
 
-      <div className="section-container relative z-10 w-full">
-        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-16 items-center">
-          {/* Left: copy + CTAs */}
-          <div className="text-left max-w-2xl mx-auto lg:mx-0">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+        <div className="grid items-center gap-16 lg:grid-cols-[1.08fr_0.92fr] lg:gap-20">
+          <div>
+            <motion.p
+              variants={reveal}
+              initial="hidden"
+              animate="visible"
               transition={{ duration: 0.5 }}
-              className="mb-6 inline-block"
+              className="mb-6 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-accent"
             >
-              <span className="section-label">
-                <Sparkles className="w-4 h-4 text-accent" />
-                SaaS · Web · Automation
-              </span>
-            </motion.div>
+              Product thinking · Design · Engineering
+            </motion.p>
 
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-6"
+              variants={reveal}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.65, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+              className="text-balance font-display text-[clamp(3.5rem,8vw,7.7rem)] font-semibold leading-[0.86] tracking-[-0.07em]"
             >
-              Vancouver developer.
-              <br />
-              <span className="gradient-text">SaaS, web & automation</span>
-              <br />
-              that ships.
+              I turn early ideas into <span className="text-accent">products</span> people can use.
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl"
+              variants={reveal}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.55, delay: 0.18 }}
+              className="mt-8 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl"
             >
-              Independent developer helping founders launch SaaS products, marketing sites, and n8n automation systems — without an agency-sized invoice.
+              I design, build, and launch SaaS products, intelligent workflows, and high-performing websites for founders and small teams.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap gap-4"
+              variants={reveal}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.55, delay: 0.26 }}
+              className="mt-9 flex flex-col gap-3 sm:flex-row"
             >
-              <a href="#contact" className="btn-primary">
-                Start a project
-                <ArrowRight className="w-4 h-4" />
+              <a href="#work" className="btn-primary">
+                View selected work
+                <ArrowDown className="h-4 w-4" />
               </a>
-              <a href="#work" className="btn-secondary">
-                See my work
+              <a href="#contact" className="btn-secondary">
+                Discuss a project
+                <ArrowUpRight className="h-4 w-4" />
               </a>
-            </motion.div>
-
-            {/* Live work strip — visible always; on lg the big composition is also shown */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-12 pt-8 border-t border-border/40"
-            >
-              <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground font-mono">Live projects</span>
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                {projects.map((p) => (
-                  <a
-                    key={p.domain}
-                    href={p.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-muted-foreground hover:text-accent transition-colors"
-                  >
-                    {p.domain}
-                  </a>
-                ))}
-              </div>
             </motion.div>
           </div>
 
-          {/* Right: featured browser window with auto-rotating projects + depth stack */}
-          <div className="relative hidden lg:flex items-center justify-center h-[600px]">
-            {/* Decorative orbital rings */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] border border-border/30 rounded-full pointer-events-none" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px] h-[380px] border border-border/20 rounded-full pointer-events-none" />
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.75, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="relative mx-auto w-full max-w-[620px] lg:mx-0"
+          >
+            <div className="absolute -right-5 -top-5 h-[72%] w-[72%] bg-accent md:-right-8 md:-top-8" />
+            <div className="absolute -left-3 top-12 z-20 -rotate-3 bg-[#f0ff5c] px-4 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-foreground shadow-[3px_3px_0_0_hsl(var(--foreground))] md:-left-8">
+              Owned product · Live
+            </div>
 
-            {/* Back stack — two ghost windows offset for depth */}
-            <motion.div
-              initial={{ opacity: 0, x: 30, y: 30 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 1, delay: 0.6 }}
-              className="absolute right-[6%] top-[8%] w-[420px] rounded-xl bg-card/40 border border-white/5 backdrop-blur-sm pointer-events-none"
-              style={{ transform: 'rotate(3deg)' }}
+            <Link
+              href="/case-studies/jobfoxy"
+              className="group relative z-10 block border border-foreground bg-white p-3 shadow-[10px_10px_0_0_hsl(var(--foreground))]"
             >
-              <div className="aspect-[16/10]" />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: -30, y: 30 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="absolute left-[2%] bottom-[12%] w-[400px] rounded-xl bg-card/30 border border-white/5 backdrop-blur-sm pointer-events-none"
-              style={{ transform: 'rotate(-4deg)' }}
-            >
-              <div className="aspect-[16/10]" />
-            </motion.div>
-
-            {/* Featured (rotating) window */}
-            <motion.a
-              href={active.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 40, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              onMouseEnter={() => setPaused(true)}
-              onMouseLeave={() => setPaused(false)}
-              className="relative z-10 w-[520px] max-w-full rounded-2xl overflow-hidden bg-card/85 backdrop-blur-xl border border-white/10 shadow-[0_24px_60px_-15px_hsl(45_100%_60%_/_0.18),0_8px_24px_-8px_hsl(0_0%_0%_/_0.6)] hover:border-accent/40 transition-all duration-500 block group"
-            >
-              {/* Browser chrome */}
-              <div className="flex items-center gap-2 px-4 py-3 bg-background/70 border-b border-white/5">
-                <div className="flex gap-1.5">
-                  <span className="w-3 h-3 rounded-full bg-red-500/70" />
-                  <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
-                  <span className="w-3 h-3 rounded-full bg-green-500/70" />
-                </div>
-                <div className="flex-1 ml-2 flex items-center justify-center">
-                  <div className="px-3 py-1 rounded-md bg-secondary/60 text-xs font-mono text-muted-foreground flex items-center gap-2">
-                    <span className={`w-1.5 h-1.5 rounded-full ${accentDot[active.accent]} animate-pulse`} />
-                    {active.domain}
-                  </div>
-                </div>
-                <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors" />
-              </div>
-
-              {/* Content area — crossfade between projects */}
-              <div className="relative aspect-[16/10] overflow-hidden bg-secondary/40">
-                <AnimatePresence initial={false}>
-                  <motion.div
-                    key={active.domain}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5, ease: 'easeOut' }}
-                    className={`absolute inset-0 bg-gradient-to-br ${active.gradient} flex flex-col items-center justify-center`}
-                  >
-                    {active.screenshot ? (
-                      <Image
-                        src={active.screenshot}
-                        alt={`${active.title} website screenshot`}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 520px"
-                        className="object-cover object-top"
-                        priority={activeIdx === 0}
-                      />
-                    ) : (
-                      <>
-                        {/* Decorative inner UI hints */}
-                        <div className="absolute top-6 left-6 right-6 flex gap-2">
-                          <div className="h-2 w-16 rounded-full bg-foreground/15" />
-                          <div className="h-2 w-8 rounded-full bg-foreground/10" />
-                          <div className="ml-auto h-2 w-12 rounded-full bg-foreground/10" />
-                        </div>
-
-                        <div className="text-center px-6">
-                          <div className={`inline-flex items-center gap-2 px-2.5 py-1 mb-4 rounded-full bg-background/40 border border-white/10 text-[10px] font-mono uppercase tracking-[0.2em] text-foreground/80`}>
-                            <span className={`w-1.5 h-1.5 rounded-full ${accentDot[active.accent]}`} />
-                            Live
-                          </div>
-                          <h3 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2 tracking-tight">
-                            {active.title}
-                          </h3>
-                          <p className="text-sm text-foreground/70">{active.tagline}</p>
-                        </div>
-
-                        <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
-                          <div className="flex gap-1.5">
-                            <div className="h-1.5 w-10 rounded-full bg-foreground/10" />
-                            <div className="h-1.5 w-6 rounded-full bg-foreground/10" />
-                          </div>
-                          <div className="inline-flex items-center gap-1 text-[10px] font-mono text-foreground/60 group-hover:text-accent transition-colors">
-                            visit live
-                            <ArrowUpRight className="w-3 h-3" />
-                          </div>
-                        </div>
-                      </>
-                    )}
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-            </motion.a>
-
-            {/* Indicator dots */}
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2">
-              {projects.map((p, i) => (
-                <button
-                  key={p.domain}
-                  onClick={() => setActiveIdx(i)}
-                  onMouseEnter={() => setPaused(true)}
-                  onMouseLeave={() => setPaused(false)}
-                  aria-label={`Show ${p.title}`}
-                  className={`h-1.5 rounded-full transition-all duration-500 ${
-                    i === activeIdx
-                      ? 'w-8 bg-accent'
-                      : 'w-1.5 bg-foreground/20 hover:bg-foreground/40'
-                  }`}
+              <div className="relative aspect-[4/3] overflow-hidden border border-border bg-secondary">
+                <Image
+                  src="/projects/jobfoxy.png"
+                  alt="Job Foxy AI job application assistant interface"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 44vw"
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.025]"
                 />
+              </div>
+              <div className="flex items-end justify-between gap-6 px-1 pb-1 pt-5">
+                <div>
+                  <div className="mb-1 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Build 01 · AI SaaS</div>
+                  <h2 className="font-display text-3xl font-semibold tracking-[-0.04em]">Job Foxy</h2>
+                </div>
+                <span className="grid h-11 w-11 shrink-0 place-items-center border border-foreground transition-colors group-hover:bg-foreground group-hover:text-background">
+                  <ArrowUpRight className="h-5 w-5" />
+                </span>
+              </div>
+            </Link>
+
+            <div className="relative z-10 mt-8 border-y border-foreground/80 bg-background/95">
+              {buildLog.map((project) => (
+                <Link
+                  key={project.name}
+                  href={project.href}
+                  className="group grid grid-cols-[34px_1fr_auto] items-center gap-3 border-b border-border py-3 last:border-b-0"
+                >
+                  <span className="font-mono text-[10px] text-muted-foreground">{project.index}</span>
+                  <span className="font-display text-sm font-semibold transition-colors group-hover:text-accent">{project.name}</span>
+                  <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-muted-foreground">{project.type}</span>
+                </Link>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.55 }}
+          className="mt-16 grid border-y border-foreground/80 sm:grid-cols-3 lg:mt-24"
+        >
+          {[
+            ['07', 'Shipped digital projects'],
+            ['03', 'Focused service areas'],
+            ['01', 'Direct point of contact'],
+          ].map(([value, label], index) => (
+            <div key={label} className={`flex items-center gap-4 py-5 ${index > 0 ? 'sm:border-l sm:border-foreground/80 sm:pl-6' : ''}`}>
+              <span className="font-display text-3xl font-semibold text-accent">{value}</span>
+              <span className="max-w-[150px] font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-muted-foreground">{label}</span>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

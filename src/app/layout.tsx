@@ -1,19 +1,26 @@
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Bricolage_Grotesque, IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google';
 import { Toaster as Sonner } from '@/components/ui/sonner';
 import './globals.css';
 
-const geist = Geist({
+const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
-  variable: '--font-geist',
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-bricolage',
   display: 'swap',
 });
 
-const geistMono = Geist_Mono({
+const plexSans = IBM_Plex_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
-  variable: '--font-geist-mono',
+  variable: '--font-plex-sans',
+  display: 'swap',
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-plex-mono',
   display: 'swap',
 });
 
@@ -22,11 +29,11 @@ const SITE_URL = 'https://vcenkkarakuz.com';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Vancouver SaaS, Web & n8n Developer | Cenk Karakuz',
+    default: 'Independent Product Engineer & Founder | Cenk Karakuz',
     template: '%s | Cenk Karakuz',
   },
   description:
-    'Vancouver developer building SaaS products, marketing sites, and n8n automation for founders and teams across Canada and worldwide. Fixed scope, fast delivery.',
+    'Independent product engineer in Vancouver designing and building SaaS products, intelligent workflows, and high-performing websites for founders and small teams.',
   authors: [{ name: 'Cenk Karakuz', url: SITE_URL }],
   creator: 'Cenk Karakuz',
   publisher: 'Cenk Karakuz',
@@ -55,15 +62,15 @@ export const metadata: Metadata = {
     locale: 'en_CA',
     url: SITE_URL,
     siteName: 'Cenk Karakuz',
-    title: 'Cenk Karakuz | Vancouver SaaS, Web & n8n Automation Developer',
+    title: 'Cenk Karakuz | Independent Product Engineer & Founder',
     description:
-      'Independent Vancouver-based developer building SaaS products, marketing sites, and n8n automation systems.',
+      'I design, build, and launch useful digital products for founders and small teams.',
     images: [
       {
         url: '/ck-og.svg',
         width: 1200,
         height: 630,
-        alt: 'Cenk Karakuz — Vancouver SaaS, Web & n8n Automation Developer',
+        alt: 'Cenk Karakuz — Independent Product Engineer and Founder',
       },
     ],
   },
@@ -71,8 +78,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@vcenkkarakuz',
     creator: '@vcenkkarakuz',
-    title: 'Cenk Karakuz | Vancouver SaaS, Web & n8n Automation Developer',
-    description: 'SaaS, web, and n8n automation development from Vancouver, Canada.',
+    title: 'Cenk Karakuz | Independent Product Engineer & Founder',
+    description: 'Digital products, intelligent workflows, and high-performing websites from Vancouver.',
     images: ['/ck-og.svg'],
   },
   icons: {
@@ -99,16 +106,15 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0a0a0a',
+  themeColor: '#faf9f5',
   width: 'device-width',
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-CA" className={`${geist.variable} ${geistMono.variable}`}>
+    <html lang="en-CA" className={`${bricolage.variable} ${plexSans.variable} ${plexMono.variable}`}>
       <body className="min-h-screen bg-background selection:bg-accent/20 overflow-x-hidden">
-        <div className="bg-noise" />
         {children}
         <Sonner />
       </body>
